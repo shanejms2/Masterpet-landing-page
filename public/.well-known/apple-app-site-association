@@ -1,0 +1,14 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "F3J9LZ5YQB.com.masterpet.pets",
+        "paths": ["/*"]
+      }
+    ]
+  },
+  "webcredentials": {
+      "apps": [ "F3J9LZ5YQB.com.masterpet.pets" ]
+   }
+}
