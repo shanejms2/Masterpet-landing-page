@@ -126,3 +126,38 @@ function containsRegion(addressComponents: any[], region: string) {
             component.types.includes("country") && component.shortText === region
     );
 }
+
+export const getDistance = async ({
+    origin: { lat: originLat, lng: originLng },
+    destination: { lat: destinationLat, lng: destinationLng },
+}: {
+    origin: { lat: number; lng: number };
+    destination: { lat: number; lng: number };
+}): Promise<{ distance: number, duration: number, originAddress: string, destinationAddress: string } | null> => {
+    try {
+        if (!originLat || !originLng || !destinationLat || !destinationLng) {
+            return null;
+        }
+        const url: string = `https://maps.googleapis.com/maps/api/distancematrix/json?key=${process.env.MAP_J}&origins=${originLat},${originLng}&destinations=${destinationLat},${destinationLng}`;
+        const response = await axios.get(url, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response.status === 200) {
+            if (response.data.rows.length === 0 || response.data.rows[0].elements.length === 0) {
+                return null;
+            }
+            return {
+                distance: response.data.rows[0].elements[0].distance.value,
+                duration: response.data.rows[0].elements[0].duration.value,
+                originAddress: response.data.origin_addresses[0],
+                destinationAddress: response.data.destination_addresses[0],
+            };
+        }
+    } catch (e) {
+        console.error("Error in searchText");
+    }
+    return null;
+};

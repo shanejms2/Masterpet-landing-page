@@ -28,7 +28,7 @@ export async function createAnonClient() {
     )
 }
 
-export async function createAdminClient() {
+export function createAdminClient() {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
     const serviceRoleSecret = process.env.SUPABASE_SERVICE_ROLE_SECRET!;
 
