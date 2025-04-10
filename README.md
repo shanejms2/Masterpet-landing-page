@@ -36,3 +36,48 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+# Create and switch to develop branch
+git checkout -b develop
+
+# When starting a new feature
+git checkout develop
+git checkout -b feature/your-feature-name
+
+# When working on a bug fix
+git checkout develop
+git checkout -b bugfix/your-bug-fix
+
+# When feature/bugfix is complete
+git checkout develop
+git merge feature/your-feature-name
+# or
+git merge bugfix/your-bug-fix
+
+# When ready to release to production
+git checkout main
+git merge develop
+
+Example workflow:
+# Initial setup
+git checkout main
+git checkout -b develop
+
+# Starting a new feature
+git checkout develop
+git checkout -b feature/new-header
+
+# Making changes and committing
+git add .
+git commit -m "feat: add new header component"
+
+# When feature is complete
+git checkout develop
+git merge feature/new-header
+git push origin develop
+
+# When ready for production
+git checkout main
+git merge develop
+git push origin main
