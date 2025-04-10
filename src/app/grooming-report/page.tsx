@@ -326,22 +326,24 @@ export default function GroomingCheckPage() {
         />
       </div>
 
-      <div className="fixed bottom-8 right-8 flex gap-2">
-        <Button
-          onClick={() => setIsEditing(true)}
-          className="bg-[#1b1582] hover:bg-[#1b1582]/90 text-white"
-        >
-          <Edit2 className="w-5 h-5 mr-2" />
-          Edit Details
-        </Button>
-        <Button
-          onClick={handleDownloadImage}
-          className="bg-[#1b1582] hover:bg-[#1b1582]/90 text-white"
-          disabled={!isFormValid()}
-        >
-          <Download className="w-5 h-5 mr-2" />
-          Download Report ({navigator.platform.includes('Mac') ? '⌘' : 'Ctrl'}+S)
-        </Button>
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/80 backdrop-blur-sm border-t border-gray-200 md:static md:border-0 md:bg-transparent md:backdrop-blur-none">
+        <div className="container mx-auto flex flex-col md:flex-row gap-2 md:justify-end">
+          <Button
+            onClick={() => setIsEditing(true)}
+            className="w-full md:w-auto bg-[#1b1582] hover:bg-[#1b1582]/90 text-white"
+          >
+            <Edit2 className="w-5 h-5 mr-2" />
+            Edit Details
+          </Button>
+          <Button
+            onClick={handleDownloadImage}
+            className="w-full md:w-auto bg-[#1b1582] hover:bg-[#1b1582]/90 text-white"
+            disabled={!isFormValid()}
+          >
+            <Download className="w-5 h-5 mr-2" />
+            Download Report {navigator.platform.includes('Mac') ? '⌘' : 'Ctrl'}+S
+          </Button>
+        </div>
       </div>
     </main>
   );
