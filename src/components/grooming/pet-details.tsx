@@ -1,7 +1,5 @@
 'use client';
 
-import Image from 'next/image';
-
 type DetailItemProps = {
   label: string;
   value: string;

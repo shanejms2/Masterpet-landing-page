@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import html2canvas from 'html2canvas';
 import { Button } from '@/components/ui/button';
 import { Download, Edit2, Save, X } from 'lucide-react';
@@ -68,13 +68,63 @@ export default function GroomingCheckPage() {
   });
 
   const isFormValid = () => {
-    return Object.entries(selectedOptions).every(([key, value]) => {
+    return Object.entries(selectedOptions).every(([, value]) => {
       if (Array.isArray(value)) {
         return value.length > 0;
       }
       return value !== '';
     });
   };
+
+  const handleDownloadImage = useCallback(async () => {
+    const element = document.getElementById('grooming-report');
+    if (!element) return;
+
+    try {
+      // Wait for all images to load
+      const images = element.getElementsByTagName('img');
+      await Promise.all(Array.from(images).map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      }));
+
+      const canvas = await html2canvas(element, {
+        scale: 4,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: '#d9eefd',
+        logging: true,
+        imageTimeout: 0,
+        width: element.offsetWidth,
+        height: element.offsetHeight,
+        windowWidth: element.offsetWidth,
+        windowHeight: element.offsetHeight,
+        onclone: (clonedDoc) => {
+          const clonedElement = clonedDoc.getElementById('grooming-report');
+          if (clonedElement) {
+            clonedElement.style.width = `${element.offsetWidth}px`;
+            clonedElement.style.height = `${element.offsetHeight}px`;
+          }
+        },
+        x: 0,
+        y: 0,
+        scrollX: 0,
+        scrollY: 0,
+        foreignObjectRendering: false,
+        removeContainer: true
+      });
+
+      const link = document.createElement('a');
+      link.download = `${petDetails.petName}-grooming-report-${reportDate}.png`;
+      link.href = canvas.toDataURL('image/png', 1.0);
+      link.click();
+    } catch (error) {
+      console.error('Error generating image:', error);
+    }
+  }, [petDetails.petName, reportDate]);
 
   // Click outside handler
   useEffect(() => {
@@ -107,59 +157,7 @@ export default function GroomingCheckPage() {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isEditing, isFormValid]);
-
-  const handleDownloadImage = async () => {
-    const element = document.getElementById('grooming-report');
-    if (!element) return;
-
-    try {
-      // Wait for all images to load
-      const images = element.getElementsByTagName('img');
-      await Promise.all(Array.from(images).map(img => {
-        if (img.complete) return Promise.resolve();
-        return new Promise((resolve) => {
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      }));
-
-      const canvas = await html2canvas(element, {
-        scale: 4, // Increased from 2 to 4 for higher resolution
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#d9eefd',
-        logging: true,
-        imageTimeout: 0,
-        width: element.offsetWidth,
-        height: element.offsetHeight,
-        windowWidth: element.offsetWidth,
-        windowHeight: element.offsetHeight,
-        onclone: (clonedDoc) => {
-          // Ensure proper rendering of the cloned element
-          const clonedElement = clonedDoc.getElementById('grooming-report');
-          if (clonedElement) {
-            clonedElement.style.width = `${element.offsetWidth}px`;
-            clonedElement.style.height = `${element.offsetHeight}px`;
-          }
-        },
-        x: 0,
-        y: 0,
-        scrollX: 0,
-        scrollY: 0,
-        foreignObjectRendering: false,
-        removeContainer: true
-      });
-
-      // Create a high-quality PNG
-      const link = document.createElement('a');
-      link.download = `${petDetails.petName}-grooming-report-${reportDate}.png`;
-      link.href = canvas.toDataURL('image/png', 1.0);
-      link.click();
-    } catch (error) {
-      console.error('Error generating image:', error);
-    }
-  };
+  }, [isEditing, isFormValid, handleDownloadImage]);
 
   const handleFormChange = (options: Record<string, string | string[]>, comments: string) => {
     setSelectedOptions(options);
