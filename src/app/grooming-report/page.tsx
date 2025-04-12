@@ -92,7 +92,7 @@ export default function GroomingCheckPage() {
       }));
 
       const canvas = await html2canvas(element, {
-        scale: 4,
+        scale: 2,
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#d9eefd',
@@ -107,19 +107,24 @@ export default function GroomingCheckPage() {
           if (clonedElement) {
             clonedElement.style.width = `${element.offsetWidth}px`;
             clonedElement.style.height = `${element.offsetHeight}px`;
+            const images = clonedElement.getElementsByTagName('img');
+            Array.from(images).forEach(img => {
+              img.style.imageRendering = 'pixelated';
+              img.style.transform = 'none';
+            });
           }
         },
         x: 0,
         y: 0,
         scrollX: 0,
         scrollY: 0,
-        foreignObjectRendering: false,
+        foreignObjectRendering: true,
         removeContainer: true
       });
 
       const link = document.createElement('a');
       link.download = `${petDetails.petName}-grooming-report-${reportDate}.png`;
-      link.href = canvas.toDataURL('image/png', 1.0);
+      link.href = canvas.toDataURL('image/png');
       link.click();
     } catch (error) {
       console.error('Error generating image:', error);

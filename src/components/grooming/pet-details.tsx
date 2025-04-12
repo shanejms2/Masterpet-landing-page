@@ -47,8 +47,14 @@ export function PetDetails({ details }: PetDetailsProps) {
             src={details.imageUrl}
             alt={`${details.petName}'s Photo`}
             className="absolute w-full h-full object-cover rounded-full"
-            style={{ objectPosition: 'center center' }}
+            style={{ 
+              objectPosition: 'center center',
+              imageRendering: '-webkit-optimize-contrast',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden'
+            }}
             crossOrigin="anonymous"
+            loading="eager"
           />
         </div>
 
