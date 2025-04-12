@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     // Upload to Supabase Storage
     const supabase = await createAdminClient();
     
-    const { data, error } = await supabase
+    const { error } = await supabase
       .storage
       .from('grooming-report-photos')
       .upload(sanitizedFileName, buffer, {
