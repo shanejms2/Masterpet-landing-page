@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import { join } from 'path';
+import { createAdminClient } from '@/utils/supabase';
 
 const MAX_FILE_SIZE = parseInt(process.env.MAX_UPLOAD_SIZE || '5242880', 10); // 5MB default
 const ALLOWED_FILE_TYPES = (process.env.ALLOWED_FILE_TYPES || 'image/jpeg,image/png,image/webp').split(',');
@@ -43,26 +42,40 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Create uploads directory if it doesn't exist
-    const uploadDir = join(process.cwd(), 'public', 'uploads', 'pets');
-    await mkdir(uploadDir, { recursive: true });
-
     // Convert file to buffer
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Write file to uploads directory
-    const filePath = join(uploadDir, sanitizedFileName);
-    await writeFile(filePath, buffer);
+    // Upload to Supabase Storage
+    const supabase = await createAdminClient();
+    
+    const { data, error } = await supabase
+      .storage
+      .from('grooming-report-photos')
+      .upload(sanitizedFileName, buffer, {
+        contentType: file.type,
+        upsert: true
+      });
 
-    // Return the URL for the uploaded file
-    const imageUrl = `/uploads/pets/${sanitizedFileName}`;
+    if (error) {
+      console.error('Supabase storage error:', error);
+      return NextResponse.json(
+        { error: 'Failed to upload file' },
+        { status: 500 }
+      );
+    }
 
-    return NextResponse.json({ imageUrl });
+    // Get the public URL for the uploaded file
+    const { data: { publicUrl } } = supabase
+      .storage
+      .from('grooming-report-photos')
+      .getPublicUrl(sanitizedFileName);
+
+    return NextResponse.json({ imageUrl: publicUrl });
   } catch (error) {
-    console.error('Error handling upload:', error);
+    console.error('Upload error:', error);
     return NextResponse.json(
-      { error: 'Error uploading file' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

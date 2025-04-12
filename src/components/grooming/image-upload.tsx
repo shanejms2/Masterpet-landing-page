@@ -1,7 +1,12 @@
-import { useState, useRef } from 'react';
+'use client';
+
+import React, { useCallback, useState } from 'react';
+import { useDropzone, FileRejection, DropzoneOptions } from 'react-dropzone';
+import Image from 'next/image';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
-import { Upload, Move } from 'lucide-react';
+import { Move } from 'lucide-react';
 
 interface ImageUploadProps {
   currentImage: string;
@@ -10,40 +15,17 @@ interface ImageUploadProps {
   onImageChange: (imageUrl: string) => void;
 }
 
-export function ImageUpload({ currentImage, petName, petParent, onImageChange }: ImageUploadProps) {
-  const [isDragging, setIsDragging] = useState(false);
+export const ImageUpload: React.FC<ImageUploadProps> = ({ currentImage, petName, petParent, onImageChange }) => {
   const [objectPosition, setObjectPosition] = useState({ x: 50, y: 50 });
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [isAdjusting, setIsAdjusting] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const [preview, setPreview] = useState<string | null>(currentImage || null);
+  const [objectFit, setObjectFit] = useState<'contain' | 'cover'>('cover');
 
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
-
-  const handleDragLeave = () => {
-    setIsDragging(false);
-  };
-
-  const handleDrop = async (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-
-    const file = e.dataTransfer.files[0];
-    if (file && file.type.startsWith('image/')) {
-      await handleImageUpload(file);
-    }
-  };
-
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      await handleImageUpload(file);
-    }
-  };
-
-  const handleImageUpload = async (file: File) => {
+  const handleUpload = useCallback(async (file: File) => {
     try {
+      setIsUploading(true);
+      
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
       const sanitizedPetName = petName.replace(/[^a-zA-Z0-9]/g, '');
       const sanitizedParentName = petParent.replace(/[^a-zA-Z0-9]/g, '');
@@ -58,59 +40,96 @@ export function ImageUpload({ currentImage, petName, petParent, onImageChange }:
         body: formData,
       });
 
-      if (!response.ok) throw new Error('Upload failed');
-
       const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to upload image');
+      }
+
+      setPreview(data.imageUrl);
       onImageChange(data.imageUrl);
+      toast.success('Image uploaded successfully');
     } catch (error) {
-      console.error('Error uploading image:', error);
-      // You might want to show a toast notification here
+      console.error('Upload error:', error);
+      toast.error(error instanceof Error ? error.message : 'Failed to upload image');
+    } finally {
+      setIsUploading(false);
     }
-  };
+  }, [onImageChange, petName, petParent]);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    accept: {
+      'image/jpeg': ['.jpg', '.jpeg'],
+      'image/png': ['.png'],
+      'image/webp': ['.webp']
+    },
+    maxSize: 5 * 1024 * 1024, // 5MB
+    multiple: false,
+    onDrop: async (acceptedFiles: File[]) => {
+      if (acceptedFiles.length > 0) {
+        await handleUpload(acceptedFiles[0]);
+      }
+    },
+    onDropRejected: (fileRejections: FileRejection[]) => {
+      const error = fileRejections[0]?.errors[0];
+      if (error) {
+        switch (error.code) {
+          case 'file-too-large':
+            toast.error('File is too large. Maximum size is 5MB');
+            break;
+          case 'file-invalid-type':
+            toast.error('Invalid file type. Only JPEG, PNG and WebP images are allowed');
+            break;
+          default:
+            toast.error('Error uploading file');
+        }
+      }
+    }
+  } as DropzoneOptions);
 
   return (
     <div className="space-y-4">
       <div
-        className={`relative w-48 h-48 rounded-full overflow-hidden border-2 ${
-          isDragging ? 'border-[#1b1582] bg-[#bfe5fb]/50' : 'border-[#bfe5fb]'
-        }`}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
+        {...getRootProps()}
+        className={`
+          border-2 border-dashed rounded-lg p-6 text-center cursor-pointer
+          transition-colors duration-200 ease-in-out
+          ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'}
+          ${isUploading ? 'opacity-50 cursor-not-allowed' : ''}
+        `}
       >
-        {currentImage ? (
-          <img
-            src={currentImage}
-            alt="Pet Photo"
-            className="absolute w-full h-full object-cover"
-            style={{ 
-              objectPosition: `${objectPosition.x}% ${objectPosition.y}%`,
-              cursor: isAdjusting ? 'move' : 'pointer'
-            }}
-            onClick={() => fileInputRef.current?.click()}
-            crossOrigin="anonymous"
-          />
+        <input {...getInputProps()} />
+        {isUploading ? (
+          <div className="flex flex-col items-center justify-center space-y-2">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
+            <p className="text-sm text-gray-500">Uploading...</p>
+          </div>
+        ) : preview ? (
+          <div className="relative w-48 h-48 mx-auto rounded-full overflow-hidden">
+            <Image
+              src={preview}
+              alt="Preview"
+              fill
+              className={`rounded-full transition-all duration-200 object-${objectFit}`}
+              style={{ objectPosition: `${objectPosition.x}% ${objectPosition.y}%` }}
+              sizes="(max-width: 768px) 192px, 192px"
+            />
+          </div>
         ) : (
-          <div 
-            className="w-full h-full flex flex-col items-center justify-center text-[#1b1582] cursor-pointer"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <Upload className="w-8 h-8 mb-2" />
-            <p className="text-sm text-center">
-              Click or drag image<br />to upload
+          <div className="space-y-2">
+            <p className="text-sm text-gray-500">
+              {isDragActive
+                ? 'Drop the image here'
+                : 'Drag and drop an image here, or click to select'}
+            </p>
+            <p className="text-xs text-gray-400">
+              Supported formats: JPEG, PNG, WebP (max 5MB)
             </p>
           </div>
         )}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          className="hidden"
-          onChange={handleFileSelect}
-        />
       </div>
 
-      {currentImage && (
+      {preview && (
         <div className="space-y-2">
           <Button
             type="button"
@@ -124,6 +143,20 @@ export function ImageUpload({ currentImage, petName, petParent, onImageChange }:
 
           {isAdjusting && (
             <div className="space-y-4 p-4 bg-white rounded-lg">
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <label className="text-sm font-medium text-gray-700">Image Fit</label>
+                  <Button
+                    type="button"
+                    onClick={() => setObjectFit(prev => prev === 'contain' ? 'cover' : 'contain')}
+                    variant="outline"
+                    size="sm"
+                    className="text-xs"
+                  >
+                    {objectFit === 'contain' ? 'Show All' : 'Fill Space'}
+                  </Button>
+                </div>
+              </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700">Horizontal Position</label>
                 <Slider
@@ -150,4 +183,4 @@ export function ImageUpload({ currentImage, petName, petParent, onImageChange }:
       )}
     </div>
   );
-} 
+}; 
