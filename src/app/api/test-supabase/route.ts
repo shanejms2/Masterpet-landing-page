@@ -20,7 +20,7 @@ export async function GET() {
             message: "Supabase connection successful",
             data 
         });
-    } catch (error) {
+    } catch (_) {
         return NextResponse.json({ 
             success: false, 
             error: "Failed to connect to Supabase" 
