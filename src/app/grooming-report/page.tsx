@@ -62,7 +62,7 @@ export default function GroomingCheckPage() {
           if (data.selectedOptions) setSelectedOptions(data.selectedOptions);
           if (data.groomerComments) setGroomerComments(data.groomerComments);
           if (data.reportDate) setReportDate(data.reportDate);
-        } catch (e) {
+        } catch {
           // ignore
         }
         localStorage.removeItem('groomingReportData');
