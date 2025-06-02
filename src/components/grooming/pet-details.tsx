@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 type DetailItemProps = {
   label: string;
   value: string;
@@ -39,15 +41,16 @@ export function PetDetails({ details }: PetDetailsProps) {
     : 'Not provided';
 
   return (
-    <div className="w-full max-w-4xl mx-auto mb-8">
+    <div className="w-full max-w-4xl mx-auto mb-8 pet-details-card">
       <div className="relative flex flex-col md:flex-row items-center gap-8 bg-[#bfe5fb] rounded-lg shadow-md p-6">
         {/* Pet Image */}
         <div className="w-48 h-48 relative rounded-full flex-shrink-0">
-          <img
+          <Image
             src={details.imageUrl}
             alt={`${details.petName}'s Photo`}
+            width={192}
+            height={192}
             className="absolute w-full h-full object-cover rounded-full"
-            style={{ objectPosition: 'center center' }}
             crossOrigin="anonymous"
           />
         </div>

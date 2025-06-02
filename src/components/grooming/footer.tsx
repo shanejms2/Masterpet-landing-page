@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 type FooterProps = {
   mascotImage: string;
   disclaimer: string;
@@ -8,13 +10,12 @@ export function Footer({ mascotImage, disclaimer }: FooterProps) {
     <footer className="w-full max-w-4xl mx-auto mt-8 text-center">
       <div className="pt-1 pb-4 px-4">
         <div className="-mt-1">
-          <img
+          <Image
             src={mascotImage}
             alt="Masterpet Mascots Waving"
-            width="250"
-            height="125"
-            className="mx-auto -mb-4"
-            style={{ maxWidth: '250px', height: 'auto' }}
+            width={250}
+            height={125}
+            className="mx-auto -mb-4 max-w-[250px] h-auto"
             crossOrigin="anonymous"
           />
         </div>
