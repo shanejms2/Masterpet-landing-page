@@ -1,5 +1,3 @@
-
-
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
 
 ## Getting Started
@@ -81,3 +79,7 @@ git push origin develop
 git checkout main
 git merge develop
 git push origin main
+
+## API Documentation
+
+See [docs/grooming-report-api.md](docs/grooming-report-api.md) for details on the Grooming Report PDF Generation API endpoint, request/response format, and usage examples.

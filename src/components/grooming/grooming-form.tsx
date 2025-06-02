@@ -24,6 +24,7 @@ const categories: Category[] = [
       { label: 'Hair Loss', value: 'hair-loss' },
       { label: 'Rashes', value: 'rashes' },
       { label: 'Infection', value: 'infection' },
+      { label: 'Sensitive', value: 'sensitive' },
     ],
   },
   {
@@ -33,6 +34,8 @@ const categories: Category[] = [
       { label: 'Healthy', value: 'healthy' },
       { label: 'Excessive Wax', value: 'excessive-wax' },
       { label: 'Infection', value: 'infection' },
+      { label: 'Redness', value: 'redness' },
+      { label: 'Sensitive', value: 'sensitive' },
     ],
   },
   {
@@ -73,6 +76,15 @@ const categories: Category[] = [
       { label: 'Infestation', value: 'infestation' },
     ],
   },
+  {
+    title: 'Weight',
+    isMultiSelect: false,
+    options: [
+      { label: 'Ideal', value: 'ideal' },
+      { label: 'Overweight', value: 'overweight' },
+      { label: 'Underweight', value: 'underweight' },
+    ],
+  },
 ];
 
 type GroomingFormProps = {
@@ -83,34 +95,19 @@ type GroomingFormProps = {
 
 export function GroomingForm({ selectedOptions, comments, onChange }: GroomingFormProps) {
   const handleOptionSelect = (category: Category, optionValue: string) => {
-    const currentValue = selectedOptions[category.title] || [];
+    const currentValue = selectedOptions[category.title] || (category.isMultiSelect ? [] : '');
     let newValue: string | string[];
 
     if (category.isMultiSelect) {
       const valueArray = Array.isArray(currentValue) ? currentValue : [currentValue];
-      
-      if (optionValue === 'healthy') {
-        // If selecting "Healthy", clear other selections
-        newValue = ['healthy'];
+      if (valueArray.includes(optionValue)) {
+        // If option already selected, remove it
+        newValue = valueArray.filter(v => v !== optionValue);
       } else {
-        // If selecting other option, remove "Healthy" if present
-        const otherValues = valueArray.filter(v => v !== 'healthy');
-        
-        if (valueArray.includes(optionValue)) {
-          // If option already selected, remove it
-          newValue = otherValues.filter(v => v !== optionValue);
-        } else {
-          // Add the new option
-          newValue = [...otherValues, optionValue];
-        }
-        
-        // If no options selected, default to "Healthy"
-        if (newValue.length === 0) {
-          newValue = ['healthy'];
-        }
+        // Add the new option
+        newValue = [...valueArray, optionValue];
       }
     } else {
-      // For single select categories
       newValue = optionValue;
     }
 
@@ -134,7 +131,7 @@ export function GroomingForm({ selectedOptions, comments, onChange }: GroomingFo
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto bg-[#bfe5fb] rounded-lg shadow-md p-6 mb-8">
+    <div className="w-full max-w-4xl mx-auto bg-[#bfe5fb] rounded-lg p-6 mb-8 grooming-form-table">
       <table className="w-full border-collapse">
         <tbody>
           {categories.map((category) => (

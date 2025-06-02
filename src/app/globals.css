@@ -72,7 +72,6 @@ body {
   }
 }
 
-
 .headline{
   color: #00008B;
 text-transform: uppercase;
@@ -81,8 +80,6 @@ font-style: normal;
 font-weight: 700;
 line-height: 108px; /* 108% */
 }
-
-
 
 .corner{
   position: absolute;
@@ -104,4 +101,90 @@ line-height: 108px; /* 108% */
 .BR {
   top: 40%;
   right: 10%;
+}
+
+@media print {
+  #grooming-report {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-shadow: none !important;
+  }
+  /* Avoid breaking inside main cards/sections */
+  #grooming-report > div,
+  #grooming-report > section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  /* Add a little margin between sections for print */
+  #grooming-report > * {
+    margin-bottom: 12px !important;
+  }
+  /* Hide Next.js, Arc, and extension overlays/badges */
+  [data-nextjs-toast],
+  .__nextjs-dev-overlay,
+  .nextjs-portal,
+  [data-nextjs-router-banner],
+  .arc-badge,
+  #arc-root,
+  .chrome-extension,
+  .devtools-root {
+    display: none !important;
+  }
+}
+
+.pdf-mode {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.pdf-section {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 4px !important;
+}
+.pdf-mode .pet-details-card,
+.pdf-mode .grooming-form-table {
+  padding: 12px !important;
+  margin-bottom: 4px !important;
+}
+.pdf-mode .pet-details-card .gap-8,
+.pdf-mode .grooming-form-table .mt-10,
+.pdf-mode .grooming-form-table .mb-8 {
+  gap: 8px !important;
+  margin-top: 8px !important;
+  margin-bottom: 8px !important;
+}
+.pdf-mode .text-5xl { font-size: 2rem !important; }
+.pdf-mode .text-2xl { font-size: 1.25rem !important; }
+.pdf-mode .text-xl { font-size: 1rem !important; }
+
+.pdf-mode .pdf-pet-details-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.pdf-mode .pdf-pet-footer {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #1b1582;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.pdf-mode .pdf-social-links {
+  margin-top: 8px;
+  text-align: center;
+}
+.pdf-mode .pdf-social-links a {
+  color: #1b1582;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.pdf-mode .pdf-social-links a:hover {
+  color: #caf857;
 }
