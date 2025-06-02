@@ -50,6 +50,26 @@ export default function GroomingCheckPage() {
   });
   const [groomerComments, setGroomerComments] = useState('');
 
+  // On mount, check for groomingReportData in localStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const dataStr = localStorage.getItem('groomingReportData');
+      if (dataStr) {
+        try {
+          const data = JSON.parse(dataStr);
+          if (data.petDetails) setPetDetails((prev) => ({ ...prev, ...data.petDetails }));
+          else setPetDetails((prev) => ({ ...prev, ...data }));
+          if (data.selectedOptions) setSelectedOptions(data.selectedOptions);
+          if (data.groomerComments) setGroomerComments(data.groomerComments);
+          if (data.reportDate) setReportDate(data.reportDate);
+        } catch (e) {
+          // ignore
+        }
+        localStorage.removeItem('groomingReportData');
+      }
+    }
+  }, []);
+
   // Format the report date
   const formattedReportDate = new Date(reportDate).toLocaleDateString('en-US', {
     month: 'long',
