@@ -86,6 +86,19 @@ const Footer = () => (
         {quickLinks.map(link => (
           <a key={link.href} href={link.href} className="font-fractul hover:text-[#4bb36d] hover:underline underline-offset-2 text-sm text-[#1b1582] font-medium transition-colors duration-150" aria-label={link.label}>{link.label}</a>
         ))}
+        {/* Google Map Embed (smaller, at bottom of Quick Links) */}
+        <div className="mt-4 rounded-lg overflow-hidden w-full max-w-xs" aria-label="Google Map showing Masterpet location">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3927.9909698333727!2d76.35700777545053!3d10.099824271308185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080fe07f8500d5%3A0x2325c1d55999e999!2sMasterpet%20-%20Mobile%20At%20Home%20Pet%20Grooming%20Ernakulam!5e0!3m2!1sen!2sin!4v1749926164503!5m2!1sen!2sin"
+            width="100%"
+            height="120"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Masterpet Location on Google Maps"
+          ></iframe>
+        </div>
       </div>
       {/* Social & Legal */}
       <div className="flex flex-col gap-2 items-center md:items-start">
