@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { MainNavigation } from "@/components/MainNavigation";
 import { StagewiseToolbar } from '@stagewise/toolbar-next';
 import { ReactPlugin } from '@stagewise-plugins/react';
+import NavbarWrapper from "@/components/NavbarWrapper";
+import MainWrapper from "@/components/MainWrapper";
 
 export const metadata: Metadata = {
   title: "Masterpet",
@@ -32,10 +33,10 @@ export default function RootLayout({
           The background color is set using the semantic Tailwind class 'bg-background',
           which references the CSS variable --background for easy theming and configuration.
         */}
-        <MainNavigation />
-        <main className="pt-16">{/* Adjust pt-16 to match navbar height if needed */}
+        <NavbarWrapper />
+        <MainWrapper>
           {children}
-        </main>
+        </MainWrapper>
       </body>
     </html>
   );

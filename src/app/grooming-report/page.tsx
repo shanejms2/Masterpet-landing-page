@@ -103,6 +103,14 @@ export default function GroomingCheckPage() {
     }));
   };
 
+  useEffect(() => {
+    const original = document.body.style.backgroundColor;
+    document.body.style.backgroundColor = "#d9eefd";
+    return () => {
+      document.body.style.backgroundColor = original;
+    };
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#d9eefd] pb-20">
       {isEditing && (
