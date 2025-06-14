@@ -13,6 +13,7 @@ A modern, production-ready web application for Masterpet, built with Next.js, Re
 - [Contributing](#contributing)
 - [License & Contact](#license--contact)
 - [NAP + Schema Implementation](#nap--schema-implementation)
+- [Sitemap.xml for SEO](#sitemapxml-for-seo)
 
 ---
 
@@ -135,3 +136,20 @@ For questions, issues, or feature requests, please open an issue or contact us a
 ---
 
 For more details on local SEO and schema, see [Google's documentation](https://developers.google.com/search/docs/appearance/structured-data/local-business).
+
+## Sitemap.xml for SEO
+
+A dynamic sitemap is automatically generated at `/sitemap.xml` to help search engines discover and index all important pages of the site.
+
+- **URL:** `https://masterpet.co.in/sitemap.xml`
+- **Type:** Dynamic (auto-updates with main static routes)
+- **How to use:**
+  1. Deploy your changes to production.
+  2. Go to [Google Search Console](https://search.google.com/search-console/).
+  3. Add your property if not already done.
+  4. Navigate to the Sitemaps section.
+  5. Enter `https://masterpet.co.in/sitemap.xml` and submit.
+
+**Pages included:** Home, Privacy Policy, Terms & Conditions, Cancellation Policy, Return Policy, Grooming Report (and more as needed).
+
+If you add new static or dynamic pages, update `src/app/sitemap.xml/route.ts` to include them in the sitemap.
