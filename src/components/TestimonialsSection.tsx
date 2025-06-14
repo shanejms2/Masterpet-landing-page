@@ -84,13 +84,8 @@ const TestimonialsSection = () => (
     <script type="application/ld+json" dangerouslySetInnerHTML={{
       __html: JSON.stringify({
         "@context": "http://schema.org",
-        "@type": "Product",
-        "name": "Masterpet Grooming Van",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": 5,
-          "reviewCount": 2
-        },
+        "@type": "LocalBusiness",
+        "name": "Masterpet - Mobile At Home Pet Grooming Ernakulam",
         "review": testimonials.map(t => ({
           "@type": "Review",
           "author": { "@type": "Person", "name": t.name },
