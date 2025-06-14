@@ -1,3 +1,4 @@
+import NAPSchema from "@/components/NAPSchema";
 // import NavBar from '../components/navbar';
 import HeroSection from '../components/HeroSection';
 import CommunitiesMarquee from '../components/CommunitiesMarquee';
@@ -14,6 +15,7 @@ import Image from 'next/image';
 export default function Home() {
   return (
     <>
+      <NAPSchema />
       {/* <NavBar /> */}
       <HeroSection />
       <CommunitiesMarquee />
@@ -38,6 +40,7 @@ export default function Home() {
           priority
         />
       </div>
+      {/* NAP Info Section removed, now in Footer */}
       <Footer />
     </>
   );

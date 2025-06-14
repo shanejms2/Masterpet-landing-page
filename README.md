@@ -12,6 +12,7 @@ A modern, production-ready web application for Masterpet, built with Next.js, Re
 - [Development Workflow](#development-workflow)
 - [Contributing](#contributing)
 - [License & Contact](#license--contact)
+- [NAP + Schema Implementation](#nap--schema-implementation)
 
 ---
 
@@ -112,3 +113,25 @@ We welcome contributions! To get started:
 ---
 
 For questions, issues, or feature requests, please open an issue or contact us at the email above.
+
+## NAP + Schema Implementation
+
+### What is NAP + Schema?
+- **NAP** stands for **Name, Address, Phone Number**—the essential business contact details.
+- **Schema** refers to [schema.org](https://schema.org) structured data, which helps search engines understand and display your business info in rich results.
+- Having consistent, visible NAP info and schema markup is crucial for local SEO and Google My Business.
+
+### How It's Implemented
+- The business NAP info (name, address, phone, WhatsApp, email, hours, website) is **visibly displayed in the footer** of every page.
+- The NAP info is also marked up using [LocalBusiness schema](https://schema.org/LocalBusiness) via a React component: `src/components/NAPSchema.tsx`.
+- The `NAPSchema` component injects JSON-LD structured data into the homepage for SEO.
+- All contact methods are clickable and accessible.
+
+### How to Update Business Info
+- To change the visible NAP info, edit the relevant section in `src/components/Footer.tsx`.
+- To update the structured data, edit the business details in `src/components/NAPSchema.tsx`.
+- Make sure both are kept in sync for best SEO results.
+
+---
+
+For more details on local SEO and schema, see [Google's documentation](https://developers.google.com/search/docs/appearance/structured-data/local-business).
