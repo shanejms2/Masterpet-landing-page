@@ -24,7 +24,8 @@ const NAPSchema: React.FC = () => {
     },
     "sameAs": [
       "https://wa.me/918590643269"
-    ]
+    ],
+    "priceRange": "₹₹"
   };
 
   return (

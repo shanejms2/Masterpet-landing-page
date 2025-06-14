@@ -93,13 +93,17 @@ const TestimonialsSection = () => (
         },
         "review": testimonials.map(t => ({
           "@type": "Review",
-          "author": t.name,
+          "author": { "@type": "Person", "name": t.name },
           "datePublished": t.date,
           "reviewBody": t.review,
           "reviewRating": {
             "@type": "Rating",
             "ratingValue": t.rating,
             "bestRating": 5
+          },
+          "itemReviewed": {
+            "@type": "LocalBusiness",
+            "name": "Masterpet - Mobile At Home Pet Grooming Ernakulam"
           }
         }))
       })
