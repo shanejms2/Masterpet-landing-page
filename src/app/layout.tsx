@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import localFont from 'next/font/local'
 import "./globals.css";
-
-const fractual = localFont({
-  src: '../fonts/Fractul-Regular.ttf',
-  variable: '--font-fractual',
-})
-
-const gliker = localFont({
-  src: '../fonts/Gliker-Regular.woff2',
-  variable: '--font-gliker',
-})
+import { MainNavigation } from "@/components/MainNavigation";
+import { StagewiseToolbar } from '@stagewise/toolbar-next';
+import { ReactPlugin } from '@stagewise-plugins/react';
 
 export const metadata: Metadata = {
   title: "Masterpet",
@@ -24,10 +16,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${fractual.variable} ${gliker.variable} font-sans`}
-      >
-        {children}
+      <head>
+        <meta property="og:title" content="Masterpet - At-Home Pet Grooming in Kochi" />
+        <meta property="og:description" content="Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep. Trusted by 1000+ pet parents & top communities in Kerala." />
+        <meta property="og:image" content="/brand_assets/og-image.png" />
+        <meta property="og:url" content="https://masterpet.co.in/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Masterpet - At-Home Pet Grooming in Kochi" />
+        <meta name="twitter:description" content="Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep. Trusted by 1000+ pet parents & top communities in Kerala." />
+        <meta name="twitter:image" content="/brand_assets/og-image.png" />
+      </head>
+      <body className="font-gliker bg-background min-h-screen">
+        <StagewiseToolbar config={{ plugins: [ReactPlugin] }} />
+        {/*
+          The background color is set using the semantic Tailwind class 'bg-background',
+          which references the CSS variable --background for easy theming and configuration.
+        */}
+        <MainNavigation />
+        <main className="pt-16">{/* Adjust pt-16 to match navbar height if needed */}
+          {children}
+        </main>
       </body>
     </html>
   );
