@@ -5,7 +5,7 @@ const NAPSchema: React.FC = () => {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Masterpet - Mobile At Home Pet Grooming Ernakulam",
-    "image": "/logo.svg",
+    "image": "https://masterpet.co.in/logo.svg",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Anu Villa, XVI / 80, Nethaji Rd, near YMCA Indoor Stadium, Periyar Nagar",

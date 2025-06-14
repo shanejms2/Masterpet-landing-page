@@ -4,6 +4,7 @@ import { StagewiseToolbar } from '@stagewise/toolbar-next';
 import { ReactPlugin } from '@stagewise-plugins/react';
 import NavbarWrapper from "@/components/NavbarWrapper";
 import MainWrapper from "@/components/MainWrapper";
+import NAPSchema from "@/components/NAPSchema";
 
 export const metadata: Metadata = {
   title: "Masterpet",
@@ -26,6 +27,7 @@ export default function RootLayout({
         <meta name="twitter:title" content="Masterpet - At-Home Pet Grooming in Kochi" />
         <meta name="twitter:description" content="Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep. Trusted by 1000+ pet parents & top communities in Kerala." />
         <meta name="twitter:image" content="/brand_assets/og-image.png" />
+        <NAPSchema />
       </head>
       <body className="font-gliker bg-background min-h-screen">
         <StagewiseToolbar config={{ plugins: [ReactPlugin] }} />
