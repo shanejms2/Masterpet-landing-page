@@ -49,6 +49,7 @@ const TestimonialsSection = () => (
                 width={56}
                 height={56}
                 className="rounded-full object-cover border-2 border-brand-green w-14 h-14 md:w-18 md:h-18"
+                loading="lazy"
               />
               <div>
                 <span className="font-heading text-brand-blue text-lg" itemProp="author">{t.name}</span>

@@ -46,7 +46,7 @@ const AboutSection = () => (
             width={240}
             height={240}
             className="object-contain drop-shadow-xl w-40 h-40 md:w-[340px] md:h-[340px]"
-            priority
+            loading="lazy"
           />
         </div>
       </div>

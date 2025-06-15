@@ -7,6 +7,8 @@ import Container from "./Container";
 import Logo from './ui/Logo';
 import Image from 'next/image';
 import { X, Menu } from "lucide-react";
+import { NAV_LINKS } from "./navConfig";
+import { usePathname } from "next/navigation";
 
 export function MainNavigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -55,8 +57,22 @@ export function MainNavigation() {
   }, [mobileOpen]);
 
   // Desktop nav rendering
+  const pathname = usePathname();
   const renderNavLinks = () => {
-    return null;
+    return NAV_LINKS.map((link) => (
+      <Link
+        key={link.href}
+        href={link.href}
+        className={
+          `px-4 py-2 rounded font-fractul text-base transition-colors focus-visible:ring-2 focus-visible:ring-brand-blue outline-none ` +
+          (pathname === link.href ? "bg-brand-green text-brand-blue font-bold" : "hover:bg-brand-green/20 text-brand-blue")
+        }
+        tabIndex={0}
+        aria-label={link.label}
+      >
+        {link.label}
+      </Link>
+    ));
   };
 
   return (
@@ -107,6 +123,7 @@ export function MainNavigation() {
         className={`md:hidden fixed top-0 left-0 w-full h-full bg-white z-50 flex flex-col pt-6 transition-transform duration-300 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}
         role="dialog"
         aria-modal="true"
+        aria-label="Main navigation menu"
         tabIndex={-1}
         style={{ minHeight: "100vh" }}
       >
@@ -118,8 +135,22 @@ export function MainNavigation() {
           </button>
         </div>
         {/* Menu Items */}
-        <nav className="flex-1 flex flex-col w-full">
-          {/* Navigation links removed as NAV_LINKS is empty */}
+        <nav className="flex-1 flex flex-col w-full gap-2 px-6 mt-4">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={
+                `px-4 py-3 rounded font-fractul text-lg transition-colors focus-visible:ring-2 focus-visible:ring-brand-blue outline-none w-full text-left ` +
+                (pathname === link.href ? "bg-brand-green text-brand-blue font-bold" : "hover:bg-brand-green/20 text-brand-blue")
+              }
+              tabIndex={0}
+              aria-label={link.label}
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
         {/* Call-to-Action Buttons */}
         <div className="flex flex-col gap-3 px-6 pb-8 mt-auto w-full">

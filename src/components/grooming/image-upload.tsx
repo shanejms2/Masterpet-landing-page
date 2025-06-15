@@ -113,6 +113,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ currentImage, petName,
               className={`rounded-full transition-all duration-200 object-${objectFit}`}
               style={{ objectPosition: `${objectPosition.x}% ${objectPosition.y}%` }}
               sizes="(max-width: 768px) 192px, 192px"
+              loading="lazy"
             />
           </div>
         ) : (

@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import gsap from "gsap";
 import Container from "./Container";
 
 // Auto-imported logo files (update this list if you add/remove files)
@@ -25,62 +24,64 @@ const logoFiles = [
 
 const CommunitiesMarquee = () => {
   const marqueeRef = useRef<HTMLDivElement>(null);
-  const tweenRef = useRef<gsap.core.Tween | null>(null);
   // Animated entry: refs for each logo
   const logoRefs = useRef<(HTMLDivElement | null)[]>([]);
   // Store observers for cleanup
   const observers = useRef<IntersectionObserver[]>([]);
 
   useEffect(() => {
-    const marquee = marqueeRef.current;
-    if (!marquee) return;
-
-    // Calculate the width of one set of logos for seamless looping
-    const marqueeWidth = marquee.scrollWidth / 2;
-
-    // Animate marquee for seamless infinite loop
-    tweenRef.current = gsap.to(marquee, {
-      x: -marqueeWidth,
-      duration: 30,
-      ease: "linear",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize(x => parseFloat(x) % -marqueeWidth),
-      },
+    let tween: null | { pause: () => void; resume: () => void; kill: () => void } = null;
+    import('gsap').then((gsap) => {
+      const marquee = marqueeRef.current;
+      if (!marquee) return;
+      const marqueeWidth = marquee.scrollWidth / 2;
+      tween = gsap.default.to(marquee, {
+        x: -marqueeWidth,
+        duration: 30,
+        ease: "linear",
+        repeat: -1,
+        modifiers: {
+          x: gsap.default.utils.unitize(x => parseFloat(x) % -marqueeWidth),
+        },
+      });
+      // Pause on hover
+      const handleMouseEnter = () => {
+        if (tween) tween.pause();
+      };
+      const handleMouseLeave = () => {
+        if (tween) tween.resume();
+      };
+      marquee.addEventListener("mouseenter", handleMouseEnter);
+      marquee.addEventListener("mouseleave", handleMouseLeave);
+      // Cleanup
+      return () => {
+        marquee.removeEventListener("mouseenter", handleMouseEnter);
+        marquee.removeEventListener("mouseleave", handleMouseLeave);
+        if (tween) tween.kill();
+      };
     });
-
-    // Pause on hover
-    const handleMouseEnter = () => tweenRef.current?.pause();
-    const handleMouseLeave = () => tweenRef.current?.resume();
-    marquee.addEventListener("mouseenter", handleMouseEnter);
-    marquee.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      marquee.removeEventListener("mouseenter", handleMouseEnter);
-      marquee.removeEventListener("mouseleave", handleMouseLeave);
-      tweenRef.current?.kill();
-    };
   }, []);
 
   // Animated entry: Intersection Observer for each logo
   useEffect(() => {
-    logoRefs.current.forEach((el) => {
-      if (!el) return;
-      // Set initial state
-      gsap.set(el, { opacity: 0, scale: 0.9 });
-      const observer = new window.IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              gsap.to(el, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" });
-              observer.disconnect();
-            }
-          });
-        },
-        { threshold: 0.2 }
-      );
-      observer.observe(el);
-      observers.current.push(observer);
+    import('gsap').then((gsap) => {
+      logoRefs.current.forEach((el) => {
+        if (!el) return;
+        gsap.default.set(el, { opacity: 0, scale: 0.9 });
+        const observer = new window.IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                gsap.default.to(el, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" });
+                observer.disconnect();
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+        observer.observe(el);
+        observers.current.push(observer);
+      });
     });
     return () => {
       observers.current.forEach((observer) => observer.disconnect());
@@ -119,8 +120,8 @@ const CommunitiesMarquee = () => {
                   className="object-contain h-12 sm:h-14 lg:h-16 max-w-[80px] sm:max-w-[100px] lg:max-w-[120px] mx-auto grayscale hover:grayscale-0 transition-all duration-300"
                   width={120}
                   height={64}
-                  priority={logo.alt.includes("DLF") || logo.alt.includes("Olive") || logo.alt.includes("Tata")}
-                  loading={logo.alt.includes("DLF") || logo.alt.includes("Olive") || logo.alt.includes("Tata") ? undefined : "lazy"}
+                  priority={idx < 3}
+                  loading={idx < 3 ? undefined : "lazy"}
                 />
               </div>
             ))}

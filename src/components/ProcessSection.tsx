@@ -53,6 +53,7 @@ const ProcessSection = () => (
               height={100}
               className="mb-4 object-contain drop-shadow-xl w-20 h-20 md:w-[120px] md:h-[120px]"
               priority={idx === 0}
+              loading={idx === 0 ? "eager" : "lazy"}
             />
             <h3 className="font-heading text-lg md:text-2xl text-brand-blue mb-2 text-center">{step.title}</h3>
             <p className="font-body text-brand-blue text-center text-base">{step.description}</p>

@@ -9,7 +9,6 @@ import ProcessSection from '../components/ProcessSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
 import FinalCTASection from '../components/FinalCTASection';
-import Footer from '../components/Footer';
 import Image from 'next/image';
 
 export default function Home() {
@@ -41,7 +40,6 @@ export default function Home() {
         />
       </div>
       {/* NAP Info Section removed, now in Footer */}
-      <Footer />
     </>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
 import { useRef, useEffect } from "react";
-import gsap from "gsap";
 import { FaWhatsapp } from "react-icons/fa";
 import Container from "./Container";
+import type { gsap } from 'gsap';
 
 const HeroSection = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -14,42 +14,48 @@ const HeroSection = () => {
   const mascotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(
-      headingRef.current,
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }
-    )
-      .fromTo(
-        paragraphRef.current,
+    let tl: gsap.core.Timeline | null = null;
+    import('gsap').then((gsap) => {
+      tl = gsap.default.timeline();
+      tl.fromTo(
+        headingRef.current,
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
-        "-=0.5"
+        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }
       )
-      .fromTo(
-        badgeRef.current,
-        { y: 40, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
-        "-=0.5"
-      )
-      .fromTo(
-        buttonRef.current,
-        { y: 40, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
-        "-=0.5"
-      )
-      .fromTo(
-        secondaryCtaRef.current,
-        { y: 40, opacity: 0, scale: 0.95 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
-        "-=0.6"
-      )
-      .fromTo(
-        mascotRef.current,
-        { opacity: 0, scale: 0.95 },
-        { opacity: 1, scale: 1, duration: 0.6, ease: "power1.out" },
-        "-=0.4"
-      );
+        .fromTo(
+          paragraphRef.current,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+          "-=0.5"
+        )
+        .fromTo(
+          badgeRef.current,
+          { y: 40, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
+          "-=0.5"
+        )
+        .fromTo(
+          buttonRef.current,
+          { y: 40, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
+          "-=0.5"
+        )
+        .fromTo(
+          secondaryCtaRef.current,
+          { y: 40, opacity: 0, scale: 0.95 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
+          "-=0.6"
+        )
+        .fromTo(
+          mascotRef.current,
+          { opacity: 0, scale: 0.95 },
+          { opacity: 1, scale: 1, duration: 0.6, ease: "power1.out" },
+          "-=0.4"
+        );
+    });
+    return () => {
+      if (tl) tl.kill();
+    };
   }, []);
 
   return (

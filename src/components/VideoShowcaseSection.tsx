@@ -107,7 +107,9 @@ const VideoShowcaseSection: React.FC = () => {
                       tabIndex={0}
                       onPlay={() => setPlaying((prev) => ({ ...prev, [video.id]: true }))}
                       onPause={() => setPlaying((prev) => ({ ...prev, [video.id]: false }))}
-                    />
+                    >
+                      <track kind="captions" srcLang="en" label="English" />
+                    </video>
                     {/* Play button overlay (shows only when paused) */}
                     {!playing[video.id] && (
                       <button

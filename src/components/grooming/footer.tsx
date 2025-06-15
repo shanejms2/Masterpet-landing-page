@@ -17,6 +17,7 @@ export function Footer({ mascotImage, disclaimer }: FooterProps) {
             height={125}
             className="mx-auto -mb-4 max-w-[250px] h-auto"
             crossOrigin="anonymous"
+            loading="lazy"
           />
         </div>
 

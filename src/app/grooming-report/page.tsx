@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { GroomingForm } from '@/components/grooming/grooming-form';
 import { PetDetails } from '@/components/grooming/pet-details';
 import { Footer } from '@/components/grooming/footer';
-import { ImageUpload } from '@/components/grooming/image-upload';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
 // Types for our form data
@@ -21,6 +21,8 @@ export type PetDetailsType = {
   package: string;
   imageUrl: string;
 };
+
+const ImageUpload = dynamic(() => import('@/components/grooming/image-upload').then(mod => mod.ImageUpload), { ssr: false });
 
 export default function GroomingCheckPage() {
   const [isEditing, setIsEditing] = useState(false);

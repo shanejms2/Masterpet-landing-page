@@ -52,6 +52,7 @@ export function PetDetails({ details }: PetDetailsProps) {
             height={192}
             className="absolute w-full h-full object-cover rounded-full"
             crossOrigin="anonymous"
+            loading="lazy"
           />
         </div>
 

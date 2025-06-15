@@ -30,7 +30,6 @@ const Logo: React.FC<LogoProps> = ({
       className={clsx('w-auto select-none', sizeClasses[size], className)}
       tabIndex={0}
       aria-label="Masterpet Logo"
-      priority
       {...props}
     />
   );
