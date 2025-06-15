@@ -4,7 +4,7 @@ import DevStagewiseToolbar from '@/components/DevStagewiseToolbar';
 import NavbarWrapper from "@/components/NavbarWrapper";
 import MainWrapper from "@/components/MainWrapper";
 import NAPSchema from "@/components/NAPSchema";
-import Footer from "@/components/Footer";
+import FooterWrapper from '@/components/FooterWrapper';
 
 export const metadata: Metadata = {
   title: "Masterpet",
@@ -40,7 +40,7 @@ export default function RootLayout({
         <MainWrapper>
           {children}
         </MainWrapper>
-        <Footer />
+        <FooterWrapper />
       </body>
     </html>
   );
