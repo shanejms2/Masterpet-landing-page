@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import DevStagewiseToolbar from '@/components/DevStagewiseToolbar';
 import NavbarWrapper from "@/components/NavbarWrapper";
 import MainWrapper from "@/components/MainWrapper";
 import NAPSchema from "@/components/NAPSchema";
@@ -31,12 +30,11 @@ export default function RootLayout({
         <NAPSchema />
       </head>
       <body className="font-gliker bg-background min-h-screen">
-        {process.env.NODE_ENV === 'development' && <DevStagewiseToolbar />}
+        <NavbarWrapper />
         {/*
           The background color is set using the semantic Tailwind class 'bg-background',
           which references the CSS variable --background for easy theming and configuration.
         */}
-        <NavbarWrapper />
         <MainWrapper>
           {children}
         </MainWrapper>
