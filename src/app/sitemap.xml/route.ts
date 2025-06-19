@@ -4,7 +4,7 @@ const BASE_URL = 'https://masterpet.co.in';
 
 const staticPages = [
   '', // Home
-  'privacy-policy',
+  'privacy',
   'terms-and-conditions',
   'cancellation-policy',
   'return-policy',

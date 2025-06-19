@@ -14,6 +14,9 @@ A modern, production-ready web application for Masterpet, built with Next.js, Re
 - [License & Contact](#license--contact)
 - [NAP + Schema Implementation](#nap--schema-implementation)
 - [Sitemap.xml for SEO](#sitemapxml-for-seo)
+- [Page Structure Overview](#page-structure-overview)
+- [Sitemap Maintenance](#sitemap-maintenance)
+- [Legacy URL Redirects](#legacy-url-redirects)
 
 ---
 
@@ -153,3 +156,32 @@ A dynamic sitemap is automatically generated at `/sitemap.xml` to help search en
 **Pages included:** Home, Privacy Policy, Terms & Conditions, Cancellation Policy, Return Policy, Grooming Report (and more as needed).
 
 If you add new static or dynamic pages, update `src/app/sitemap.xml/route.ts` to include them in the sitemap.
+
+## Page Structure Overview
+
+**Main Pages:**
+- `/` — Homepage: Hero, services, testimonials, FAQ, and mascot illustration.
+- `/privacy` — Privacy Policy.
+- `/terms-and-conditions` — Terms & Conditions.
+- `/cancellation-policy` — Cancellation Policy.
+- `/return-policy` — Return & Refund Policy.
+- `/grooming-report` — Interactive grooming report form.
+- `/contact` — Contact form (WhatsApp integration, map, direct info).
+- `/account-deletion` — Account deletion request form.
+
+All pages are built with accessibility and SEO in mind, using TailwindCSS for styling and modular React components.
+
+## Sitemap Maintenance
+
+- The sitemap at `/sitemap.xml` is generated dynamically from `src/app/sitemap.xml/route.ts`.
+- **Important:** The `staticPages` array in this file must match your actual route slugs (e.g., `'privacy'`, not `'privacy-policy'`).
+- If you add new static or dynamic pages, update this array to ensure they are indexed by search engines.
+
+## Legacy URL Redirects
+
+> **Note:**  
+> To preserve SEO value and avoid 404 errors for old URLs, permanent redirects are configured in `next.config.js`:
+> - `/privacy-policy.html` → `/privacy`
+> - `/terms-and-conditions.html` → `/terms-and-conditions`
+>
+> If you add or change routes, consider whether legacy redirects are needed for SEO or user experience.

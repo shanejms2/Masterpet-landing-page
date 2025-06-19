@@ -11,6 +11,20 @@ const nextConfig = {
     ],
   },
   productionBrowserSourceMaps: true,
+  async redirects() {
+    return [
+      {
+        source: '/privacy-policy.html',
+        destination: '/privacy',
+        permanent: true,
+      },
+      {
+        source: '/terms-and-conditions.html',
+        destination: '/terms-and-conditions',
+        permanent: true,
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig 
