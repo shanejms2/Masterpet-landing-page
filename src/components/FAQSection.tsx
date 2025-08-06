@@ -1,69 +1,195 @@
 "use client";
 import { useState } from "react";
+import { ChevronDown, MessageCircle, Phone, Mail } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Container from "./Container";
 
 const faqs = [
   {
-    q: "How does at-home pet grooming with Masterpet work?",
-    a: "Simply book your slot via WhatsApp or phone. Our fully equipped grooming van arrives at your doorstep at the scheduled time. Your pet is groomed by certified professionals in a safe, hygienic environment—no travel or stress!",
+    question: "How does at-home pet grooming with Masterpet work?",
+    answer: "Simply book your slot via WhatsApp or phone. Our fully equipped grooming van arrives at your doorstep at the scheduled time. Your pet is groomed by certified professionals in a safe, hygienic environment—no travel or stress! The entire process takes 1-2 hours depending on your pet's size and grooming needs."
   },
   {
-    q: "Is your team qualified to handle anxious or sensitive pets?",
-    a: "Yes! Our team includes an experienced veterinarian (10+ years in practice) and professional groomers trained to handle pets with anxiety or special needs. We create a calm, friendly atmosphere for every pet.",
+    question: "Is your team qualified to handle anxious or sensitive pets?",
+    answer: "Absolutely! Our team includes an experienced veterinarian (10+ years in practice) and professional groomers trained to handle pets with anxiety or special needs. We create a calm, friendly atmosphere and use gentle techniques to ensure your pet feels comfortable throughout the entire grooming process."
   },
   {
-    q: "What safety and hygiene measures do you follow?",
-    a: "We use sanitized equipment, high-quality products, and maintain strict hygiene protocols in our grooming van. Each pet is treated with care and comfort as our top priority.",
+    question: "What safety and hygiene measures do you follow?",
+    answer: "We maintain the highest standards of safety and hygiene. All equipment is sanitized between pets, we use premium quality grooming products, and follow strict protocols in our mobile salon. Each pet is treated with care and comfort as our top priority, ensuring a safe and clean environment."
   },
   {
-    q: "How can I pay for the service?",
-    a: "We accept UPI and Cash. Payment details will be shared after your grooming session is complete.",
+    question: "How can I pay for the service?",
+    answer: "We accept UPI and Cash payments. Payment details will be shared after your grooming session is complete. We also offer package deals for regular customers and special pricing for first-time bookings. All transactions are secure and transparent."
   },
   {
-    q: "What is your cancellation or rescheduling policy?",
-    a: "You can cancel or reschedule your appointment up to 24 hours in advance at no extra charge. Please contact us as early as possible if your plans change.",
+    question: "What is your cancellation or rescheduling policy?",
+    answer: "You can cancel or reschedule your appointment up to 24 hours in advance at no extra charge. Please contact us as early as possible if your plans change. We understand that emergencies happen, and we'll work with you to find a suitable alternative time."
   },
+  {
+    question: "Do you groom both dogs and cats?",
+    answer: "Yes! We provide professional grooming services for both dogs and cats. Our team is trained to handle different breeds and temperaments. We use specialized techniques and products suitable for each species to ensure the best results and comfort for your pet."
+  },
+  {
+    question: "What areas do you serve in Ernakulam?",
+    answer: "We serve most areas in Ernakulam district including Kochi city, Fort Kochi, Mattancherry, Edapally, Kakkanadu, Palarivattom, Thripunithura, Kaloor, Thrikkakara, Eroor, Varapuzha, Eloor, MG Road, Vypin, Marine Drive, and surrounding areas. Please contact us with your specific location, and we'll confirm if we can provide service in your area. We're constantly expanding our service areas."
+  },
+  {
+    question: "How long does a typical grooming session take?",
+    answer: "A typical grooming session takes 1-2 hours depending on your pet's size, breed, and the specific services requested. Mini grooming sessions are usually faster (45-60 minutes), while full grooming with additional services may take up to 2 hours. We'll give you an estimated time when you book."
+  }
+];
+
+const contactMethods = [
+  {
+    icon: MessageCircle,
+    title: "WhatsApp",
+    description: "Quick booking and support",
+    action: "Chat Now",
+    href: "https://wa.me/918590643269?text=Hi%20Masterpet!%20I%20have%20a%20question%20about%20your%20services.%20[From%20Masterpet%20Website]"
+  },
+  {
+    icon: Phone,
+    title: "Call Us",
+    description: "Speak with our team",
+    action: "Call Now",
+    href: "tel:+918590643269"
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    description: "Send us a message",
+    action: "Email Us",
+    href: "mailto:info@masterpet.in"
+  }
 ];
 
 const FAQSection = () => {
-  const [open, setOpen] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const handleToggle = (idx: number) => {
-    setOpen(open === idx ? null : idx);
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="w-full bg-white py-8 md:py-12" id="faq" aria-label="Frequently Asked Questions">
+    <section className="w-full bg-background py-16 md:py-24" id="faq" aria-label="Frequently Asked Questions">
       <Container>
-        <h2 className="font-heading text-3xl md:text-4xl text-brand-blue text-center mb-10">
-          Frequently Asked Questions
-        </h2>
-        <div className="max-w-3xl mx-auto">
-          {faqs.map((faq, idx) => (
-            <div key={faq.q} className="mb-6 border-b border-brand-green">
-              <button
-                className="w-full text-left font-heading text-lg text-brand-blue py-5 flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-                aria-expanded={open === idx}
-                aria-controls={`faq-panel-${idx}`}
-                id={`faq-header-${idx}`}
-                onClick={() => handleToggle(idx)}
-              >
-                {faq.q}
-                <span className="ml-2 text-brand-green text-2xl">{open === idx ? "−" : "+"}</span>
-              </button>
-              <div
-                id={`faq-panel-${idx}`}
-                role="region"
-                aria-labelledby={`faq-header-${idx}`}
-                className={`overflow-hidden transition-all duration-300 ${open === idx ? 'max-h-screen py-3' : 'max-h-0'}`}
-              >
-                <p className="font-body text-brand-blue text-base px-2">
-                  {faq.a}
-                </p>
+        {/* Header */}
+        <div className="text-center mb-16">
+          <Badge variant="secondary" className="mb-4 bg-brand-green/20 text-brand-blue border-brand-green/30">
+            Got Questions?
+          </Badge>
+          <h2 className="font-fractul font-bold text-3xl md:text-4xl lg:text-5xl text-brand-blue mb-4">
+            Frequently Asked Questions
+          </h2>
+          <p className="font-body text-lg md:text-xl text-brand-blue/70 max-w-3xl mx-auto">
+            Everything you need to know about our at-home pet grooming services. 
+            Can&apos;t find the answer you&apos;re looking for? Get in touch with our friendly team.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* FAQ Section */}
+          <div className="lg:col-span-2">
+            <div className="space-y-4">
+              {faqs.map((faq, index) => (
+                <Card key={index} className="border-gray-200 hover:border-brand-blue/50 transition-all duration-300">
+                  <CardHeader className="pb-4">
+                    <button
+                      onClick={() => handleToggle(index)}
+                      className="flex items-center justify-between w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-lg"
+                      aria-expanded={openIndex === index}
+                      aria-controls={`faq-content-${index}`}
+                    >
+                      <CardTitle className="font-body font-semibold text-lg text-brand-blue pr-4">
+                        {faq.question}
+                      </CardTitle>
+                      <ChevronDown 
+                        className={`h-5 w-5 text-brand-green transition-transform duration-200 flex-shrink-0 ${
+                          openIndex === index ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                  </CardHeader>
+                  <CardContent className={`pt-0 transition-all duration-300 ${
+                    openIndex === index ? 'block' : 'hidden'
+                  }`}>
+                    <div id={`faq-content-${index}`} className="font-body text-brand-blue/70 leading-relaxed">
+                      {faq.answer}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact CTA Section */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-6">
+              <Card className="border-brand-green/20 bg-gradient-to-br from-brand-blue/5 to-brand-green/5">
+                <CardHeader className="text-center">
+                  <CardTitle className="font-fractul text-2xl text-brand-blue mb-2">
+                    Still Have Questions?
+                  </CardTitle>
+                  <CardDescription className="font-body text-brand-blue/70">
+                    Our friendly team is here to help you with any questions about our services.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  {contactMethods.map((method, index) => (
+                    <a
+                      key={index}
+                      href={method.href}
+                      target={method.href.startsWith('http') ? '_blank' : '_self'}
+                      rel={method.href.startsWith('http') ? 'noopener noreferrer' : ''}
+                      className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-brand-blue/30 hover:bg-brand-blue/5 transition-all duration-300 group"
+                    >
+                      <div className="w-8 h-8 bg-brand-blue/10 rounded-full flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <method.icon className="h-4 w-4 text-brand-blue group-hover:text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="font-body text-sm font-semibold text-brand-blue truncate">
+                          {method.title}
+                        </h4>
+                        <p className="font-body text-xs text-brand-blue/60 truncate">
+                          {method.description}
+                        </p>
+                      </div>
+                      <div className="text-xs font-body text-brand-blue/60 group-hover:text-brand-blue transition-colors">
+                        →
+                      </div>
+                    </a>
+                  ))}
+                </CardContent>
+              </Card>
+
+              {/* Testimonial */}
+              <div className="bg-white rounded-lg p-6 border border-gray-100">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-sm">★</span>
+                    ))}
+                  </div>
+                  <blockquote className="font-body text-brand-blue/80 leading-relaxed">
+                    &ldquo;The team was incredibly gentle with my anxious Frenchies. The at-home service eliminated all the stress of traveling to a salon. All 5 of my pups came back happy and smelling amazing!&rdquo;
+                  </blockquote>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-brand-green/20 rounded-full flex items-center justify-center">
+                      <span className="text-brand-green font-fractul text-lg">🐕</span>
+                    </div>
+                    <div>
+                      <div className="font-heading text-sm font-semibold text-brand-blue">Prithviraj</div>
+                      <div className="font-body text-xs text-brand-blue/60">Parent of 5 French Bulldogs</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          ))}
+          </div>
         </div>
+
+
       </Container>
     </section>
   );

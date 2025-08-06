@@ -4,6 +4,7 @@ import NavbarWrapper from "@/components/NavbarWrapper";
 import MainWrapper from "@/components/MainWrapper";
 import NAPSchema from "@/components/NAPSchema";
 import FooterWrapper from '@/components/FooterWrapper';
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 
 export const metadata: Metadata = {
   title: "Masterpet",
@@ -30,6 +31,7 @@ export default function RootLayout({
         <NAPSchema />
       </head>
       <body className="font-gliker bg-background min-h-screen">
+        <AnnouncementBanner />
         <NavbarWrapper />
         {/*
           The background color is set using the semantic Tailwind class 'bg-background',

@@ -9,8 +9,11 @@ export async function POST(req: NextRequest) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
+  // Get the base URL from environment or default to localhost for development
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  
   // Go to your domain root first to get a valid origin for localStorage
-  await page.goto('http://localhost:3000', { waitUntil: 'domcontentloaded' });
+  await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
 
   // Inject data into localStorage
   await page.evaluate((input) => {
@@ -18,7 +21,7 @@ export async function POST(req: NextRequest) {
   }, data);
 
   // Now go to the grooming report page (should read from localStorage)
-  await page.goto('http://localhost:3000/grooming-report', { waitUntil: 'networkidle0' });
+  await page.goto(`${baseUrl}/grooming-report`, { waitUntil: 'networkidle0' });
 
   // Generate PDF (auto-increment logic can be added if saving to disk, but here we return buffer)
   const pdfBuffer = await page.pdf({
@@ -31,7 +34,7 @@ export async function POST(req: NextRequest) {
   await browser.close();
 
   // Return PDF as response
-  return new NextResponse(pdfBuffer, {
+  return new NextResponse(Buffer.from(pdfBuffer), {
     status: 200,
     headers: {
       'Content-Type': 'application/pdf',

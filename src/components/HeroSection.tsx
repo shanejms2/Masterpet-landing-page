@@ -2,13 +2,14 @@
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { Star, ArrowRight } from "lucide-react";
 import Container from "./Container";
 import type { gsap } from 'gsap';
 
 const HeroSection = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
-  const badgeRef = useRef<HTMLSpanElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLAnchorElement>(null);
   const secondaryCtaRef = useRef<HTMLAnchorElement>(null);
   const mascotRef = useRef<HTMLDivElement>(null);
@@ -18,10 +19,16 @@ const HeroSection = () => {
     import('gsap').then((gsap) => {
       tl = gsap.default.timeline();
       tl.fromTo(
-        headingRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }
+        mascotRef.current,
+        { opacity: 0, scale: 0.95, x: -50 },
+        { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: "power3.out" }
       )
+        .fromTo(
+          headingRef.current,
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+          "-=0.6"
+        )
         .fromTo(
           paragraphRef.current,
           { y: 40, opacity: 0 },
@@ -45,12 +52,6 @@ const HeroSection = () => {
           { y: 40, opacity: 0, scale: 0.95 },
           { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
           "-=0.6"
-        )
-        .fromTo(
-          mascotRef.current,
-          { opacity: 0, scale: 0.95 },
-          { opacity: 1, scale: 1, duration: 0.6, ease: "power1.out" },
-          "-=0.4"
         );
     });
     return () => {
@@ -60,15 +61,15 @@ const HeroSection = () => {
 
   return (
     <section
-      className="w-full min-h-[90vh] relative flex flex-col-reverse md:flex-row items-center justify-between py-4 md:py-6 overflow-hidden bg-white"
+      className="w-full min-h-[calc(100vh-80px)] relative flex flex-col items-center justify-center py-4 md:py-8 overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30"
       id="hero"
     >
       <Container>
-        <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full">
-          {/* Mascot SVG on the left for mobile, right for desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Side - Mascot */}
           <div
             ref={mascotRef}
-            className="w-full md:w-1/2 flex justify-center items-center z-0 mb-4 md:mb-0"
+            className="flex justify-center lg:justify-start items-center order-2 lg:order-1"
             tabIndex={0}
             aria-label="Masterpet mascot on a couch with a cat, representing comfort and care"
           >
@@ -77,59 +78,66 @@ const HeroSection = () => {
               alt="Masterpet mascot on a couch with a cat, representing comfort and care"
               width={480}
               height={400}
-              className="w-3/4 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-xl lg:max-w-2xl xl:max-w-3xl h-auto mx-auto drop-shadow-xl"
+              className="w-full max-w-md lg:max-w-lg xl:max-w-xl h-auto drop-shadow-2xl"
               priority
               loading="eager"
             />
           </div>
-          <div className="w-full md:w-1/2 z-10 flex flex-col items-start mb-4 md:mb-0">
+
+          {/* Right Side - Text Content */}
+          <div className="text-left order-1 lg:order-2">
+            <div
+              ref={badgeRef}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green/20 text-brand-blue border border-brand-green/30 mb-6"
+            >
+              <Star className="h-4 w-4 text-brand-green" />
+              <span className="font-body text-sm font-semibold">Trusted by 1000+ Pet Parents</span>
+            </div>
+            
             <h1
               ref={headingRef}
-              className="font-heading text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-blue font-bold mb-4 leading-tight text-center md:text-left w-full"
+              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-blue font-bold mb-6 leading-tight"
             >
-              At-Home Pet Grooming in Kochi
+              At-Home Pet Grooming
+              <span className="block text-brand-green">in Kochi</span>
             </h1>
+            
             <p
               ref={paragraphRef}
-              className="font-body text-lg sm:text-xl md:text-2xl lg:text-3xl text-brand-blue font-light mb-4 text-center md:text-left w-full"
+              className="font-body text-lg sm:text-xl md:text-2xl text-brand-blue/80 mb-8 max-w-2xl"
             >
               Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep.
             </p>
-            <p
-              className="inline-flex items-center gap-2 py-1 rounded-full bg-muted/60 text-sm font-medium text-muted-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-colors mb-4"
-              aria-live="polite"
-              tabIndex={0}
-            >
-              <span className="text-yellow-400/80 text-base" aria-hidden="true">★</span>
-              Trusted by 1000+ pet parents & top communities in Kerala
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center md:justify-start">
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <a
                 ref={buttonRef}
                 href="https://wa.me/918590643269?text=Hi%20Masterpet!%20I%20want%20to%20book%20a%20grooming%20session.%20[From%20Masterpet%20Website]"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-colors text-lg sm:text-xl w-full sm:w-auto text-center gap-2"
+                className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
                 tabIndex={0}
                 aria-label="Book Now on WhatsApp"
               >
-                <FaWhatsapp className="text-2xl" aria-hidden="true" />
-                Book Now
+                <FaWhatsapp className="text-2xl group-hover:scale-110 transition-transform" aria-hidden="true" />
+                Book Your Session
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </a>
+              
               <a
                 ref={secondaryCtaRef}
-                href="#services"
-                className="inline-block font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-colors text-lg sm:text-xl w-full sm:w-auto text-center"
+                href="#pricing"
+                className="inline-flex items-center justify-center font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-2"
                 tabIndex={0}
-                aria-label="See Services"
+                aria-label="See Pricing"
               >
-                See Services
+                See Pricing
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
           </div>
         </div>
       </Container>
-      {/* No custom background, inherit global background */}
     </section>
   );
 };
