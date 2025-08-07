@@ -54,11 +54,68 @@ const videos = [
     poster: '/brand_assets/Icons/paw/paw.png',
     duration: '0:38',
   },
+  {
+    id: 6,
+    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/othalanga%20facial%20for%20Bella.mp4',
+    title: 'Bella\'s Facial Treatment',
+    description: 'Professional facial grooming for pets',
+    poster: '/brand_assets/Icons/comb/comb.png',
+    duration: '0:45',
+  },
+  {
+    id: 7,
+    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/pomeranian%20grooming.mp4',
+    title: 'Pomeranian Grooming Session',
+    description: 'Complete grooming for fluffy Pomeranian',
+    poster: '/brand_assets/Icons/shears/shears.png',
+    duration: '0:50',
+  },
+  {
+    id: 8,
+    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/pug%20grooming.mp4',
+    title: 'Pug Grooming Transformation',
+    description: 'Professional grooming for adorable Pug',
+    poster: '/brand_assets/Icons/paw/paw.png',
+    duration: '0:42',
+  },
+  {
+    id: 9,
+    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/Puppy,%20a%20beagle%20video%20copy%202.mp4',
+    title: 'Beagle Puppy Grooming',
+    description: 'Gentle grooming for young Beagle puppy',
+    poster: '/brand_assets/Icons/ball/ball.png',
+    duration: '0:48',
+  },
+  {
+    id: 10,
+    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/Tessa%20Grooming%202.mp4',
+    title: 'Tessa\'s Grooming Session',
+    description: 'Professional grooming for Tessa',
+    poster: '/brand_assets/Icons/shampoo/shampoo.png',
+    duration: '0:55',
+  },
+  {
+    id: 11,
+    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/grooming%20truck.mp4',
+    title: 'Our Mobile Grooming Van',
+    description: 'Take a tour of our fully equipped grooming truck',
+    poster: '/brand_assets/Icons/van/van.png',
+    duration: '0:40',
+  },
+  {
+    id: 12,
+    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/dashund%20grooming.mp4',
+    title: 'Dachshund Grooming',
+    description: 'Professional grooming for long-bodied Dachshund',
+    poster: '/brand_assets/Icons/bone/bone.png',
+    duration: '0:47',
+  },
 ];
 
 const VideoShowcaseSection: React.FC = () => {
   const [playing, setPlaying] = useState<{ [id: number]: boolean }>({});
   const [muted, setMuted] = useState<{ [id: number]: boolean }>({});
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = useState<CarouselApi | null>(null);
 
@@ -68,6 +125,13 @@ const VideoShowcaseSection: React.FC = () => {
 
   const handleVideoPause = useCallback((videoId: number) => {
     setPlaying(prev => ({ ...prev, [videoId]: false }));
+  }, []);
+
+
+
+  const getRemainingTime = useCallback((videoId: number): string => {
+    const videoData = videos.find(v => v.id === videoId);
+    return videoData?.duration || '0:00';
   }, []);
 
   const handlePlayPause = useCallback((videoId: number) => {
@@ -87,6 +151,8 @@ const VideoShowcaseSection: React.FC = () => {
           }
         });
         video.play();
+        
+
       }
     }
   }, [playing, handleVideoPause]);
@@ -105,6 +171,80 @@ const VideoShowcaseSection: React.FC = () => {
     setCurrentIndex(api.selectedScrollSnap());
   }, [api]);
 
+  const [lastWheelTime, setLastWheelTime] = useState(0);
+
+  const handleWheel = useCallback((event: React.WheelEvent) => {
+    if (!api) return;
+    
+    // Prevent default scroll behavior
+    event.preventDefault();
+    
+    const now = Date.now();
+    // Only allow wheel navigation every 500ms to prevent rapid firing
+    if (now - lastWheelTime < 500) return;
+    
+    setLastWheelTime(now);
+    
+    // Navigate based on wheel direction
+    if (event.deltaY > 0) {
+      // Scroll down/right - go to next
+      api.scrollNext();
+    } else {
+      // Scroll up/left - go to previous
+      api.scrollPrev();
+    }
+  }, [api, lastWheelTime]);
+
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [lastTouchTime, setLastTouchTime] = useState(0);
+
+  const handleTouchStart = useCallback((event: React.TouchEvent) => {
+    if (!api) return;
+    
+    const touch = event.touches[0];
+    setTouchStartX(touch.clientX);
+  }, [api]);
+
+  const handleTouchEnd = useCallback((event: React.TouchEvent) => {
+    if (!api || touchStartX === null) return;
+    
+    const now = Date.now();
+    // Only allow touch navigation every 300ms to prevent rapid firing
+    if (now - lastTouchTime < 300) {
+      setTouchStartX(null);
+      return;
+    }
+    
+    const touch = event.changedTouches[0];
+    const deltaX = touch.clientX - touchStartX;
+    
+    // Minimum swipe distance of 100px
+    if (Math.abs(deltaX) > 100) {
+      setLastTouchTime(now);
+      
+      if (deltaX > 0) {
+        // Swipe right - go to previous
+        api.scrollPrev();
+      } else {
+        // Swipe left - go to next
+        api.scrollNext();
+      }
+    }
+    
+    setTouchStartX(null);
+  }, [api, touchStartX, lastTouchTime]);
+
+  // Initialize muted state to false for all videos
+  React.useEffect(() => {
+    const initialMutedState: { [id: number]: boolean } = {};
+    videos.forEach(video => {
+      initialMutedState[video.id] = false;
+    });
+    setMuted(initialMutedState);
+  }, []);
+
+
+
   React.useEffect(() => {
     if (!api) return;
     api.on("select", handleSelect);
@@ -122,7 +262,7 @@ const VideoShowcaseSection: React.FC = () => {
             See Us In Action
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/70 max-w-2xl mx-auto">
-            Scroll to explore our grooming sessions and see how we bring professional care right to your doorstep
+            Scroll to explore our grooming sessions and see how we bring professional care right to your doorstep.
           </p>
         </div>
         
@@ -136,6 +276,9 @@ const VideoShowcaseSection: React.FC = () => {
             }}
             setApi={setApi}
             className="w-full group"
+            onWheel={handleWheel}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <CarouselContent className="-ml-4 md:-ml-6">
               {videos.map((video) => (
@@ -150,7 +293,6 @@ const VideoShowcaseSection: React.FC = () => {
                         id={`video-${video.id}`}
                         src={video.src}
                         className="w-full h-full object-cover"
-                        muted
                         loop
                         playsInline
                         preload="metadata"
@@ -158,6 +300,7 @@ const VideoShowcaseSection: React.FC = () => {
                         title={video.title}
                         onPlay={() => handleVideoPlay(video.id)}
                         onPause={() => handleVideoPause(video.id)}
+
                       >
                         <track kind="captions" srcLang="en" label="English" />
                       </video>
@@ -165,8 +308,8 @@ const VideoShowcaseSection: React.FC = () => {
                       {/* Top Controls - Always Visible */}
                       <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
                         {/* Duration Badge */}
-                        <div className="bg-black/70 backdrop-blur-sm text-white text-xs font-medium px-2 py-1 rounded-full">
-                          {video.duration}
+                        <div className="bg-black/85 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full drop-shadow-lg border border-white/10">
+                          {getRemainingTime(video.id)}
                         </div>
                         
                         {/* Mute/Unmute Button */}
@@ -174,7 +317,7 @@ const VideoShowcaseSection: React.FC = () => {
                           type="button"
                           aria-label={muted[video.id] ? "Unmute video" : "Mute video"}
                           onClick={(e) => handleMuteToggle(video.id, e)}
-                          className="bg-black/70 backdrop-blur-sm text-white p-2 rounded-full hover:bg-black/80 transition-colors duration-200"
+                          className="bg-black/85 backdrop-blur-md text-white p-2.5 rounded-full hover:bg-black/95 transition-all duration-200 drop-shadow-lg border border-white/10"
                         >
                           {muted[video.id] ? (
                             <VolumeX className="h-4 w-4" />
@@ -201,11 +344,11 @@ const VideoShowcaseSection: React.FC = () => {
                       </button>
                       
                       {/* Bottom Content Overlay - Always Visible */}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4 z-15">
-                        <h3 className="font-heading text-base font-bold text-white mb-1">
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 via-black/70 to-black/20 p-4 z-15">
+                        <h3 className="font-heading text-lg md:text-xl font-bold text-white mb-2 drop-shadow-lg">
                           {video.title}
                         </h3>
-                        <p className="font-body text-sm text-white/80">
+                        <p className="font-body text-sm md:text-base text-white/95 drop-shadow-md">
                           {video.description}
                         </p>
                       </div>

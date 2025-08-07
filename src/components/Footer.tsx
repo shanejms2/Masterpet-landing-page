@@ -123,7 +123,7 @@ const Footer = () => (
           <h3 className="font-heading font-semibold text-[#00008D]">Business Hours</h3>
           <div className="space-y-2">
             <p className="text-sm text-[#00008D]/80">
-              9:00 AM – 8:30 PM
+              9:30 AM – 7:30 PM
             </p>
             <p className="text-sm text-[#00008D]/80">
               Open all days

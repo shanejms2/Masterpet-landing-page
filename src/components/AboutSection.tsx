@@ -25,7 +25,7 @@ const AboutSection = () => (
             At Masterpet, we believe every pet deserves the best care—right at home. Our mission is to make grooming stress-free, hygienic, and joyful for both pets and their parents. With a fully equipped grooming van, professional groomers, and a commitment to safety and comfort, we bring the spa to your doorstep.
           </p>
           <p className="font-body text-brand-blue text-base mb-4">
-            Our team includes an experienced veterinarian (10+ years in practice), ensuring your pet&apos;s health and well-being are always our top priority.
+            Our team includes an experienced veterinarian (10+ years in practice), ensuring your pet's health and well-being are always our top priority.
           </p>
           <div className="grid grid-cols-1 gap-4 mb-4">
             {stats.map((stat) => (

@@ -221,7 +221,7 @@ export default function GroomingCheckPage() {
               priority
             />
             <h1 className="text-5xl font-bold text-[#1b1582] mt-4">
-              {petDetails.petName}&apos;s Spa Day
+              {petDetails.petName}'s Spa Day
             </h1>
             <p className="text-xl text-[#1b1582] mt-6 mb-2">
               {formattedReportDate}

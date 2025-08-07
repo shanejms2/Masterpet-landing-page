@@ -159,7 +159,7 @@ const CommunitiesMarquee = () => {
             Trusted by Leading Communities
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/70 max-w-2xl mx-auto">
-            Partnering with premium residential communities across Kochi to deliver exceptional pet care services
+            Partnering with premium residential communities across Kochi to deliver exceptional pet care services.
           </p>
         </div>
 

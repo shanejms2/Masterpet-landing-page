@@ -3,11 +3,13 @@ import NAPSchema from "@/components/NAPSchema";
 import HeroSection from '../components/HeroSection';
 import CommunitiesMarquee from '../components/CommunitiesMarquee';
 import VideoShowcaseSection from '../components/VideoShowcaseSection';
+import PhotoGallerySection from '../components/PhotoGallerySection';
 import PricingSection from '../components/PricingSection';
 import ProcessSection from '../components/ProcessSection';
 // import AboutSection from '../components/AboutSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
+import FinalCTASection from '../components/FinalCTASection';
 
 export default function Home() {
   return (
@@ -17,11 +19,13 @@ export default function Home() {
       <HeroSection />
       <CommunitiesMarquee />
       <VideoShowcaseSection />
+      <PhotoGallerySection />
       <PricingSection />
       <ProcessSection />
       {/* <AboutSection /> */}
       <TestimonialsSection />
       <FAQSection />
+      <FinalCTASection />
       {/* NAP Info Section removed, now in Footer */}
     </>
   );

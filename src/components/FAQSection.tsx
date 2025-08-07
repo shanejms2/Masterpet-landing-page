@@ -84,7 +84,7 @@ const FAQSection = () => {
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/70 max-w-3xl mx-auto">
             Everything you need to know about our at-home pet grooming services. 
-            Can&apos;t find the answer you&apos;re looking for? Get in touch with our friendly team.
+            Can't find the answer you're looking for? Get in touch with our friendly team.
           </p>
         </div>
 
@@ -179,7 +179,7 @@ const FAQSection = () => {
                       <span className="text-brand-green font-fractul text-lg">🐕</span>
                     </div>
                     <div>
-                      <div className="font-heading text-sm font-semibold text-brand-blue">Prithviraj</div>
+                      <div className="font-heading text-sm font-semibold text-brand-blue">Jeff Mathew</div>
                       <div className="font-body text-xs text-brand-blue/60">Parent of 5 French Bulldogs</div>
                     </div>
                   </div>

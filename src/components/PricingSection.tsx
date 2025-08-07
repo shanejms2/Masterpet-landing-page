@@ -80,7 +80,7 @@ const plans = [
       "Professional styling consultation",
     ],
     notIncluded: [
-              "Your pet&apos;s complaints about being too handsome/beautiful",
+              "Your pet's complaints about being too handsome/beautiful",
     ],
     popular: true,
     cta: "Book Full Groom",
@@ -92,19 +92,19 @@ const addOns = [
   {
     name: "Medicated Bath",
     price: 200,
-    description: "Specialized medicated shampoo for skin conditions",
+    description: "Specialized medicated shampoo for skin.",
     features: ["Soothes irritated skin", "Reduces itching", "Treats infections", "Suitable for sensitive skin"],
   },
   {
     name: "Teeth Brushing",
     price: 200,
-    description: "Professional dental care for your pet",
+    description: "Professional dental care for your pet.",
     features: ["Removes plaque", "Fresh breath", "Oral health check", "Dental care tips"],
   },
   {
     name: "Detangling/Dematting",
     price: 200,
-    description: "Professional detangling for severely matted fur",
+    description: "Professional detangling for severely matted fur.",
     features: ["Per hour service", "Gentle handling", "Prevents skin issues", "Restores coat health"],
   },
 ];
@@ -124,7 +124,7 @@ const PricingSection = () => {
             Choose Your Perfect Grooming Package
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/80 max-w-3xl mx-auto mb-8">
-            Professional at-home grooming services tailored to your pet&apos;s needs. 
+            Professional at-home grooming services tailored to your pet's needs. 
             All packages include our certified groomer, premium products, and complete convenience.
           </p>
         </div>
@@ -164,7 +164,7 @@ const PricingSection = () => {
               <CardContent className="flex-1">
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-heading text-sm font-semibold text-brand-blue mb-3">What&apos;s included:</h4>
+                    <h4 className="font-heading text-sm font-semibold text-brand-blue mb-3">What's included:</h4>
                     <ul className="space-y-3">
                       {plan.features.map((feature) => {
                         // Check if this is a trimming service in Hygiene Package
@@ -228,7 +228,7 @@ const PricingSection = () => {
             Additional Services
           </h3>
           <p className="font-body text-brand-blue/70 max-w-2xl mx-auto">
-            Enhance your pet&apos;s grooming experience with these specialized add-on services
+            Enhance your pet's grooming experience with these specialized add-on services.
           </p>
         </div>
 
@@ -285,7 +285,7 @@ const PricingSection = () => {
                 </div>
                 <h4 className="font-heading text-xl md:text-2xl text-brand-blue mb-4">Certified Groomers</h4>
                 <p className="font-body text-base md:text-lg text-brand-blue/70 max-w-xs">
-                  All our groomers are certified professionals with years of experience
+                  All our groomers are certified professionals with years of experience.
                 </p>
               </div>
               <div className="flex flex-col items-center text-center">
@@ -294,7 +294,7 @@ const PricingSection = () => {
                 </div>
                 <h4 className="font-heading text-xl md:text-2xl text-brand-blue mb-4">Premium Products</h4>
                 <p className="font-body text-base md:text-lg text-brand-blue/70 max-w-xs">
-                  We use only high-quality, pet-safe grooming products and equipment
+                  We use only high-quality, pet-safe grooming products and equipment.
                 </p>
               </div>
               <div className="flex flex-col items-center text-center">
@@ -303,7 +303,7 @@ const PricingSection = () => {
                 </div>
                 <h4 className="font-heading text-xl md:text-2xl text-brand-blue mb-4">100% Satisfaction</h4>
                 <p className="font-body text-base md:text-lg text-brand-blue/70 max-w-xs">
-                  Trusted by 1000+ pet parents across Kerala with excellent reviews
+                  Trusted by 1000+ pet parents across Kerala with excellent reviews.
                 </p>
               </div>
             </div>

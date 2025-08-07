@@ -106,7 +106,7 @@ const HeroSection = () => {
               ref={paragraphRef}
               className="font-body text-lg sm:text-xl md:text-2xl text-brand-blue/80 mb-8 max-w-2xl"
             >
-              Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep.
+              Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep!
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
