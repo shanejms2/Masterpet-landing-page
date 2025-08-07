@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, Mail, Phone, MapPin } from "lucide-react";
+import { areaConfig } from "@/lib/areaConfig";
 
 const socials = [
   { href: "https://instagram.com/masterpet_official", label: "Instagram", icon: "/icons/instagram.svg" },
@@ -24,11 +25,14 @@ const legalLinks = [
   { href: "/cancellation-policy", label: "Cancellation Policy" },
 ];
 
+// Use all areas for maximum SEO benefit
+const footerAreas = areaConfig;
+
 const Footer = () => (
   <footer className="w-full border-t bg-[#D9EEFC]">
     <div className="container mx-auto px-4 py-12">
       {/* Main Footer Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
         {/* Brand Section */}
         <div className="space-y-4">
           <div className="flex flex-col items-center gap-2">
@@ -116,6 +120,29 @@ const Footer = () => (
               <span>Aluva, Kerala</span>
             </a>
           </div>
+        </div>
+
+        {/* Service Areas */}
+        <div className="space-y-4">
+          <h3 className="font-heading font-semibold text-[#00008D]">Service Areas</h3>
+          <nav className="flex flex-col space-y-2">
+            <Link
+              href="/kochi-pet-grooming"
+              className="text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors font-medium"
+            >
+              All Kochi Areas
+            </Link>
+            {footerAreas.map((area) => (
+              <Link
+                key={area.slug}
+                href={`/kochi-pet-grooming/${area.slug}`}
+                className="text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
+              >
+                Pet Grooming in {area.name}
+              </Link>
+            ))}
+
+          </nav>
         </div>
 
         {/* Business Hours & Legal */}
