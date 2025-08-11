@@ -130,13 +130,13 @@ const PricingSection = () => {
         </div>
 
         {/* Main Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
           {plans.map((plan) => (
             <Card
               key={plan.name}
               className={`relative flex flex-col ${
                 plan.popular
-                  ? "border-brand-blue shadow-lg scale-105"
+                  ? "border-brand-blue shadow-lg scale-105 my-8 md:my-0"
                   : "border-gray-200 hover:border-brand-blue/50"
               } transition-all duration-300 hover:shadow-lg`}
             >
