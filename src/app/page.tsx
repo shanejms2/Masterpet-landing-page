@@ -9,6 +9,7 @@ import ProcessSection from '../components/ProcessSection';
 // import AboutSection from '../components/AboutSection';
 import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
+import GoogleMapsSection from '../components/GoogleMapsSection';
 import FinalCTASection from '../components/FinalCTASection';
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
       {/* <AboutSection /> */}
       <TestimonialsSection />
       <FAQSection />
+      <GoogleMapsSection />
       <FinalCTASection />
       {/* NAP Info Section removed, now in Footer */}
     </>

@@ -10,6 +10,7 @@ import PricingSection from '@/components/PricingSection';
 import ProcessSection from '@/components/ProcessSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
+import GoogleMapsSection from '@/components/GoogleMapsSection';
 import FinalCTASection from '@/components/FinalCTASection';
 
 export const metadata: Metadata = {
@@ -85,6 +86,7 @@ export default function KochiPetGrooming() {
       <ProcessSection />
       <TestimonialsSection />
       <FAQSection />
+      <GoogleMapsSection />
       <FinalCTASection />
     </>
   );

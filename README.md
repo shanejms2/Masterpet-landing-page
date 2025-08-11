@@ -177,6 +177,40 @@ All pages are built with accessibility and SEO in mind, using TailwindCSS for st
 - **Important:** The `staticPages` array in this file must match your actual route slugs (e.g., `'privacy'`, not `'privacy-policy'`).
 - If you add new static or dynamic pages, update this array to ensure they are indexed by search engines.
 
+## Google Maps Integration
+
+The website includes an interactive Google Maps component showing service areas and business location to improve local SEO and "near me" rankings.
+
+### Setup Instructions:
+
+1. **Get Google Maps API Key:**
+   - Go to [Google Cloud Console](https://console.cloud.google.com/)
+   - Create a new project or select existing one
+   - Enable the following APIs:
+     - Maps JavaScript API
+     - Places API
+   - Create credentials (API Key)
+   - Restrict the API key to your domain for security
+
+2. **Configure Environment Variables:**
+   Create a `.env.local` file in the root directory:
+   ```bash
+   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_actual_api_key_here
+   ```
+
+3. **Features:**
+   - Interactive map showing business location (Aluva)
+   - Service area markers across Kochi
+   - Clickable info windows with business details
+   - Mobile-responsive design
+   - Fallback display when API key is not configured
+
+4. **SEO Benefits:**
+   - Improves "near me" search rankings
+   - Shows service coverage visually
+   - Enhances local business credibility
+   - Provides location-based user experience
+
 ## Legacy URL Redirects
 
 > **Note:**  
