@@ -7,6 +7,15 @@ interface GoogleMapsSectionProps {
   className?: string;
 }
 
+interface Landmark {
+  name: string;
+  lat: number;
+  lng: number;
+  type: "area" | "landmark";
+  landmarks?: string[];
+  category?: "transport" | "attraction" | "business" | "sports";
+}
+
 const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
   const mapRef = useRef<HTMLDivElement>(null);
 
@@ -91,45 +100,126 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
         infoWindow.open(map, mainMarker);
       });
 
-      // Add service area markers (major areas)
-      const serviceAreas = [
-        { name: "Edapally", lat: 10.0259, lng: 76.3075 },
-        { name: "Kaloor", lat: 10.0168, lng: 76.3018 },
-        { name: "Ernakulam", lat: 9.9312, lng: 76.2673 },
-        { name: "Kakkanad", lat: 10.0168, lng: 76.3618 },
-        { name: "Fort Kochi", lat: 9.9312, lng: 76.2673 },
-        { name: "Vytilla", lat: 9.9667, lng: 76.3167 },
-        { name: "Maradu", lat: 9.8833, lng: 76.3167 },
-        { name: "Thrippunithura", lat: 9.9500, lng: 76.3500 }
+      // Comprehensive landmarks database based on areaConfig
+      const landmarks: Landmark[] = [
+        // Major Service Areas
+        { name: "Edapally", lat: 10.0259, lng: 76.3075, type: "area", landmarks: ["Edapally Junction", "Edapally Market", "Edapally Railway Station", "Edapally Church Road", "Edapally Bus Stand"] },
+        { name: "Kaloor", lat: 10.0168, lng: 76.3018, type: "area", landmarks: ["Kaloor Junction", "Kaloor Market", "Kaloor Stadium", "Kaloor Church Colony", "Kaloor Bus Stand"] },
+        { name: "Aluva", lat: 10.1065, lng: 76.3516, type: "area", landmarks: ["Aluva Town Center", "Aluva Railway Station", "Aluva Market", "Aluva Church Road", "Aluva Bus Stand"] },
+        { name: "Ernakulam", lat: 9.9312, lng: 76.2673, type: "area", landmarks: ["Ernakulam Junction", "Ernakulam Market", "Marine Drive", "Ernakulam Church Road", "Ernakulam Bus Stand"] },
+        { name: "Kakkanad", lat: 10.0168, lng: 76.3618, type: "area", landmarks: ["Kakkanad Junction", "Infopark", "Kakkanad Market"] },
+        { name: "Fort Kochi", lat: 9.9312, lng: 76.2673, type: "area", landmarks: ["Fort Kochi Beach", "Chinese Fishing Nets", "St. Francis Church", "Mattancherry Palace"] },
+        { name: "Vytilla", lat: 9.9667, lng: 76.3167, type: "area", landmarks: ["Vytilla Junction", "Vytilla Market", "Vytilla Hub"] },
+        { name: "Maradu", lat: 9.8833, lng: 76.3167, type: "area", landmarks: ["Maradu Junction", "Maradu Market", "Maradu Temple"] },
+        { name: "Thrippunithura", lat: 9.9500, lng: 76.3500, type: "area", landmarks: ["Thrippunithura Junction", "Thrippunithura Market", "Thrippunithura Palace"] },
+        
+        // Additional Major Areas
+        { name: "Kalamassery", lat: 10.0667, lng: 76.3167, type: "area", landmarks: ["Kalamassery Junction", "Kalamassery Market", "Kalamassery Railway Station"] },
+        { name: "Angamaly", lat: 10.2000, lng: 76.4000, type: "area", landmarks: ["Angamaly Junction", "Angamaly Market", "Angamaly Railway Station"] },
+        { name: "Perumbavoor", lat: 10.1167, lng: 76.4667, type: "area", landmarks: ["Perumbavoor Junction", "Perumbavoor Market", "Perumbavoor Railway Station"] },
+        { name: "Kothamangalam", lat: 10.0667, lng: 76.6167, type: "area", landmarks: ["Kothamangalam Junction", "Kothamangalam Market", "Kothamangalam Bus Stand"] },
+        { name: "Vaikom", lat: 9.7500, lng: 76.4000, type: "area", landmarks: ["Vaikom Junction", "Vaikom Market", "Vaikom Temple"] },
+        { name: "Vypin", lat: 10.0833, lng: 76.1833, type: "area", landmarks: ["Vypin Junction", "Vypin Market", "Vypin Beach"] },
+        { name: "North Paravur", lat: 10.1500, lng: 76.2333, type: "area", landmarks: ["North Paravur Junction", "North Paravur Market", "North Paravur Beach"] },
+        
+        // Key Landmarks and Points of Interest
+        { name: "Cochin International Airport", lat: 10.1550, lng: 76.3910, type: "landmark", category: "transport" },
+        { name: "Ernakulam Junction Railway Station", lat: 9.9674, lng: 76.2454, type: "landmark", category: "transport" },
+        { name: "Aluva Railway Station", lat: 10.1065, lng: 76.3516, type: "landmark", category: "transport" },
+        { name: "Marine Drive", lat: 9.9312, lng: 76.2673, type: "landmark", category: "attraction" },
+        { name: "Fort Kochi Beach", lat: 9.9312, lng: 76.2673, type: "landmark", category: "attraction" },
+        { name: "Chinese Fishing Nets", lat: 9.9312, lng: 76.2673, type: "landmark", category: "attraction" },
+        { name: "St. Francis Church", lat: 9.9312, lng: 76.2673, type: "landmark", category: "attraction" },
+        { name: "Mattancherry Palace", lat: 9.9312, lng: 76.2673, type: "landmark", category: "attraction" },
+        { name: "Infopark Kochi", lat: 10.0168, lng: 76.3618, type: "landmark", category: "business" },
+        { name: "Kaloor Stadium", lat: 10.0168, lng: 76.3018, type: "landmark", category: "sports" },
+        { name: "Thrippunithura Palace", lat: 9.9500, lng: 76.3500, type: "landmark", category: "attraction" },
+        { name: "Vaikom Temple", lat: 9.7500, lng: 76.4000, type: "landmark", category: "attraction" },
+        { name: "Vypin Beach", lat: 10.0833, lng: 76.1833, type: "landmark", category: "attraction" },
+        { name: "North Paravur Beach", lat: 10.1500, lng: 76.2333, type: "landmark", category: "attraction" },
+        { name: "Cherai Beach", lat: 10.1333, lng: 76.1833, type: "landmark", category: "attraction" },
+        { name: "Kumbalangi", lat: 9.8833, lng: 76.3167, type: "landmark", category: "attraction" },
+        { name: "Willingdon Island", lat: 9.9500, lng: 76.2833, type: "landmark", category: "business" },
+        { name: "Cochin Port", lat: 9.9500, lng: 76.2833, type: "landmark", category: "business" },
+        { name: "Vytilla Hub", lat: 9.9667, lng: 76.3167, type: "landmark", category: "transport" },
+        { name: "Edapally Junction", lat: 10.0259, lng: 76.3075, type: "landmark", category: "transport" },
+        { name: "Kaloor Junction", lat: 10.0168, lng: 76.3018, type: "landmark", category: "transport" },
+        { name: "Kakkanad Junction", lat: 10.0168, lng: 76.3618, type: "landmark", category: "transport" },
+        { name: "Angamaly Junction", lat: 10.2000, lng: 76.4000, type: "landmark", category: "transport" },
+        { name: "Perumbavoor Junction", lat: 10.1167, lng: 76.4667, type: "landmark", category: "transport" },
+        { name: "Kothamangalam Junction", lat: 10.0667, lng: 76.6167, type: "landmark", category: "transport" },
+        { name: "Vaikom Junction", lat: 9.7500, lng: 76.4000, type: "landmark", category: "transport" },
+        { name: "Vypin Junction", lat: 10.0833, lng: 76.1833, type: "landmark", category: "transport" },
+        { name: "North Paravur Junction", lat: 10.1500, lng: 76.2333, type: "landmark", category: "transport" }
       ];
 
-      serviceAreas.forEach(area => {
-        const marker = new window.google.maps.Marker({
-          position: { lat: area.lat, lng: area.lng },
-          map: map,
-          title: `Pet Grooming in ${area.name}`,
-          icon: {
+      // Add landmarks to map with different styles based on type
+      landmarks.forEach((landmark: Landmark) => {
+        let iconConfig;
+        let infoContent;
+
+        if (landmark.type === "area") {
+          // Service area markers
+          iconConfig = {
             path: window.google.maps.SymbolPath.CIRCLE,
-            scale: 8,
+            scale: 10,
             fillColor: "#caf857",
             fillOpacity: 0.8,
             strokeColor: "#1b1582",
             strokeWeight: 2
-          }
+          };
+          
+          infoContent = `
+            <div style="padding: 10px; max-width: 250px;">
+              <h4 style="margin: 0 0 8px 0; color: #1b1582; font-weight: bold;">${landmark.name}</h4>
+              <p style="margin: 0 0 5px 0; font-size: 12px; color: #caf857;">✓ Pet Grooming Service Area</p>
+              <p style="margin: 0 0 5px 0; font-size: 11px;">📍 Key Landmarks:</p>
+              <ul style="margin: 0; padding-left: 15px; font-size: 10px;">
+                ${landmark.landmarks?.slice(0, 3).map((l: string) => `<li>${l}</li>`).join('') || ''}
+              </ul>
+              <p style="margin: 5px 0 0 0; font-size: 10px; color: #666;">At-Home Service Available</p>
+            </div>
+          `;
+        } else {
+          // Individual landmark markers
+          const categoryColors: { [key: string]: string } = {
+            transport: "#4285f4",
+            attraction: "#ea4335", 
+            business: "#34a853",
+            sports: "#fbbc05"
+          };
+          
+          iconConfig = {
+            path: window.google.maps.SymbolPath.CIRCLE,
+            scale: 6,
+            fillColor: categoryColors[landmark.category || "business"] || "#666",
+            fillOpacity: 0.7,
+            strokeColor: "#fff",
+            strokeWeight: 1
+          };
+          
+          infoContent = `
+            <div style="padding: 8px; max-width: 200px;">
+              <h4 style="margin: 0 0 5px 0; color: #1b1582; font-size: 14px;">${landmark.name}</h4>
+              <p style="margin: 0; font-size: 11px; text-transform: capitalize;">${landmark.category}</p>
+              <p style="margin: 3px 0 0 0; font-size: 10px; color: #caf857;">Nearby Pet Grooming Available</p>
+            </div>
+          `;
+        }
+
+        const marker = new window.google.maps.Marker({
+          position: { lat: landmark.lat, lng: landmark.lng },
+          map: map,
+          title: landmark.name,
+          icon: iconConfig
         });
 
-        const areaInfoWindow = new window.google.maps.InfoWindow({
-          content: `
-            <div style="padding: 8px; max-width: 200px;">
-              <h4 style="margin: 0 0 5px 0; color: #1b1582;">${area.name}</h4>
-              <p style="margin: 0; font-size: 12px;">Pet Grooming Services Available</p>
-              <p style="margin: 5px 0 0 0; font-size: 11px; color: #caf857;">✓ At-Home Service</p>
-            </div>
-          `
+        const infoWindow = new window.google.maps.InfoWindow({
+          content: infoContent
         });
 
         marker.addListener('click', () => {
-          areaInfoWindow.open(map, marker);
+          infoWindow.open(map, marker);
         });
       });
     };
@@ -160,6 +250,18 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
             <span className="flex items-center gap-2">
               <div className="w-3 h-3 bg-brand-green rounded-full"></div>
               Service Areas
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              Transport
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+              Attractions
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              Business
             </span>
           </div>
         </div>
@@ -205,28 +307,42 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
                   <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <h4 className="font-fractul font-semibold text-brand-blue">Kochi City</h4>
-                    <p className="text-sm text-brand-blue/70">Ernakulam, Kaloor, Edapally, Kakkanad</p>
+                    <p className="text-sm text-brand-blue/70">Ernakulam, Kaloor, Edapally, Kakkanad, Vytilla</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <h4 className="font-fractul font-semibold text-brand-blue">Fort Kochi</h4>
-                    <p className="text-sm text-brand-blue/70">Mattancherry, Fort Kochi Beach Area</p>
+                    <p className="text-sm text-brand-blue/70">Mattancherry, Fort Kochi Beach, Chinese Fishing Nets</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <h4 className="font-fractul font-semibold text-brand-blue">Suburban Areas</h4>
-                    <p className="text-sm text-brand-blue/70">Vytilla, Maradu, Thrippunithura</p>
+                    <p className="text-sm text-brand-blue/70">Maradu, Thrippunithura, Kalamassery</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
                   <div>
                     <h4 className="font-fractul font-semibold text-brand-blue">Aluva & Beyond</h4>
-                    <p className="text-sm text-brand-blue/70">Aluva, Angamaly, Perumbavoor</p>
+                    <p className="text-sm text-brand-blue/70">Aluva, Angamaly, Perumbavoor, Kothamangalam</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <h4 className="font-fractul font-semibold text-brand-blue">Coastal Areas</h4>
+                    <p className="text-sm text-brand-blue/70">Vypin, North Paravur, Cherai, Kumbalangi</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
+                  <div>
+                    <h4 className="font-fractul font-semibold text-brand-blue">Temple Towns</h4>
+                    <p className="text-sm text-brand-blue/70">Vaikom, Chottanikkara, Thrippunithura</p>
                   </div>
                 </div>
               </div>
