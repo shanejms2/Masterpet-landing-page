@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { areaConfig } from '@/lib/areaConfig';
 
 const BASE_URL = 'https://masterpet.co.in';
 
@@ -9,10 +10,21 @@ const staticPages = [
   'cancellation-policy',
   'return-policy',
   'grooming-report',
+  'contact',
+  'account-deletion',
+  'kochi-pet-grooming',
 ];
 
 export async function GET() {
-  const urls = staticPages.map(
+  // Generate area-specific URLs
+  const areaUrls = areaConfig.map(area => 
+    `kochi-pet-grooming/${area.slug}`
+  );
+
+  // Combine static pages with area pages
+  const allPages = [...staticPages, ...areaUrls];
+
+  const urls = allPages.map(
     (page) =>
       `<url><loc>${BASE_URL}/${page}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`
   ).join('');
