@@ -374,7 +374,7 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
 
             <div className="bg-gradient-to-br from-brand-blue to-brand-blue/90 rounded-2xl p-6 text-white">
               <h3 className="font-heading text-xl font-bold mb-4">
-                Book Your Session
+                Schedule Grooming
               </h3>
               <p className="text-sm mb-4 opacity-90">
                 Ready for professional pet grooming near you? Contact us to schedule your at-home grooming session.

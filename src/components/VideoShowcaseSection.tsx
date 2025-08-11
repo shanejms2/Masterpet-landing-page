@@ -390,7 +390,7 @@ const VideoShowcaseSection: React.FC = () => {
             className="bg-brand-green text-brand-blue hover:bg-brand-blue hover:text-white font-heading text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={() => window.open('https://wa.me/918590643269?text=Hi%20Masterpet!%20I%20want%20to%20book%20a%20grooming%20session.%20[From%20Masterpet%20Website]', '_blank')}
           >
-            Book Your Session
+                            Book Now
           </Button>
         </div>
       </Container>

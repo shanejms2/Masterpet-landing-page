@@ -7,9 +7,9 @@ import FooterWrapper from '@/components/FooterWrapper';
 import AnnouncementBannerWrapper from "@/components/AnnouncementBannerWrapper";
 
 export const metadata: Metadata = {
-  title: "Masterpet - At-Home Pet Grooming in Kochi",
-  description: "Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep. Trusted by 1000+ pet parents & top communities in Kerala.",
-  keywords: ["pet grooming", "at-home grooming", "Kochi", "dog grooming", "cat grooming", "Masterpet"],
+  title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
+  description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by 1000+ pet parents. Book your session today!",
+  keywords: ["pet grooming near me", "dog grooming kochi", "cat grooming ernakulam", "at-home pet grooming", "mobile pet grooming", "dog nail cutting near me", "pet grooming home service", "Masterpet", "Kochi pet grooming"],
   authors: [{ name: "Masterpet Care Private Limited" }],
   creator: "Masterpet Care Private Limited",
   publisher: "Masterpet Care Private Limited",
@@ -20,11 +20,11 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://masterpet.co.in'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://masterpet.co.in',
   },
   openGraph: {
-    title: "Masterpet - At-Home Pet Grooming in Kochi",
-    description: "Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep. Trusted by 1000+ pet parents & top communities in Kerala.",
+    title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
+    description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by 1000+ pet parents. Book your session today!",
     url: 'https://masterpet.co.in',
     siteName: 'Masterpet',
     images: [
@@ -40,8 +40,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Masterpet - At-Home Pet Grooming in Kochi",
-    description: "Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep. Trusted by 1000+ pet parents & top communities in Kerala.",
+    title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
+    description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by 1000+ pet parents. Book your session today!",
     images: ['/og-image.jpg'],
     creator: '@masterpet_official',
   },
@@ -70,6 +70,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <NAPSchema />
+        <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/Profile/Favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/Profile/Favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/Profile/Favicon/favicon-16x16.png" />
+        <link rel="manifest" href="/brand_assets/Profile/Favicon/site.webmanifest" />
+        <meta name="theme-color" content="#caf857" />
+        <meta name="msapplication-TileColor" content="#1b1582" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
       <body className="font-gliker bg-background min-h-screen">
         <AnnouncementBannerWrapper />

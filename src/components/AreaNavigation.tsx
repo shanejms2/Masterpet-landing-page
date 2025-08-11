@@ -13,7 +13,7 @@ const AreaNavigation = ({ currentArea }: AreaNavigationProps) => {
       <Container>
         <div className="text-center mb-6">
           <h2 className="font-heading text-2xl md:text-3xl text-brand-blue font-bold mb-2">
-            Service Areas in Kochi
+            Find Grooming Near You
           </h2>
           <p className="font-body text-brand-blue/80">
             Choose your area for personalized grooming services

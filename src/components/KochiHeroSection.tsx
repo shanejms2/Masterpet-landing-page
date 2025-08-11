@@ -167,7 +167,7 @@ const KochiHeroSection = ({ area }: KochiHeroSectionProps) => {
                 aria-label="Book Now on WhatsApp"
               >
                 <FaWhatsapp className="text-2xl group-hover:scale-110 transition-transform" aria-hidden="true" />
-                Book Your Session
+                Book Grooming
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </a>
               
@@ -178,7 +178,7 @@ const KochiHeroSection = ({ area }: KochiHeroSectionProps) => {
                 tabIndex={0}
                 aria-label="See Pricing"
               >
-                See Pricing
+                View Packages
                 <ArrowRight className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>

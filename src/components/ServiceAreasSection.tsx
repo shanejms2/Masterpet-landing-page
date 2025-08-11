@@ -35,7 +35,7 @@ const ServiceAreasSection = () => {
       <Container>
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-brand-blue font-bold mb-4">
-            Service Areas in Kochi
+            Our Coverage Areas
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/80 max-w-3xl mx-auto">
             We provide professional at-home pet grooming services across major areas in Kochi. 

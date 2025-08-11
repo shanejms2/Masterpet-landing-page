@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ChevronDown, MessageCircle, Phone, Mail } from "lucide-react";
+import { ChevronDown, MessageCircle, Phone, Mail, Facebook, Twitter, Linkedin } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Container from "./Container";
@@ -99,6 +99,32 @@ const FAQSection = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const handleShare = (platform: string) => {
+    const url = encodeURIComponent(window.location.href);
+    const title = encodeURIComponent("Masterpet - Professional At-Home Pet Grooming in Kochi");
+    const description = encodeURIComponent("Professional, hygienic, and stress-free grooming for your dogs and cats—right at your doorstep!");
+    
+    let shareUrl = '';
+    switch (platform) {
+      case 'facebook':
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+        break;
+      case 'twitter':
+        shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}&hashtags=PetGrooming,Kochi,Masterpet`;
+        break;
+      case 'linkedin':
+        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+        break;
+      case 'whatsapp':
+        shareUrl = `https://wa.me/?text=${title}%20${description}%20${url}`;
+        break;
+    }
+    
+    if (shareUrl) {
+      window.open(shareUrl, '_blank', 'width=600,height=400');
+    }
+  };
+
   return (
     <section className="w-full bg-background py-16 md:py-24" id="faq" aria-label="Frequently Asked Questions">
       <Container>
@@ -188,6 +214,50 @@ const FAQSection = () => {
                       </div>
                     </a>
                   ))}
+                </CardContent>
+              </Card>
+
+              {/* Social Sharing */}
+              <Card className="border-brand-green/20 bg-gradient-to-br from-brand-blue/5 to-brand-green/5">
+                <CardHeader className="text-center">
+                  <CardTitle className="font-fractul text-xl text-brand-blue mb-2">
+                    Share Our Service
+                  </CardTitle>
+                  <CardDescription className="font-body text-brand-blue/70">
+                    Help other pet parents discover professional at-home grooming
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      onClick={() => handleShare('facebook')}
+                      className="flex items-center gap-2 p-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors"
+                    >
+                      <Facebook className="h-4 w-4" />
+                      <span className="text-sm font-medium">Facebook</span>
+                    </button>
+                    <button
+                      onClick={() => handleShare('twitter')}
+                      className="flex items-center gap-2 p-3 rounded-lg bg-sky-500 hover:bg-sky-600 text-white transition-colors"
+                    >
+                      <Twitter className="h-4 w-4" />
+                      <span className="text-sm font-medium">Twitter</span>
+                    </button>
+                    <button
+                      onClick={() => handleShare('linkedin')}
+                      className="flex items-center gap-2 p-3 rounded-lg bg-blue-700 hover:bg-blue-800 text-white transition-colors"
+                    >
+                      <Linkedin className="h-4 w-4" />
+                      <span className="text-sm font-medium">LinkedIn</span>
+                    </button>
+                    <button
+                      onClick={() => handleShare('whatsapp')}
+                      className="flex items-center gap-2 p-3 rounded-lg bg-green-600 hover:bg-green-700 text-white transition-colors"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      <span className="text-sm font-medium">WhatsApp</span>
+                    </button>
+                  </div>
                 </CardContent>
               </Card>
 
