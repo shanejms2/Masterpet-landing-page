@@ -130,13 +130,13 @@ const HeroSection = () => {
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-blue font-bold mb-6 leading-tight"
             >
               Professional At-Home{" "}
-              <span className="text-brand-green">Pet Grooming</span>{" "}
-              in Kochi
+              Pet Grooming{" "}
+              <span className="text-brand-green">in Kochi</span>
             </h1>
             
             <p
               ref={paragraphRef}
-              className="font-body text-lg md:text-xl text-gray-700 mb-8 leading-relaxed"
+              className="font-body text-lg md:text-xl text-brand-blue mb-8 leading-relaxed"
             >
               Experience stress-free, hygienic grooming for your beloved pets right at your doorstep. 
               Our certified groomers bring the salon experience to your home.
@@ -148,7 +148,7 @@ const HeroSection = () => {
                 href="https://wa.me/919876543210?text=Hi! I'm interested in booking a pet grooming session."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-green text-white font-semibold rounded-full hover:bg-brand-green/90 transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-brand-green/30"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-blue text-white font-body font-semibold rounded-full hover:bg-brand-green hover:text-brand-blue transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-brand-green/30"
                 tabIndex={0}
                 aria-label="Book grooming session on WhatsApp"
                 onKeyDown={(e) => {
@@ -166,7 +166,7 @@ const HeroSection = () => {
               <a
                 ref={secondaryCtaRef}
                 href="#pricing"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-brand-blue text-brand-blue font-semibold rounded-full hover:bg-brand-blue hover:text-white transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-brand-blue/30"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-brand-blue text-brand-blue font-body font-semibold rounded-full hover:scale-105 hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-brand-blue/30"
                 tabIndex={0}
                 aria-label="View pricing and packages"
                 onKeyDown={(e) => {
@@ -181,10 +181,14 @@ const HeroSection = () => {
               </a>
             </div>
             
-            <div className="flex items-center gap-6 text-sm text-gray-600">
+            <div className="flex items-center gap-4 text-sm text-brand-blue font-body flex-wrap">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-brand-green rounded-full"></div>
                 <span>Certified Groomers</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-brand-green rounded-full"></div>
+                <span>Premium Products</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-brand-green rounded-full"></div>
@@ -192,7 +196,7 @@ const HeroSection = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-brand-green rounded-full"></div>
-                <span>Same Day Service</span>
+                <span>No Travel Stress</span>
               </div>
             </div>
           </div>

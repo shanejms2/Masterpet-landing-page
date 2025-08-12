@@ -254,7 +254,7 @@ const VideoShowcaseSection: React.FC = () => {
   }, [api, handleSelect]);
 
   return (
-    <section className="w-full py-16 md:py-24 bg-gradient-to-b from-white to-gray-50/50" id="videos" aria-label="See Us In Action">
+    <section className="w-full py-16 md:py-24 bg-gradient-to-b from-white to-gray-50/50" id="showcase" aria-label="See Us In Action">
       <Container>
         {/* Header Section */}
         <div className="max-w-4xl mx-auto text-center mb-16">
