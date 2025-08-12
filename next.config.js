@@ -10,6 +10,18 @@ const nextConfig = {
     optimizeCss: true,
     optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react'],
   },
+
+  // Modern JavaScript optimization - target browsers that support ES2020+
+  // Note: swcMinify is enabled by default in Next.js 15+
+  
+  // Configure SWC to avoid transpiling modern features
+  compiler: {
+    // Remove console.logs in production
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+
+  // Modern browser targets to avoid unnecessary polyfills
+  transpilePackages: [],
   
   // Image optimization
   images: {
@@ -27,6 +39,44 @@ const nextConfig = {
   
   // Disable source maps in production for better performance
   productionBrowserSourceMaps: false,
+
+  // Webpack configuration to optimize bundle size
+  webpack: (config, { dev, isServer }) => {
+    // Bundle analyzer for development
+    if (process.env.ANALYZE === 'true' && !isServer) {
+      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          openAnalyzer: false,
+          reportFilename: '../reports/bundle-analyzer.html',
+        })
+      );
+    }
+
+    // Only apply optimizations in production
+    if (!dev && !isServer) {
+      // Optimize bundle splitting
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
+      };
+    }
+
+    return config;
+  },
   
   // Headers for caching and performance
   async headers() {

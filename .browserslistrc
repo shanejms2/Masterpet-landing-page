@@ -1,0 +1,32 @@
+# Modern browser targets to avoid unnecessary polyfills
+# This targets browsers that support ES2020+ features natively
+
+# Chrome/Edge (last 2 versions)
+last 2 chrome versions
+last 2 edge versions
+
+# Firefox (last 2 versions)
+last 2 firefox versions
+
+# Safari (last 2 versions)
+last 2 safari versions
+
+# iOS Safari (last 2 versions)
+last 2 ios_saf versions
+
+# Android Chrome (last 2 versions)
+last 2 android versions
+
+# Samsung Internet (last 2 versions)
+last 2 samsung versions
+
+# Exclude very old browsers that don't support modern features
+not dead
+not ie 11
+not ie_mob 11
+
+# Support browsers with > 0.5% market share
+> 0.5%
+
+# Support browsers that are still receiving updates
+not dead
