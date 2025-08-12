@@ -1,6 +1,17 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+
+// Performance API types
+interface LayoutShift extends PerformanceEntry {
+  value: number;
+  sources: Array<{
+    node: Node;
+    currentRect: DOMRectReadOnly;
+    previousRect: DOMRectReadOnly;
+  }>;
+}
 
 interface PerformanceOptimizerProps {
   children: React.ReactNode;
@@ -101,19 +112,19 @@ export const LazyImage: React.FC<LazyImageProps> = ({
 
   return (
     <div className={`lazy-image-container ${className}`}>
-      {isInView && (
-        <img
-          ref={imgRef}
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          onLoad={handleLoad}
-          className={`lazy-image ${isLoaded ? 'loaded' : 'loading'}`}
-          loading={priority ? 'eager' : 'lazy'}
-          decoding="async"
-        />
-      )}
+              {isInView && (
+          <Image
+            ref={imgRef}
+            src={src}
+            alt={alt}
+            width={width || 800}
+            height={height || 600}
+            onLoad={handleLoad}
+            className={`lazy-image ${isLoaded ? 'loaded' : 'loading'}`}
+            priority={priority}
+            decoding="async"
+          />
+        )}
     </div>
   );
 };
@@ -164,10 +175,12 @@ export const usePerformanceMonitor = () => {
             console.log('LCP:', entry.startTime);
           }
           if (entry.entryType === 'first-input') {
-            console.log('FID:', entry.processingStart - entry.startTime);
+            const firstInput = entry as PerformanceEventTiming;
+            console.log('FID:', firstInput.processingStart - firstInput.startTime);
           }
           if (entry.entryType === 'layout-shift') {
-            console.log('CLS:', entry.value);
+            const layoutShift = entry as LayoutShift;
+            console.log('CLS:', layoutShift.value);
           }
         }
       });

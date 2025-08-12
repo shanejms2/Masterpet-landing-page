@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import MainWrapper from "@/components/MainWrapper";
@@ -126,12 +127,13 @@ export default function RootLayout({
         }} />
         
         {/* Optimized Google Analytics - loaded asynchronously */}
-        <script
+        <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-0GBLF1WP82"
-          async
+          strategy="afterInteractive"
         />
-        <script
+        <Script
           id="google-analytics"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
