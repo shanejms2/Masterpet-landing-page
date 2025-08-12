@@ -70,6 +70,18 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <NAPSchema />
+        
+        {/* Preload critical resources */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://obyaomptxztycjjakykm.supabase.co" />
+        
+        {/* Preload critical fonts */}
+        <link rel="preload" href="/fonts/Fractul-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/Gliker-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        
+        {/* Favicon and app icons */}
         <link rel="apple-touch-icon" sizes="180x180" href="/brand_assets/Profile/Favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/brand_assets/Profile/Favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/brand_assets/Profile/Favicon/favicon-16x16.png" />
@@ -78,15 +90,58 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#1b1582" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0GBLF1WP82"></script>
+        {/* Critical CSS inlined to prevent render blocking */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* Critical CSS for above-the-fold content */
+            body { margin: 0; font-family: 'Gliker', Arial, sans-serif; }
+            .font-gliker { font-family: 'Gliker', Arial, sans-serif; }
+            .bg-background { background-color: #fff; }
+            .text-brand-blue { color: #0A0A90; }
+            .min-h-screen { min-height: 100vh; }
+            
+            /* Prevent layout shift */
+            img { max-width: 100%; height: auto; }
+            
+            /* Smooth scrolling */
+            html { scroll-behavior: smooth; }
+            
+            /* Optimize font loading */
+            @font-face {
+              font-family: 'Gliker';
+              src: url('/fonts/Gliker-Regular.woff2') format('woff2');
+              font-display: swap;
+              font-weight: 400;
+              font-style: normal;
+            }
+            
+            @font-face {
+              font-family: 'Fractul';
+              src: url('/fonts/Fractul-Regular.ttf') format('truetype');
+              font-display: swap;
+              font-weight: 400;
+              font-style: normal;
+            }
+          `
+        }} />
+        
+        {/* Optimized Google Analytics - loaded asynchronously */}
         <script
+          src="https://www.googletagmanager.com/gtag/js?id=G-0GBLF1WP82"
+          async
+        />
+        <script
+          id="google-analytics"
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-0GBLF1WP82');
+              gtag('config', 'G-0GBLF1WP82', {
+                page_title: document.title,
+                page_location: window.location.href,
+                send_page_view: true
+              });
             `,
           }}
         />
@@ -94,10 +149,6 @@ export default function RootLayout({
       <body className="font-gliker bg-background min-h-screen">
         <AnnouncementBannerWrapper />
         <NavbarWrapper />
-        {/*
-          The background color is set using the semantic Tailwind class 'bg-background',
-          which references the CSS variable --background for easy theming and configuration.
-        */}
         <MainWrapper>
           {children}
         </MainWrapper>

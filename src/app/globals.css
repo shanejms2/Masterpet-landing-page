@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+/* Optimize font loading */
+@font-face {
+  font-family: 'Gliker';
+  src: url('/fonts/Gliker-Regular.woff2') format('woff2');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Fractul';
+  src: url('/fonts/Fractul-Regular.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
 /* Hide scrollbar for webkit browsers */
 .scrollbar-hide {
   -ms-overflow-style: none;  /* IE and Edge */
@@ -26,8 +48,6 @@
   --foreground: 0 0% 3.9%;
   --card: 0 0% 100%;
   --card-foreground: 0 0% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 3.9%;
   --primary: 0 0% 9%;
   --primary-foreground: 0 0% 98%;
   --secondary: 0 0% 96.1%;
@@ -48,6 +68,7 @@
   --chart-5: 27 87% 67%;
   --radius: 0.5rem;
 }
+
 .dark {
   --background: #0A0A90; /* Example: dark mode background */
   --section-background: #1a237e; /* Example: dark mode section */
@@ -76,204 +97,185 @@
   --chart-5: 340 75% 55%;
 }
 
-/*
-  The body background is now set via Tailwind's bg-background class,
-  which uses the --background CSS variable. Remove or comment out any
-  hardcoded background here to avoid conflicts.
-*/
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  /* background: #fff; */
-}
-
+/* Base styles with performance optimizations */
 @layer base {
-  * {
-    /* @apply border-border; */
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
   }
+  
   body {
-    @apply text-brand-blue;
-    /*
-      The background color is now controlled by the bg-background Tailwind class.
-      For section backgrounds, use bg-section-background.
-    */
+    font-family: 'Gliker', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Prevent layout shift for images */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Optimize text rendering */
+  * {
+    text-rendering: optimizeSpeed;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-.headline{
-  color: #00008B;
-text-transform: uppercase;
-font-size: 100px;
-font-style: normal;
-font-weight: 700;
-line-height: 108px; /* 108% */
-}
-
-.corner{
-  position: absolute;
-  width: 20px;
-  height: 20px
-}
-
-.TL {
-  /* top: -10%; */
-  left: -20%;
-}
-.TR {
-  right: 25%;
-}
-.BL {
-  top: 40%;
-  left: -50%;
-}
-.BR {
-  top: 40%;
-  right: 10%;
-}
-
-@media print {
-  #grooming-report {
-    padding-top: 0 !important;
-    padding-bottom: 0 !important;
-    box-shadow: none !important;
+/* Component styles */
+@layer components {
+  .font-gliker {
+    font-family: 'Gliker', Arial, sans-serif;
   }
-  /* Avoid breaking inside main cards/sections */
-  #grooming-report > div,
-  #grooming-report > section {
-    break-inside: avoid;
-    page-break-inside: avoid;
+  
+  .font-fractul {
+    font-family: 'Fractul', Arial, sans-serif;
   }
-  /* Add a little margin between sections for print */
-  #grooming-report > * {
-    margin-bottom: 12px !important;
+  
+  .bg-background {
+    background-color: var(--background);
   }
-  /* Hide Next.js, Arc, and extension overlays/badges */
-  [data-nextjs-toast],
-  .__nextjs-dev-overlay,
-  .nextjs-portal,
-  [data-nextjs-router-banner],
-  .arc-badge,
-  #arc-root,
-  .chrome-extension,
-  .devtools-root {
-    display: none !important;
+  
+  .bg-section-background {
+    background-color: var(--section-background);
   }
-}
-
-.pdf-mode {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-.pdf-section {
-  break-inside: avoid;
-  page-break-inside: avoid;
-  margin-bottom: 4px !important;
-}
-.pdf-mode .pet-details-card,
-.pdf-mode .grooming-form-table {
-  padding: 12px !important;
-  margin-bottom: 4px !important;
-}
-.pdf-mode .pet-details-card .gap-8,
-.pdf-mode .grooming-form-table .mt-10,
-.pdf-mode .grooming-form-table .mb-8 {
-  gap: 8px !important;
-  margin-top: 8px !important;
-  margin-bottom: 8px !important;
-}
-.pdf-mode .text-5xl { font-size: 2rem !important; }
-.pdf-mode .text-2xl { font-size: 1.25rem !important; }
-.pdf-mode .text-xl { font-size: 1rem !important; }
-
-.pdf-mode .pdf-pet-details-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  position: relative;
-}
-.pdf-mode .pdf-pet-footer {
-  position: absolute;
-  bottom: 32px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 1.5rem;
-  color: #1b1582;
-  font-weight: bold;
-  letter-spacing: 0.05em;
-}
-
-.pdf-mode .pdf-social-links {
-  margin-top: 8px;
-  text-align: center;
-}
-.pdf-mode .pdf-social-links a {
-  color: #1b1582;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.pdf-mode .pdf-social-links a:hover {
-  color: #caf857;
-}
-
-@font-face {
-  font-family: 'Gliker';
-  src: url('/fonts/Gliker-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Gliker';
-  src: url('/fonts/Gliker-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Fractul';
-  src: url('/fonts/Fractul-Regular.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Fractul';
-  src: url('/fonts/Fractul-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@layer utilities {
-  .animate-marquee {
-    animation: marquee 30s linear infinite;
+  
+  .text-brand-blue {
+    color: #0A0A90;
   }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  
+  .min-h-screen {
+    min-height: 100vh;
   }
-  .scrollbar-hide::-webkit-scrollbar {
+  
+  /* Performance optimizer styles */
+  .performance-optimizer {
+    min-height: 1px;
+  }
+  
+  /* Lazy image styles */
+  .lazy-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .lazy-image {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+  }
+  
+  .lazy-image.loaded {
+    opacity: 1;
+  }
+  
+  .lazy-image.loading {
+    opacity: 0;
+  }
+  
+  /* Loading skeleton */
+  .lazy-image-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    z-index: -1;
+  }
+  
+  .lazy-image.loaded + .lazy-image-container::before {
     display: none;
   }
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+}
+
+/* Utility styles */
+@layer utilities {
+  /* Performance utilities */
+  .will-change-transform {
+    will-change: transform;
   }
-  .font-gliker {
-    font-family: 'Gliker', sans-serif !important;
+  
+  .will-change-opacity {
+    will-change: opacity;
   }
-  @keyframes mascot-bounce {
-    0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-    60% { opacity: 1; transform: translateY(-10px) scale(1.05); }
-    80% { transform: translateY(5px) scale(0.98); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+  
+  .contain-layout {
+    contain: layout;
   }
-  .animate-mascot-bounce {
-    animation: mascot-bounce 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+  
+  .contain-paint {
+    contain: paint;
+  }
+  
+  .contain-strict {
+    contain: strict;
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Optimize animations */
+  .animate-optimized {
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-html {
-  scroll-behavior: smooth;
+/* Animations */
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Optimize for mobile */
+@media (max-width: 768px) {
+  .lazy-image-container {
+    margin: 0 -1rem;
+  }
+  
+  .lazy-image {
+    border-radius: 0;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .lazy-image-container::before {
+    background: #000;
+  }
+}
+
+/* Print styles */
+@media print {
+  .lazy-image-container::before {
+    display: none;
+  }
+  
+  .lazy-image {
+    opacity: 1 !important;
+  }
 }
