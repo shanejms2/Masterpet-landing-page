@@ -16,7 +16,7 @@ import Container from "./Container";
 const videos = [
   {
     id: 1,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos//Hungry%20Cochin.mp4',
+    src: '/api/proxy-video/Hungry%20Cochin.mp4',
     title: 'Masterpet and Hungry Cochin',
     description: 'Mobile grooming service in action',
     poster: '/brand_assets/Icons/ball/ball.png',
@@ -24,7 +24,7 @@ const videos = [
   },
   {
     id: 2,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos//Bipin%20Shoot%20Cat%20v2%20(1).mp4',
+    src: '/api/proxy-video/Bipin%20Shoot%20Cat%20v2%20(1).mp4',
     title: 'An afternoon with Manikuttan',
     description: 'At-home grooming at DLF flats',
     poster: '/brand_assets/Icons/bone/bone.png',
@@ -32,7 +32,7 @@ const videos = [
   },
   {
     id: 3,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos//Bipin%20ASMR.mp4',
+    src: '/api/proxy-video/Bipin%20ASMR.mp4',
     title: 'Shih Tzu ASMR grooming',
     description: 'Relaxing grooming session',
     poster: '/brand_assets/Icons/comb/comb.png',
@@ -40,7 +40,7 @@ const videos = [
   },
   {
     id: 4,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos//Tattoo%20Artist.mp4',
+    src: '/api/proxy-video/Tattoo%20Artist.mp4',
     title: 'Persian Cat Bella testimonial',
     description: 'Customer satisfaction story',
     poster: '/brand_assets/Icons/fish/fish.png',
@@ -48,7 +48,7 @@ const videos = [
   },
   {
     id: 5,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos//Masterpet%20Animated.mp4',
+    src: '/api/proxy-video/Masterpet%20Animated.mp4',
     title: 'Masterpet at Kochi',
     description: 'Brand presence and coverage',
     poster: '/brand_assets/Icons/paw/paw.png',
@@ -56,7 +56,7 @@ const videos = [
   },
   {
     id: 6,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/othalanga%20facial%20for%20Bella.mp4',
+    src: '/api/proxy-video/othalanga%20facial%20for%20Bella.mp4',
     title: 'Bella\'s Facial Treatment',
     description: 'Professional facial grooming for pets',
     poster: '/brand_assets/Icons/comb/comb.png',
@@ -64,7 +64,7 @@ const videos = [
   },
   {
     id: 7,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/pomeranian%20grooming.mp4',
+    src: '/api/proxy-video/pomeranian%20grooming.mp4',
     title: 'Pomeranian Grooming Session',
     description: 'Complete grooming for fluffy Pomeranian',
     poster: '/brand_assets/Icons/shears/shears.png',
@@ -72,7 +72,7 @@ const videos = [
   },
   {
     id: 8,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/pug%20grooming.mp4',
+    src: '/api/proxy-video/pug%20grooming.mp4',
     title: 'Pug Grooming Transformation',
     description: 'Professional grooming for adorable Pug',
     poster: '/brand_assets/Icons/paw/paw.png',
@@ -80,7 +80,7 @@ const videos = [
   },
   {
     id: 9,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/Puppy,%20a%20beagle%20video%20copy%202.mp4',
+    src: '/api/proxy-video/Puppy,%20a%20beagle%20video%20copy%202.mp4',
     title: 'Beagle Puppy Grooming',
     description: 'Gentle grooming for young Beagle puppy',
     poster: '/brand_assets/Icons/ball/ball.png',
@@ -88,7 +88,7 @@ const videos = [
   },
   {
     id: 10,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/Tessa%20Grooming%202.mp4',
+    src: '/api/proxy-video/Tessa%20Grooming%202.mp4',
     title: 'Tessa\'s Grooming Session',
     description: 'Professional grooming for Tessa',
     poster: '/brand_assets/Icons/shampoo/shampoo.png',
@@ -96,7 +96,7 @@ const videos = [
   },
   {
     id: 11,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/grooming%20truck.mp4',
+    src: '/api/proxy-video/grooming%20truck.mp4',
     title: 'Our Mobile Grooming Van',
     description: 'Take a tour of our fully equipped grooming truck',
     poster: '/brand_assets/Icons/van/van.png',
@@ -104,7 +104,7 @@ const videos = [
   },
   {
     id: 12,
-    src: 'https://obyaomptxztycjjakykm.supabase.co/storage/v1/object/public/masterpet-landingpage-videos/dashund%20grooming.mp4',
+    src: '/api/proxy-video/dashund%20grooming.mp4',
     title: 'Dachshund Grooming',
     description: 'Professional grooming for long-bodied Dachshund',
     poster: '/brand_assets/Icons/bone/bone.png',
