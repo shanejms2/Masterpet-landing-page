@@ -244,85 +244,30 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="w-full">
           {/* Map */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
-              <div 
-                ref={mapRef} 
-                className="w-full h-96 md:h-[500px] relative"
-                role="img"
-                aria-label="Google Maps showing Masterpet service areas in Kochi"
-              >
-                {/* Fallback when map can't load */}
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-                  <div className="text-center p-8">
-                    <div className="w-16 h-16 bg-brand-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-brand-green" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                    <h3 className="font-heading text-lg font-bold text-brand-blue mb-2">Service Areas Map</h3>
-                    <p className="text-sm text-brand-blue/70 mb-4">
-                      Interactive map showing our service coverage across Kochi
-                    </p>
-                    <p className="text-xs text-brand-blue/50">
-                      Map loading... Please ensure Google Maps API key is configured
-                    </p>
+          <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+            <div 
+              ref={mapRef} 
+              className="w-full h-96 md:h-[600px] relative"
+              role="img"
+              aria-label="Google Maps showing Masterpet service areas in Kochi"
+            >
+              {/* Fallback when map can't load */}
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+                <div className="text-center p-8">
+                  <div className="w-16 h-16 bg-brand-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-brand-green" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Service Areas Info */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
-              <h3 className="font-heading text-xl font-bold text-brand-blue mb-4">
-                Service Coverage
-              </h3>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-fractul font-semibold text-brand-blue">Kochi City</h4>
-                    <p className="text-sm text-brand-blue/70">Ernakulam, Kaloor, Edapally, Kakkanad, Vytilla</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-fractul font-semibold text-brand-blue">Fort Kochi</h4>
-                    <p className="text-sm text-brand-blue/70">Mattancherry, Fort Kochi Beach, Chinese Fishing Nets</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-fractul font-semibold text-brand-blue">Suburban Areas</h4>
-                    <p className="text-sm text-brand-blue/70">Maradu, Thrippunithura, Kalamassery</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-fractul font-semibold text-brand-blue">Aluva & Beyond</h4>
-                    <p className="text-sm text-brand-blue/70">Aluva, Angamaly, Perumbavoor, Kothamangalam</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-fractul font-semibold text-brand-blue">Coastal Areas</h4>
-                    <p className="text-sm text-brand-blue/70">Vypin, North Paravur, Cherai, Kumbalangi</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-brand-green rounded-full mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h4 className="font-fractul font-semibold text-brand-blue">Temple Towns</h4>
-                    <p className="text-sm text-brand-blue/70">Vaikom, Chottanikkara, Thrippunithura</p>
-                  </div>
+                  <h3 className="font-heading text-lg font-bold text-brand-blue mb-2">Service Areas Map</h3>
+                  <p className="text-sm text-brand-blue/70 mb-4">
+                    Interactive map showing our service coverage across Kochi
+                  </p>
+                  <p className="text-xs text-brand-blue/50">
+                    Map loading... Please ensure Google Maps API key is configured
+                  </p>
                 </div>
               </div>
             </div>
