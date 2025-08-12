@@ -123,7 +123,7 @@ const TestimonialsSection = () => {
                     {testimonial.rating}.0
                   </span>
                 </div>
-                <div className="font-body text-xs text-brand-blue/50">
+                <div className="font-body text-xs text-brand-blue/70">
                   {testimonial.date}
                 </div>
               </CardHeader>

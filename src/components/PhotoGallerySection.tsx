@@ -197,19 +197,25 @@ const PhotoGallerySection = () => {
             ))}
           </div>
 
-          {/* Pagination Dots */}
-          <div className="flex justify-center items-center gap-2 mt-8">
+          {/* Custom Pagination Dots */}
+          <div className="flex justify-center items-center gap-3 mt-8">
             {galleryImages.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToImage(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-brand-blue w-8' 
-                    : 'bg-brand-blue/30 hover:bg-brand-blue/50'
-                }`}
+                className={`
+                  relative transition-all duration-300 ease-out
+                  ${index === currentIndex 
+                    ? 'w-12 h-3 bg-brand-green rounded-full shadow-lg shadow-brand-green/30' 
+                    : 'w-3 h-3 bg-brand-blue/20 hover:bg-brand-blue/40 rounded-full hover:scale-110'
+                  }
+                `}
                 aria-label={`Go to image ${index + 1}`}
-              />
+              >
+                {index === currentIndex && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-brand-green to-brand-green/80 rounded-full animate-pulse"></div>
+                )}
+              </button>
             ))}
           </div>
         </div>

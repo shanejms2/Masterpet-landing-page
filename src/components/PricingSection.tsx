@@ -164,7 +164,7 @@ const PricingSection = () => {
               <CardContent className="flex-1">
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-heading text-sm font-semibold text-brand-blue mb-3">What's included:</h4>
+                    <div className="font-heading text-sm font-semibold text-brand-blue mb-3">What's included:</div>
                     <ul className="space-y-3">
                       {plan.features.map((feature) => {
                         // Check if this is a trimming service in Hygiene Package
@@ -192,7 +192,7 @@ const PricingSection = () => {
                   </div>
                   
                   <div>
-                    <h4 className="font-heading text-sm font-semibold text-brand-blue mb-3">Not included:</h4>
+                    <div className="font-heading text-sm font-semibold text-brand-blue mb-3">Not included:</div>
                     <ul className="space-y-3">
                       {plan.notIncluded.map((item) => (
                         <li key={item} className="flex items-start gap-3">

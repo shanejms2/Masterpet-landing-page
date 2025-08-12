@@ -363,19 +363,25 @@ const VideoShowcaseSection: React.FC = () => {
             <CarouselNext className="right-4 md:right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm border-0 shadow-xl hover:bg-white" />
           </Carousel>
           
-          {/* Pagination Dots */}
-          <div className="flex justify-center items-center gap-2 mt-8">
+          {/* Custom Pagination Dots */}
+          <div className="flex justify-center items-center gap-3 mt-8">
             {videos.map((_, index) => (
               <button
                 key={index}
                 onClick={() => api?.scrollTo(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-brand-blue w-8' 
-                    : 'bg-brand-blue/30 hover:bg-brand-blue/50'
-                }`}
+                className={`
+                  relative transition-all duration-300 ease-out
+                  ${index === currentIndex 
+                    ? 'w-12 h-3 bg-brand-green rounded-full shadow-lg shadow-brand-green/30' 
+                    : 'w-3 h-3 bg-brand-blue/20 hover:bg-brand-blue/40 rounded-full hover:scale-110'
+                  }
+                `}
                 aria-label={`Go to video ${index + 1}`}
-              />
+              >
+                {index === currentIndex && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-brand-green to-brand-green/80 rounded-full animate-pulse"></div>
+                )}
+              </button>
             ))}
           </div>
         </div>

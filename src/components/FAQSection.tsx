@@ -202,9 +202,9 @@ const FAQSection = () => {
                         <method.icon className="h-4 w-4 text-brand-blue group-hover:text-white" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h4 className="font-body text-sm font-semibold text-brand-blue truncate">
+                        <div className="font-body text-sm font-semibold text-brand-blue truncate">
                           {method.title}
-                        </h4>
+                        </div>
                         <p className="font-body text-xs text-brand-blue/60 truncate">
                           {method.description}
                         </p>
@@ -241,21 +241,21 @@ const FAQSection = () => {
                       className="flex items-center gap-2 p-3 rounded-lg bg-sky-500 hover:bg-sky-600 text-white transition-colors"
                     >
                       <Twitter className="h-4 w-4" />
-                      <span className="text-sm font-medium">Twitter</span>
+                      <span className="text-sm font-semibold">Twitter</span>
                     </button>
                     <button
                       onClick={() => handleShare('linkedin')}
                       className="flex items-center gap-2 p-3 rounded-lg bg-blue-700 hover:bg-blue-800 text-white transition-colors"
                     >
                       <Linkedin className="h-4 w-4" />
-                      <span className="text-sm font-medium">LinkedIn</span>
+                      <span className="text-sm font-semibold">LinkedIn</span>
                     </button>
                     <button
                       onClick={() => handleShare('whatsapp')}
                       className="flex items-center gap-2 p-3 rounded-lg bg-green-600 hover:bg-green-700 text-white transition-colors"
                     >
                       <MessageCircle className="h-4 w-4" />
-                      <span className="text-sm font-medium">WhatsApp</span>
+                      <span className="text-sm font-semibold">WhatsApp</span>
                     </button>
                   </div>
                 </CardContent>

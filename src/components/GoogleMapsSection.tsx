@@ -242,28 +242,6 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
             Professional at-home pet grooming services available across Kochi and surrounding areas. 
             We come to your doorstep for stress-free grooming!
           </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-brand-blue/70">
-            <span className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-brand-green rounded-full"></div>
-              Main Location
-            </span>
-            <span className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-brand-green rounded-full"></div>
-              Service Areas
-            </span>
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              Transport
-            </span>
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              Attractions
-            </span>
-            <span className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              Business
-            </span>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -273,6 +251,7 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
               <div 
                 ref={mapRef} 
                 className="w-full h-96 md:h-[500px] relative"
+                role="img"
                 aria-label="Google Maps showing Masterpet service areas in Kochi"
               >
                 {/* Fallback when map can't load */}
@@ -345,59 +324,6 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
                     <p className="text-sm text-brand-blue/70">Vaikom, Chottanikkara, Thrippunithura</p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
-              <h3 className="font-heading text-xl font-bold text-brand-blue mb-4">
-                Why Choose At-Home Grooming?
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="text-brand-green text-lg mt-0.5">✓</span>
-                  <span className="text-sm text-brand-blue">No travel stress for your pet</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-brand-green text-lg mt-0.5">✓</span>
-                  <span className="text-sm text-brand-blue">Professional equipment at your doorstep</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-brand-green text-lg mt-0.5">✓</span>
-                  <span className="text-sm text-brand-blue">Convenient scheduling around your time</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-brand-green text-lg mt-0.5">✓</span>
-                  <span className="text-sm text-brand-blue">Hygienic and safe environment</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-br from-brand-blue to-brand-blue/90 rounded-2xl p-6 text-white">
-              <h3 className="font-heading text-xl font-bold mb-4">
-                Schedule Grooming
-              </h3>
-              <p className="text-sm mb-4 opacity-90">
-                Ready for professional pet grooming near you? Contact us to schedule your at-home grooming session.
-              </p>
-              <div className="space-y-3">
-                <a
-                  href="https://wa.me/918590643269?text=Hi%20Masterpet!%20I%20want%20to%20book%20a%20grooming%20session%20near%20me.%20[From%20Masterpet%20Website]"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full bg-brand-green text-brand-blue text-center py-3 px-4 rounded-lg font-fractul font-semibold hover:bg-brand-green/90 transition-colors"
-                  tabIndex={0}
-                  aria-label="Book grooming session on WhatsApp"
-                >
-                  Book on WhatsApp
-                </a>
-                <a
-                  href="tel:+918590643269"
-                  className="block w-full bg-white/20 text-white text-center py-3 px-4 rounded-lg font-fractul font-semibold hover:bg-white/30 transition-colors"
-                  tabIndex={0}
-                  aria-label="Call Masterpet for booking"
-                >
-                  Call +91 85906 43269
-                </a>
               </div>
             </div>
           </div>
