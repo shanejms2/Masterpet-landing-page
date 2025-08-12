@@ -24,9 +24,19 @@ export async function GET() {
   // Combine static pages with area pages
   const allPages = [...staticPages, ...areaUrls];
 
+  // Get current date for lastmod
+  const currentDate = new Date().toISOString().split('T')[0];
+
   const urls = allPages.map(
-    (page) =>
-      `<url><loc>${BASE_URL}/${page}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`
+    (page) => {
+      const url = page === '' ? BASE_URL : `${BASE_URL}/${page}`;
+      return `<url>
+  <loc>${url}</loc>
+  <lastmod>${currentDate}</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>${page === '' ? '1.0' : '0.8'}</priority>
+</url>`;
+    }
   ).join('');
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -38,6 +48,7 @@ export async function GET() {
     status: 200,
     headers: {
       'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
     },
   });
 } 

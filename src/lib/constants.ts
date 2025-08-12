@@ -6,6 +6,6 @@ export const COMPANY_INFO = {
   email: "hello@masterpet.co.in",
   googleBusinessUrl: "https://maps.app.goo.gl/4XhBMTabRKG3wcxf9",
   whatsappUrl: "https://wa.me/918590643269?text=[From%20Masterpet%20Website]", // Source tag for tracking
-  website: "https://masterpet.co.in",
+  website: "https://www.masterpet.co.in",
   justdialUrl: "https://jsdl.in/DT-25AZFB2UZUC"
 } 

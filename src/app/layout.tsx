@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://masterpet.co.in'),
+  metadataBase: new URL('https://www.masterpet.co.in'),
   alternates: {
-    canonical: 'https://masterpet.co.in',
+    canonical: 'https://www.masterpet.co.in',
   },
   openGraph: {
     title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
     description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by 1000+ pet parents. Book your session today!",
-    url: 'https://masterpet.co.in',
+    url: 'https://www.masterpet.co.in',
     siteName: 'Masterpet',
     images: [
       {

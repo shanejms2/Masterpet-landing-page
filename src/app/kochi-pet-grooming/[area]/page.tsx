@@ -58,14 +58,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       address: false,
       telephone: false,
     },
-    metadataBase: new URL('https://masterpet.co.in'),
+    metadataBase: new URL('https://www.masterpet.co.in'),
     alternates: {
       canonical: `/kochi-pet-grooming/${area.slug}`,
     },
     openGraph: {
       title: `At-Home Pet Grooming in ${area.name}, Kochi | Professional Mobile Grooming Services`,
       description: `Professional at-home pet grooming in ${area.name}, Kochi. Trusted by pet parents in ${area.name}. Hygienic, stress-free grooming for your dogs and cats at your doorstep.`,
-      url: `https://masterpet.co.in/kochi-pet-grooming/${area.slug}`,
+      url: `https://www.masterpet.co.in/kochi-pet-grooming/${area.slug}`,
       siteName: 'Masterpet',
       images: [
         {
