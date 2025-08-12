@@ -1,0 +1,52 @@
+# Masterpet Landing Page - Robots.txt
+# This file tells search engine crawlers which pages they can and cannot access
+
+# Allow all search engine crawlers
+User-agent: *
+
+# Allow crawling of main pages
+Allow: /
+Allow: /contact
+Allow: /privacy
+Allow: /terms-and-conditions
+Allow: /cancellation-policy
+Allow: /return-policy
+Allow: /kochi-pet-grooming
+
+# Block API endpoints (sensitive data)
+Disallow: /api/
+Disallow: /api/bookings/
+Disallow: /api/generate-grooming-report/
+Disallow: /api/proxy-grooming/
+Disallow: /api/upload/
+Disallow: /api/search/
+Disallow: /api/users/
+
+# Block reports directory (contains sensitive grooming reports)
+Disallow: /reports/
+
+# Block account deletion page (should not be indexed)
+Disallow: /account-deletion/
+
+# Block grooming report page (contains sensitive data)
+Disallow: /grooming-report/
+
+# Block any potential admin or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /internal/
+
+# Allow access to public assets
+Allow: /public/
+Allow: /brand_assets/
+Allow: /gallery/
+Allow: /testimonials/
+Allow: /communities_logo/
+Allow: /icons/
+Allow: /fonts/
+
+# Sitemap location (if you have one)
+Sitemap: https://masterpet.in/sitemap.xml
+
+# Crawl delay (optional - tells crawlers to wait between requests)
+Crawl-delay: 1
