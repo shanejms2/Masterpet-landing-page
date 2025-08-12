@@ -13,6 +13,19 @@ const nextConfig = {
   productionBrowserSourceMaps: true,
   async redirects() {
     return [
+      // Domain canonicalization - redirect non-www to www
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'masterpet.co.in',
+          },
+        ],
+        destination: 'https://www.masterpet.co.in/:path*',
+        permanent: true,
+      },
+      // Legacy page redirects
       {
         source: '/privacy-policy.html',
         destination: '/privacy',

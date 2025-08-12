@@ -62,8 +62,8 @@ Masterpet is a premium pet grooming service based in Kochi, Kerala, India. We pr
 - Target: Pet owners seeking professional grooming
 
 ## Additional Resources
-- Sitemap: https://masterpet.in/sitemap.xml
-- Robots.txt: https://masterpet.in/robots.txt
+- Sitemap: https://www.masterpet.co.in/sitemap.xml
+- Robots.txt: https://www.masterpet.co.in/robots.txt
 
 ## AI-Friendly Notes
 - This is a local business serving Kochi area

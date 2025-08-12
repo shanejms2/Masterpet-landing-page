@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { areaConfig } from '@/lib/areaConfig';
 
-const BASE_URL = 'https://masterpet.co.in';
+const BASE_URL = 'https://www.masterpet.co.in';
 
 const staticPages = [
   '', // Home

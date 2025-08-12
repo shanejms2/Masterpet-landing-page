@@ -46,7 +46,7 @@ Allow: /icons/
 Allow: /fonts/
 
 # Sitemap location (if you have one)
-Sitemap: https://masterpet.in/sitemap.xml
+Sitemap: https://www.masterpet.co.in/sitemap.xml
 
 # Crawl delay (optional - tells crawlers to wait between requests)
 Crawl-delay: 1
