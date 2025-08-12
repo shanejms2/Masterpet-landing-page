@@ -7,22 +7,8 @@
   box-sizing: border-box;
 }
 
-/* Optimize font loading */
-@font-face {
-  font-family: 'Gliker';
-  src: url('/fonts/Gliker-Regular.ttf') format('truetype');
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Fractul';
-  src: url('/fonts/Fractul-Regular.ttf') format('truetype');
-  font-display: swap;
-  font-weight: 400;
-  font-style: normal;
-}
+/* Optimize font loading - moved to critical CSS in layout.tsx */
+/* Font declarations are now in the critical CSS to prevent render blocking */
 
 /* Hide scrollbar for webkit browsers */
 .scrollbar-hide {
