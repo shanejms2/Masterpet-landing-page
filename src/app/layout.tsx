@@ -77,6 +77,19 @@ export default function RootLayout({
         <meta name="theme-color" content="#caf857" />
         <meta name="msapplication-TileColor" content="#1b1582" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0GBLF1WP82"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-0GBLF1WP82');
+            `,
+          }}
+        />
       </head>
       <body className="font-gliker bg-background min-h-screen">
         <AnnouncementBannerWrapper />
