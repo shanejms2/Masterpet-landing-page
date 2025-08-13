@@ -16,30 +16,46 @@ export async function GET(
     // Construct the full Supabase storage URL
     const videoUrl = `${supabaseUrl}/storage/v1/object/public/masterpet-landingpage-videos/${pathString}`;
 
-    // Fetch the video from Supabase
-    const response = await fetch(videoUrl);
+    // Get range header for video seeking
+    const range = request.headers.get('range');
+    
+    // Prepare headers for the fetch request
+    const fetchHeaders: HeadersInit = {};
+    if (range) {
+      fetchHeaders['Range'] = range;
+    }
+
+    // Fetch the video from Supabase with range support
+    const response = await fetch(videoUrl, {
+      headers: fetchHeaders,
+    });
 
     if (!response.ok) {
       return new NextResponse('Video not found', { status: 404 });
     }
 
-    // Get the video content
-    const videoBuffer = await response.arrayBuffer();
-
-    // Create response with proper cache headers
+    // Create response headers
     const headers = new Headers();
     headers.set('Content-Type', response.headers.get('Content-Type') || 'video/mp4');
     headers.set('Cache-Control', 'public, max-age=31536000, immutable'); // 1 year cache
     headers.set('Access-Control-Allow-Origin', '*');
-    headers.set('Content-Length', response.headers.get('Content-Length') || '');
     
-    // Copy other relevant headers
+    // Handle range responses
+    if (response.headers.get('Content-Range')) {
+      headers.set('Content-Range', response.headers.get('Content-Range')!);
+    }
+    
     if (response.headers.get('Accept-Ranges')) {
       headers.set('Accept-Ranges', response.headers.get('Accept-Ranges')!);
     }
+    
+    if (response.headers.get('Content-Length')) {
+      headers.set('Content-Length', response.headers.get('Content-Length')!);
+    }
 
-    return new NextResponse(videoBuffer, {
-      status: 200,
+    // Stream the response instead of buffering
+    return new NextResponse(response.body, {
+      status: response.status,
       headers,
     });
   } catch (error) {

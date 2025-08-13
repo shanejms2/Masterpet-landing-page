@@ -50,15 +50,6 @@ export const trackBlogLike = (postTitle: string, action: 'like' | 'unlike') => {
   }
 };
 
-export const trackBlogComment = (postTitle: string) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', 'blog_comment', {
-      event_category: 'Blog',
-      event_label: postTitle,
-    });
-  }
-};
-
 export const trackBlogReadTime = (postTitle: string, readingTime: number) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', 'blog_read_time', {
