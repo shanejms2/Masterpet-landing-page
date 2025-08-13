@@ -75,10 +75,18 @@ export default function RootLayout({
         {/* Critical resource preloading */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
         <link rel="preconnect" href="https://obyaomptxztycjjakykm.supabase.co" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* Preload critical fonts with font-display: swap */}
         <link rel="preload" href="/fonts/Gliker-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/Fractul-Regular.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        
+        {/* Google Fonts for Blog - Noto Sans and Lora */}
+        <link 
+          href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" 
+          rel="stylesheet" 
+        />
         
         {/* Preload critical images */}
         <link rel="preload" href="/brand_assets/Mascot/couch_dog_cat/MP_Couch_dog_cat.svg" as="image" type="image/svg+xml" />
@@ -132,6 +140,10 @@ export default function RootLayout({
               font-style: normal;
               font-display: swap;
             }
+            
+            /* Blog-specific fonts */
+            .font-noto-sans { font-family: 'Noto Sans', Arial, sans-serif; }
+            .font-lora { font-family: 'Lora', Georgia, serif; }
             
             /* Critical utility classes */
             .font-gliker { font-family: 'Gliker', Arial, sans-serif; }

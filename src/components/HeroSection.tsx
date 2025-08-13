@@ -129,7 +129,7 @@ const HeroSection = () => {
               ref={headingRef}
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-blue font-bold mb-6 leading-tight"
             >
-              Professional At-Home{" "}
+              At-Home{" "}
               Pet Grooming{" "}
               <span className="text-brand-green">in Kochi</span>
             </h1>
@@ -139,16 +139,16 @@ const HeroSection = () => {
               className="font-body text-lg md:text-xl text-brand-blue mb-8 leading-relaxed"
             >
               Experience stress-free, hygienic grooming for your beloved pets right at your doorstep. 
-              Our certified groomers bring the salon experience to your home.
+              Our professional groomers bring the salon experience to your home.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a
                 ref={buttonRef}
                 href="https://wa.me/919876543210?text=Hi! I'm interested in booking a pet grooming session."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-blue text-white font-body font-semibold rounded-full hover:bg-brand-green hover:text-brand-blue transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-brand-green/30"
+                className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
                 tabIndex={0}
                 aria-label="Book grooming session on WhatsApp"
                 onKeyDown={(e) => {
@@ -158,15 +158,15 @@ const HeroSection = () => {
                   }
                 }}
               >
-                <FaWhatsapp className="h-5 w-5" />
-                Book Now on WhatsApp
-                <ArrowRight className="h-4 w-4" />
+                <FaWhatsapp className="text-2xl group-hover:scale-110 transition-transform" aria-hidden="true" />
+                Book Grooming
+                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </a>
               
               <a
                 ref={secondaryCtaRef}
                 href="#pricing"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-brand-blue text-brand-blue font-body font-semibold rounded-full hover:scale-105 hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-brand-blue/30"
+                className="inline-flex items-center justify-center font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white hover:border-brand-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-2"
                 tabIndex={0}
                 aria-label="View pricing and packages"
                 onKeyDown={(e) => {
@@ -176,15 +176,15 @@ const HeroSection = () => {
                   }
                 }}
               >
-                View Pricing
-                <ArrowRight className="h-4 w-4" />
+                View Packages
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
             
             <div className="flex items-center gap-4 text-sm text-brand-blue font-body flex-wrap">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-brand-green rounded-full"></div>
-                <span>Certified Groomers</span>
+                <span>Professional Groomers</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-brand-green rounded-full"></div>

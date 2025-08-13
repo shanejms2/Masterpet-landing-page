@@ -139,7 +139,7 @@ const TestimonialsSection = () => {
         {/* Platform Ratings Section */}
         <div className="mt-16">
           <div className="text-center mb-8">
-            <h3 className="font-heading text-2xl md:text-3xl text-brand-blue mb-4">
+            <h3 className="font-fractul font-bold text-2xl md:text-3xl text-brand-blue mb-4">
               Rated & Reviewed on
             </h3>
             <p className="font-body text-lg text-brand-blue/70">

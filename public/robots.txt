@@ -12,6 +12,7 @@ Allow: /terms-and-conditions
 Allow: /cancellation-policy
 Allow: /return-policy
 Allow: /kochi-pet-grooming
+Allow: /blog
 
 # Block API endpoints (sensitive data)
 Disallow: /api/
@@ -45,8 +46,9 @@ Allow: /communities_logo/
 Allow: /icons/
 Allow: /fonts/
 
-# Sitemap location (if you have one)
+# Sitemap locations
 Sitemap: https://www.masterpet.co.in/sitemap.xml
+Sitemap: https://www.masterpet.co.in/sitemap-blog.xml
 
 # Crawl delay (optional - tells crawlers to wait between requests)
 Crawl-delay: 1

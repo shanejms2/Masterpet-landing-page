@@ -33,9 +33,9 @@ export default function Home() {
       <CommunitiesMarquee />
       <VideoShowcaseSection />
       <PhotoGallerySection />
+      <TestimonialsSection />
       <PricingSection />
       <ProcessSection />
-      <TestimonialsSection />
       <FAQSection />
       <GoogleMapsSection />
       <FinalCTASection />

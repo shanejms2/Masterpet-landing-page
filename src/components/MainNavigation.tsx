@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import React from "react";
 import Container from "./Container";
 import Logo from './ui/Logo';
-import { X, Menu, Phone, MessageCircle } from "lucide-react";
+import { X, Menu, Phone } from "lucide-react";
 import { NAV_LINKS } from "./navConfig";
 import { usePathname } from "next/navigation";
 
@@ -101,17 +101,6 @@ export function MainNavigation() {
               <Phone className="h-4 w-4 text-brand-green group-hover:text-brand-green/80 transition-colors" />
               <span className="text-sm">+91 85906 43269</span>
             </a>
-            <a
-              href="https://wa.me/918590643269?text=Hi%20Masterpet!%20I%20want%20to%20book%20a%20grooming%20session.%20[From%20Masterpet%20Website]"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green hover:bg-brand-green/90 text-brand-blue font-fractul font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 outline-none shadow-sm hover:shadow-md"
-              aria-label="Chat with Masterpet on WhatsApp"
-              tabIndex={0}
-            >
-              <MessageCircle className="h-4 w-4" />
-              <span className="text-sm">WhatsApp</span>
-            </a>
           </div>
           {/* Hamburger for mobile */}
           <button
@@ -178,18 +167,7 @@ export function MainNavigation() {
             <span>+91 85906 43269</span>
             <span className="ml-auto px-2 py-1 rounded-full bg-brand-green/20 text-xs font-medium">Call us</span>
           </a>
-          <a
-            href="https://wa.me/918590643269?text=Hi%20Masterpet!%20I%20want%20to%20book%20a%20grooming%20session.%20[From%20Masterpet%20Website]"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 w-full justify-center py-3 px-4 rounded-full bg-brand-green hover:bg-brand-green/90 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 text-brand-blue font-fractul font-medium shadow-sm hover:shadow-md"
-            aria-label="Chat with Masterpet on WhatsApp"
-            tabIndex={0}
-          >
-            <MessageCircle className="h-5 w-5" />
-            <span>WhatsApp</span>
-            <span className="ml-auto px-2 py-1 rounded-full bg-brand-blue/20 text-xs font-medium">Chat</span>
-          </a>
+
         </div>
         <span className="sr-only" aria-live="polite">{menuAnnouncement}</span>
       </div>

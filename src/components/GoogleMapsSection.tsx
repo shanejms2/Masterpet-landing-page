@@ -235,7 +235,7 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
     <section className={`w-full py-16 bg-gradient-to-br from-blue-50/50 to-green-50/50 ${className}`}>
       <Container>
         <div className="text-center mb-12">
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-brand-blue font-bold mb-4">
+          <h2 className="font-fractul font-bold text-3xl md:text-4xl lg:text-5xl text-brand-blue mb-4">
             Find Pet Grooming Near Me
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/80 max-w-3xl mx-auto mb-6">

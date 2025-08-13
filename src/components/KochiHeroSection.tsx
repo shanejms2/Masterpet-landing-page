@@ -162,7 +162,7 @@ const KochiHeroSection = ({ area }: KochiHeroSectionProps) => {
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
+                className="inline-flex items-center justify-center font-heading bg-brand-blue text-white px-8 py-4 rounded-full shadow-lg hover:bg-brand-green hover:text-brand-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green transition-all duration-300 text-lg sm:text-xl gap-3 group"
                 tabIndex={0}
                 aria-label="Book Now on WhatsApp"
               >
@@ -174,7 +174,7 @@ const KochiHeroSection = ({ area }: KochiHeroSectionProps) => {
               <a
                 ref={secondaryCtaRef}
                 href="#pricing"
-                className="inline-flex items-center justify-center font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-2"
+                className="inline-flex items-center justify-center font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white hover:border-brand-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-2"
                 tabIndex={0}
                 aria-label="See Pricing"
               >

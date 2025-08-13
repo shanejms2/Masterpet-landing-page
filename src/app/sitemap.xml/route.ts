@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { areaConfig } from '@/lib/areaConfig';
+import { getAllPosts } from '@/lib/blog';
 
 const BASE_URL = 'https://www.masterpet.co.in';
 
@@ -13,6 +14,7 @@ const staticPages = [
   'contact',
   'account-deletion',
   'kochi-pet-grooming',
+  'blog',
 ];
 
 export async function GET() {
@@ -21,8 +23,12 @@ export async function GET() {
     `kochi-pet-grooming/${area.slug}`
   );
 
-  // Combine static pages with area pages
-  const allPages = [...staticPages, ...areaUrls];
+  // Generate blog post URLs
+  const blogPosts = getAllPosts();
+  const blogUrls = blogPosts.map(post => `blog/${post.slug}`);
+
+  // Combine static pages with area pages and blog posts
+  const allPages = [...staticPages, ...areaUrls, ...blogUrls];
 
   // Get current date for lastmod
   const currentDate = new Date().toISOString().split('T')[0];
@@ -30,11 +36,23 @@ export async function GET() {
   const urls = allPages.map(
     (page) => {
       const url = page === '' ? BASE_URL : `${BASE_URL}/${page}`;
+      
+      // Set priority based on page type
+      let priority = '0.8';
+      if (page === '') priority = '1.0';
+      else if (page === 'blog') priority = '0.9';
+      else if (page.startsWith('blog/')) priority = '0.7';
+      
+      // Set change frequency based on page type
+      let changefreq = 'monthly';
+      if (page.startsWith('blog/')) changefreq = 'weekly';
+      else if (page === 'blog') changefreq = 'daily';
+      
       return `<url>
   <loc>${url}</loc>
   <lastmod>${currentDate}</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>${page === '' ? '1.0' : '0.8'}</priority>
+  <changefreq>${changefreq}</changefreq>
+  <priority>${priority}</priority>
 </url>`;
     }
   ).join('');
