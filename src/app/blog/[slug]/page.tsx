@@ -1,11 +1,10 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getPostBySlug, getAllPosts, getRelatedPosts } from '@/lib/blog';
-import { BlogPost, BlogNavigation, BlogCard } from '@/components/blog';
-import CusdisComments from '@/components/blog/CusdisComments';
-import CommentSystem from '@/components/blog/CommentSystem';
+import { getAllPosts, getPostBySlug, getRelatedPosts } from '@/lib/blog';
+import BlogPost from '@/components/blog/BlogPost';
+import BlogNavigation from '@/components/blog/BlogNavigation';
+import BlogCard from '@/components/blog/BlogCard';
 import BlogPostTracker from '@/components/blog/BlogPostTracker';
-import { isCusdisEnabled } from '@/lib/blog-config';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -150,15 +149,6 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
         {/* Blog Post Content */}
         <div className="container mx-auto px-4 pb-16">
           <BlogPost post={post} />
-          
-          {/* Comments Section */}
-          <div className="max-w-4xl mx-auto mt-16">
-            {isCusdisEnabled() ? (
-              <CusdisComments post={post} />
-            ) : (
-              <CommentSystem post={post} />
-            )}
-          </div>
         </div>
 
         {/* Related Posts */}

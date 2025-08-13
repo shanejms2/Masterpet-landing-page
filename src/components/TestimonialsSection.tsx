@@ -211,9 +211,10 @@ const TestimonialsSection = () => {
                       href={platform.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-heading bg-brand-green text-brand-blue px-4 py-2 rounded-full text-sm hover:bg-brand-blue hover:text-white transition-all duration-300"
+                      className="font-heading bg-brand-green text-brand-blue px-4 py-2 rounded-full text-sm hover:bg-brand-blue hover:text-white transition-all duration-300 flex flex-col items-center justify-center min-h-[40px] leading-tight"
                     >
-                      View Reviews
+                      <span>View</span>
+                      <span>Reviews</span>
                     </a>
                   </div>
                 </CardContent>

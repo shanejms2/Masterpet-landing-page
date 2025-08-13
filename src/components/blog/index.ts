@@ -10,7 +10,5 @@ export { default as BlogAnalytics } from './BlogAnalytics';
 export { default as BlogNewsletter } from './BlogNewsletter';
 export { default as SocialShare } from './SocialShare';
 export { default as LikeButton } from './LikeButton';
-export { default as CommentSystem } from './CommentSystem';
-export { default as CusdisComments } from './CusdisComments';
 export { default as BlogPostTracker } from './BlogPostTracker';
 export { default as SocialMediaPreview } from './SocialMediaPreview';
