@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import MainWrapper from "@/components/MainWrapper";
 import NAPSchema from "@/components/NAPSchema";
@@ -261,6 +262,7 @@ export default function RootLayout({
         </MainWrapper>
         <FooterWrapper />
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
