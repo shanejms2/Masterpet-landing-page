@@ -126,7 +126,7 @@
 - [x] Palarivattom
 - [x] Pallikara
 - [x] Palluruthy
-- [x] Panampally Nagar
+- [x] Panampilly Nagar
 - [x] Panangad
 - [x] Pandikudy
 - [x] Perumbavoor
@@ -185,7 +185,7 @@
 - **Batch 2 Added**: 10 areas (Angamaly, Kodungallur, Perumbavoor, Kothamangalam, Thrippunithura, Vaikom, Vypin, Vytilla, Maradu, North Paravur)
 - **Batch 3 Added**: 15 areas (Ambalameddu, Ambaloor, Arayankavu, Aroor, Athani, Ayappankavu, Chellanam, Chempu, Cherai, Cheranalloor, Chottanikkara, Chullikal, Edakochi, Edathala, Edayar)
 - **Batch 4 Added**: 15 areas (Elamakkara, Eloor, Ernakulam South, Eroor, Kacheripady, Kadavantra, Kalady, Kanjiramattom, Kannamaly, Kathrikadavu, Kizhakambalam, Kolenchery, Kumbalam, Kumblangi, Kundanoor)
-- **Final Batch Added**: 20 areas (Kurupumpadi, Kuzhur, Manjumel, Marine Drive, Mattancherry, Mulanthuruthy, Mulavukadu, Nedumbassery, Nettoor, Pachalam, Palachuvadu, Palarivattom, Pallikara, Palluruthy, Panampally Nagar, Panangad, Pandikudy, Piravam, Pukkattupady, Puthenkurish, Ravipuram, South Vazhakulam, Thammanam, Thevakkal, Thevara, Thiruvankulam, Thoppumpady, Thuthiyoor, Unnichira, Vaduthala, Varapuzha, Vazhakkala, Vennala)
+- **Final Batch Added**: 20 areas (Kurupumpadi, Kuzhur, Manjumel, Marine Drive, Mattancherry, Mulanthuruthy, Mulavukadu, Nedumbassery, Nettoor, Pachalam, Palachuvadu, Palarivattom, Pallikara, Palluruthy, Panampilly Nagar, Panangad, Pandikudy, Piravam, Pukkattupady, Puthenkurish, Ravipuram, South Vazhakulam, Thammanam, Thevakkal, Thevara, Thiruvankulam, Thoppumpady, Thuthiyoor, Unnichira, Vaduthala, Varapuzha, Vazhakkala, Vennala)
 
 ### **🚀 System Performance:**
 - **Carousel**: Smooth performance with 65+ areas

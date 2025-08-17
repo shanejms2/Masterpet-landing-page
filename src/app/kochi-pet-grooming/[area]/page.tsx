@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import NAPSchema from "@/components/NAPSchema";
 import KochiHeroSection from '@/components/KochiHeroSection';
 import BreadcrumbNavigation from '@/components/BreadcrumbNavigation';
-import AreaCarousel from '@/components/AreaCarousel';
 import CommunitiesMarquee from '@/components/CommunitiesMarquee';
 import VideoShowcaseSection from '@/components/VideoShowcaseSection';
 import PhotoGallerySection from '@/components/PhotoGallerySection';
@@ -120,7 +119,6 @@ export default async function AreaPage({ params }: PageProps) {
         ]} 
       />
       <KochiHeroSection area={area.name} />
-      <AreaCarousel currentArea={area.slug} />
       <CommunitiesMarquee />
       <VideoShowcaseSection />
       <PhotoGallerySection />
