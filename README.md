@@ -1,8 +1,12 @@
 # Masterpet Landing Page
 
-A modern, production-ready web application for Masterpet, built with Next.js, React, TypeScript, and TailwindCSS. This project powers the landing page and core features for Masterpet's grooming and pet care services, including a robust grooming report system with PDF generation and a documented API. Built by Shane.
+A modern, production-ready web application for Masterpet, built with Next.js, React, TypeScript, and TailwindCSS. This project powers the landing page and core features for Masterpet's grooming and pet care services, including a robust grooming report system with PDF generation and a documented API. 
 
 ---
+
+## Core Contributors
+
+- [@shanejms2](https://github.com/shanejms2) – Frontend and Backend development
 
 ## Table of Contents
 - [Features](#features)
