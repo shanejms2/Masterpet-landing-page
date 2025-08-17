@@ -2622,43 +2622,43 @@ export const areaConfig: AreaConfig[] = [
     ]
   },
   {
-    name: "Panampally Nagar",
-    slug: "panampally-nagar",
+    name: "Panampilly Nagar",
+    slug: "panampilly-nagar",
     description: "",
     neighborhoods: [
-      "Panampally Nagar Junction",
-      "Panampally Nagar Market",
-      "Panampally Nagar Temple"
+      "Panampilly Nagar Junction",
+      "Panampilly Nagar Market",
+      "Panampilly Nagar Temple"
     ],
     testimonials: [
       {
-        text: "Outstanding grooming service in Panampally Nagar! My dog looks beautiful.",
+        text: "Outstanding grooming service in Panampilly Nagar! My dog looks beautiful.",
         author: "Thomas",
-        location: "Panampally Nagar Junction"
+        location: "Panampilly Nagar Junction"
       },
       {
-        text: "Best pet grooming in Panampally Nagar. Professional and caring!",
+        text: "Best pet grooming in Panampilly Nagar. Professional and caring!",
         author: "Maria",
-        location: "Panampally Nagar Market"
+        location: "Panampilly Nagar Market"
       },
       {
-        text: "Highly recommend Masterpet in Panampally Nagar. Excellent service!",
+        text: "Highly recommend Masterpet in Panampilly Nagar. Excellent service!",
         author: "David",
-        location: "Panampally Nagar Temple"
+        location: "Panampilly Nagar Temple"
       }
     ],
     communityPartnerships: [
-      "Panampally Nagar Residents Association",
-      "Panampally Nagar Market Traders"
+      "Panampilly Nagar Residents Association",
+      "Panampilly Nagar Market Traders"
     ],
     serviceCoverage: [
-      "Panampally Nagar Junction and surrounding areas",
-      "Panampally Nagar Market and nearby neighborhoods",
-      "Panampally Nagar Temple area"
+      "Panampilly Nagar Junction and surrounding areas",
+      "Panampilly Nagar Market and nearby neighborhoods",
+      "Panampilly Nagar Temple area"
     ],
     localHighlights: [
-      "Easy access from Panampally Nagar Junction",
-      "Serving Panampally Nagar Market area",
+      "Easy access from Panampilly Nagar Junction",
+      "Serving Panampilly Nagar Market area",
       "Coverage around Temple area"
     ]
   },
