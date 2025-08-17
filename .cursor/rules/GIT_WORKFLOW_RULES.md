@@ -137,7 +137,7 @@ git checkout main
 # Pull latest changes
 git pull origin main
 
-# Merge develop into main
+# Merge develop into main and give comment if needed
 git merge develop
 
 # Push to main
@@ -177,7 +177,7 @@ git checkout main
 # 6. Pull latest main
 git pull origin main
 
-# 7. Merge develop into main
+# 7. Merge develop into main and give a comment if needed
 git merge develop
 
 # 8. Push to main

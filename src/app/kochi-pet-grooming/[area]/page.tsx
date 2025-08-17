@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import NAPSchema from "@/components/NAPSchema";
 import KochiHeroSection from '@/components/KochiHeroSection';
 import BreadcrumbNavigation from '@/components/BreadcrumbNavigation';
+import AreaCarousel from '@/components/AreaCarousel';
 import CommunitiesMarquee from '@/components/CommunitiesMarquee';
 import VideoShowcaseSection from '@/components/VideoShowcaseSection';
 import PhotoGallerySection from '@/components/PhotoGallerySection';
@@ -11,6 +12,7 @@ import ProcessSection from '@/components/ProcessSection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import FinalCTASection from '@/components/FinalCTASection';
+import HeroScrollHandler from '@/components/HeroScrollHandler';
 import { areaConfig } from '@/lib/areaConfig';
 
 interface PageProps {
@@ -112,6 +114,7 @@ export default async function AreaPage({ params }: PageProps) {
   return (
     <>
       <NAPSchema />
+      <HeroScrollHandler />
       <BreadcrumbNavigation 
         items={[
           { label: "Kochi Pet Grooming", href: "/kochi-pet-grooming" },
@@ -119,6 +122,7 @@ export default async function AreaPage({ params }: PageProps) {
         ]} 
       />
       <KochiHeroSection area={area.name} />
+      <AreaCarousel currentArea={area.slug} />
       <CommunitiesMarquee />
       <VideoShowcaseSection />
       <PhotoGallerySection />
