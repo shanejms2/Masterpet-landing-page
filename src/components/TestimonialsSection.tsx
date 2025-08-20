@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Star, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Container from "./Container";
+import ReviewSchema from "./ReviewSchema";
 
 const testimonials = [
   {
@@ -224,6 +225,7 @@ const TestimonialsSection = () => {
         </div>
 
       </Container>
+      <ReviewSchema />
     </section>
   );
 };

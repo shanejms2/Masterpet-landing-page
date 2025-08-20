@@ -4,6 +4,7 @@ import { ChevronDown, MessageCircle, Phone, Mail } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Container from "./Container";
+import FAQSchema from "./FAQSchema";
 
 const faqs = [
   {
@@ -223,6 +224,7 @@ const FAQSection = () => {
 
 
       </Container>
+      <FAQSchema />
     </section>
   );
 };
