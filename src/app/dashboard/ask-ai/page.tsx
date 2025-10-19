@@ -61,6 +61,23 @@ export default function AskAIPage() {
 
       const data = await response.json()
 
+      // Handle processing status for long-running requests
+      if (data.processing) {
+        const aiMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          role: "assistant",
+          content: data.fallback_response.analysis,
+          timestamp: new Date(),
+          sql: data.fallback_response.generated_sql,
+          sqlExplanation: data.fallback_response.sql_explanation,
+          tablesUsed: data.fallback_response.tables_used,
+          data: data.fallback_response.data,
+          columns: data.fallback_response.columns,
+        }
+        setMessages((prev) => [...prev, aiMessage])
+        return
+      }
+
       // Handle timeout fallback response
       if (data.fallback_response) {
         const aiMessage: Message = {
