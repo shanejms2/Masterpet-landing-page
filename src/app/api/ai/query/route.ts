@@ -22,9 +22,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Make request to FastAPI with timeout
+    // Make request to FastAPI with Vercel-compatible timeout
     const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 8000) // 8 second timeout (Vercel limit is 10s)
 
     const response = await fetch(`${fastApiUrl}/api/v1/ai/query`, {
       method: "POST",
@@ -60,7 +60,17 @@ export async function POST(request: NextRequest) {
     
     if (error instanceof Error && error.name === 'AbortError') {
       return NextResponse.json(
-        { error: "Request timed out. The AI service is taking too long to respond. Please try again with a simpler query." },
+        { 
+          error: "Request timed out. The AI service is taking too long to respond. Please try again with a simpler query.",
+          fallback_response: {
+            analysis: "I'm sorry, but the AI service is currently experiencing high load and is taking longer than usual to respond. Please try asking a simpler question or try again in a few moments.",
+            generated_sql: null,
+            sql_explanation: "No SQL was generated due to timeout.",
+            tables_used: [],
+            data: [],
+            columns: []
+          }
+        },
         { status: 408 }
       )
     }
