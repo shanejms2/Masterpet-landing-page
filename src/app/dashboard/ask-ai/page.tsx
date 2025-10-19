@@ -24,6 +24,84 @@ export default function AskAIPage() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
+  const pollJobStatus = async (jobId: string) => {
+    const maxAttempts = 30 // 30 attempts * 2 seconds = 60 seconds max
+    let attempts = 0
+
+    const poll = async () => {
+      try {
+        const response = await fetch(`/api/ai/status?job_id=${jobId}`)
+        
+        if (!response.ok) {
+          throw new Error(`Status check failed with status ${response.status}`)
+        }
+
+        const data = await response.json()
+        
+        if (data.status === "completed" && data.result) {
+          // Job completed successfully
+          const aiMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            role: "assistant",
+            content: data.result.analysis || "Query executed successfully.",
+            timestamp: new Date(),
+            sql: data.result.generated_sql,
+            sqlExplanation: data.result.sql_explanation,
+            tablesUsed: data.result.tables_used,
+            data: data.result.data,
+            columns: data.result.execution?.columns,
+          }
+          setMessages((prev) => [...prev, aiMessage])
+          setIsLoading(false)
+          return
+        } else if (data.status === "failed") {
+          // Job failed
+          const errorMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            role: "assistant",
+            content: "Sorry, your query failed to process. Please try again with a different question.",
+            timestamp: new Date(),
+            error: true,
+          }
+          setMessages((prev) => [...prev, errorMessage])
+          setIsLoading(false)
+          return
+        } else if (attempts >= maxAttempts) {
+          // Timeout after max attempts
+          const timeoutMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            role: "assistant",
+            content: "Your query is taking longer than expected. Please try again with a simpler question.",
+            timestamp: new Date(),
+            error: true,
+          }
+          setMessages((prev) => [...prev, timeoutMessage])
+          setIsLoading(false)
+          return
+        }
+
+        // Still processing, poll again in 2 seconds
+        attempts++
+        setTimeout(poll, 2000)
+        
+      } catch (error) {
+        console.error("Error polling job status:", error)
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          role: "assistant",
+          content: `Sorry, I encountered an error checking your query status: ${error instanceof Error ? error.message : "Unknown error"}.`,
+          timestamp: new Date(),
+          error: true,
+        }
+        setMessages((prev) => [...prev, errorMessage])
+        setIsLoading(false)
+      }
+    }
+
+    // Start polling
+    poll()
+  }
+
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading) return
 
@@ -40,7 +118,6 @@ export default function AskAIPage() {
     setIsLoading(true)
 
     try {
-      // Make API call to our Next.js API route (which proxies to FastAPI)
       const response = await fetch("/api/ai/query", {
         method: "POST",
         headers: {
@@ -61,24 +138,23 @@ export default function AskAIPage() {
 
       const data = await response.json()
 
-      // Handle processing status for long-running requests
-      if (data.processing) {
-        const aiMessage: Message = {
+      // Check if we got a job ID for background processing
+      if (data.job_id) {
+        // Show processing message
+        const processingMessage: Message = {
           id: (Date.now() + 1).toString(),
           role: "assistant",
-          content: data.fallback_response.analysis,
+          content: "Your query is being processed in the background. This may take 15-30 seconds. Please wait...",
           timestamp: new Date(),
-          sql: data.fallback_response.generated_sql,
-          sqlExplanation: data.fallback_response.sql_explanation,
-          tablesUsed: data.fallback_response.tables_used,
-          data: data.fallback_response.data,
-          columns: data.fallback_response.columns,
         }
-        setMessages((prev) => [...prev, aiMessage])
+        setMessages((prev) => [...prev, processingMessage])
+        
+        // Start polling for results
+        pollJobStatus(data.job_id)
         return
       }
 
-      // Handle timeout fallback response
+      // Handle fallback response
       if (data.fallback_response) {
         const aiMessage: Message = {
           id: (Date.now() + 1).toString(),
@@ -92,10 +168,11 @@ export default function AskAIPage() {
           columns: data.fallback_response.columns,
         }
         setMessages((prev) => [...prev, aiMessage])
+        setIsLoading(false)
         return
       }
 
-      // Create AI message with the response
+      // Create AI message with the response (immediate response)
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
@@ -109,10 +186,10 @@ export default function AskAIPage() {
       }
 
       setMessages((prev) => [...prev, aiMessage])
+      setIsLoading(false)
     } catch (error) {
       console.error("Error querying AI:", error)
       
-      // Error message
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
@@ -121,7 +198,6 @@ export default function AskAIPage() {
         error: true,
       }
       setMessages((prev) => [...prev, errorMessage])
-    } finally {
       setIsLoading(false)
     }
   }
