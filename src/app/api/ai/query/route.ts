@@ -22,7 +22,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Make request to FastAPI
+    // Make request to FastAPI with timeout
+    const controller = new AbortController()
+    const timeoutId = setTimeout(() => controller.abort(), 30000) // 30 second timeout
+
     const response = await fetch(`${fastApiUrl}/api/v1/ai/query`, {
       method: "POST",
       headers: {
@@ -36,7 +39,10 @@ export async function POST(request: NextRequest) {
         include_data,
         max_rows,
       }),
+      signal: controller.signal,
     })
+
+    clearTimeout(timeoutId)
 
     if (!response.ok) {
       const errorText = await response.text()
@@ -51,6 +57,14 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(data)
   } catch (error) {
     console.error("Error in AI query route:", error)
+    
+    if (error instanceof Error && error.name === 'AbortError') {
+      return NextResponse.json(
+        { error: "Request timed out. The AI service is taking too long to respond. Please try again with a simpler query." },
+        { status: 408 }
+      )
+    }
+    
     return NextResponse.json(
       { error: error instanceof Error ? error.message : "Internal server error" },
       { status: 500 }
