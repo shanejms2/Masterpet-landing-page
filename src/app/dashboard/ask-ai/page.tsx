@@ -140,11 +140,11 @@ export default function AskAIPage() {
 
       // Check if we got a job ID for background processing
       if (data.job_id) {
-        // Show processing message
+        // Show processing message with just dots
         const processingMessage: Message = {
           id: (Date.now() + 1).toString(),
           role: "assistant",
-          content: "Your query is being processed in the background. This may take 15-30 seconds. Please wait...",
+          content: "",
           timestamp: new Date(),
         }
         setMessages((prev) => [...prev, processingMessage])
@@ -268,23 +268,32 @@ export default function AskAIPage() {
                 )}
                 
                 {/* Analysis/Main Content */}
-                <div className="text-sm leading-relaxed text-gray-100 prose prose-invert prose-sm max-w-none">
-                  <ReactMarkdown
-                    components={{
-                      h1: ({ children }) => <h1 className="text-lg font-bold text-white mb-2">{children}</h1>,
-                      h2: ({ children }) => <h2 className="text-base font-bold text-white mb-2">{children}</h2>,
-                      h3: ({ children }) => <h3 className="text-sm font-bold text-white mb-2">{children}</h3>,
-                      p: ({ children }) => <p className="mb-2 text-gray-100">{children}</p>,
-                      strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
-                      ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1">{children}</ul>,
-                      ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1">{children}</ol>,
-                      li: ({ children }) => <li className="text-gray-100">{children}</li>,
-                      code: ({ children }) => <code className="bg-gray-700 px-1 py-0.5 rounded text-green-400 text-xs">{children}</code>,
-                    }}
-                  >
-                    {message.content}
-                  </ReactMarkdown>
-                </div>
+                {message.content ? (
+                  <div className="text-sm leading-relaxed text-gray-100 prose prose-invert prose-sm max-w-none">
+                    <ReactMarkdown
+                      components={{
+                        h1: ({ children }) => <h1 className="text-lg font-bold text-white mb-2">{children}</h1>,
+                        h2: ({ children }) => <h2 className="text-base font-bold text-white mb-2">{children}</h2>,
+                        h3: ({ children }) => <h3 className="text-sm font-bold text-white mb-2">{children}</h3>,
+                        p: ({ children }) => <p className="mb-2 text-gray-100">{children}</p>,
+                        strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
+                        ul: ({ children }) => <ul className="list-disc list-inside mb-2 space-y-1">{children}</ul>,
+                        ol: ({ children }) => <ol className="list-decimal list-inside mb-2 space-y-1">{children}</ol>,
+                        li: ({ children }) => <li className="text-gray-100">{children}</li>,
+                        code: ({ children }) => <code className="bg-gray-700 px-1 py-0.5 rounded text-green-400 text-xs">{children}</code>,
+                      }}
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>
+                ) : (
+                  // Show only animated dots for processing
+                  <div className="flex space-x-1">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150" />
+                    <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-300" />
+                  </div>
+                )}
 
                 {/* SQL Query Section */}
                 {message.sql && (
