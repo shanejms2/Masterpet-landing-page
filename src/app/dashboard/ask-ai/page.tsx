@@ -24,7 +24,7 @@ export default function AskAIPage() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
 
-  const pollJobStatus = async (jobId: string) => {
+  const pollJobStatus = async (jobId: string, processingMessageId: string) => {
     const maxAttempts = 30 // 30 attempts * 2 seconds = 60 seconds max
     let attempts = 0
 
@@ -39,9 +39,9 @@ export default function AskAIPage() {
         const data = await response.json()
         
         if (data.status === "completed" && data.result) {
-          // Job completed successfully
+          // Job completed successfully - replace the processing message
           const aiMessage: Message = {
-            id: (Date.now() + 1).toString(),
+            id: processingMessageId, // Use the same ID to replace the processing message
             role: "assistant",
             content: data.result.analysis || "Query executed successfully.",
             timestamp: new Date(),
@@ -51,31 +51,31 @@ export default function AskAIPage() {
             data: data.result.data,
             columns: data.result.execution?.columns,
           }
-          setMessages((prev) => [...prev, aiMessage])
+          setMessages((prev) => prev.map(msg => msg.id === processingMessageId ? aiMessage : msg))
           setIsLoading(false)
           return
         } else if (data.status === "failed") {
-          // Job failed
+          // Job failed - replace the processing message
           const errorMessage: Message = {
-            id: (Date.now() + 1).toString(),
+            id: processingMessageId, // Use the same ID to replace the processing message
             role: "assistant",
             content: "Sorry, your query failed to process. Please try again with a different question.",
             timestamp: new Date(),
             error: true,
           }
-          setMessages((prev) => [...prev, errorMessage])
+          setMessages((prev) => prev.map(msg => msg.id === processingMessageId ? errorMessage : msg))
           setIsLoading(false)
           return
         } else if (attempts >= maxAttempts) {
-          // Timeout after max attempts
+          // Timeout after max attempts - replace the processing message
           const timeoutMessage: Message = {
-            id: (Date.now() + 1).toString(),
+            id: processingMessageId, // Use the same ID to replace the processing message
             role: "assistant",
             content: "Your query is taking longer than expected. Please try again with a simpler question.",
             timestamp: new Date(),
             error: true,
           }
-          setMessages((prev) => [...prev, timeoutMessage])
+          setMessages((prev) => prev.map(msg => msg.id === processingMessageId ? timeoutMessage : msg))
           setIsLoading(false)
           return
         }
@@ -87,13 +87,13 @@ export default function AskAIPage() {
       } catch (error) {
         console.error("Error polling job status:", error)
         const errorMessage: Message = {
-          id: (Date.now() + 1).toString(),
+          id: processingMessageId, // Use the same ID to replace the processing message
           role: "assistant",
           content: `Sorry, I encountered an error checking your query status: ${error instanceof Error ? error.message : "Unknown error"}.`,
           timestamp: new Date(),
           error: true,
         }
-        setMessages((prev) => [...prev, errorMessage])
+        setMessages((prev) => prev.map(msg => msg.id === processingMessageId ? errorMessage : msg))
         setIsLoading(false)
       }
     }
@@ -141,8 +141,9 @@ export default function AskAIPage() {
       // Check if we got a job ID for background processing
       if (data.job_id) {
         // Show processing message with just dots
+        const processingMessageId = (Date.now() + 1).toString()
         const processingMessage: Message = {
-          id: (Date.now() + 1).toString(),
+          id: processingMessageId,
           role: "assistant",
           content: "",
           timestamp: new Date(),
@@ -150,7 +151,7 @@ export default function AskAIPage() {
         setMessages((prev) => [...prev, processingMessage])
         
         // Start polling for results
-        pollJobStatus(data.job_id)
+        pollJobStatus(data.job_id, processingMessageId)
         return
       }
 
