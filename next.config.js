@@ -16,6 +16,8 @@ const nextConfig = {
       'gsap'
     ],
   },
+  // Ensure native deps are not bundled on server
+  serverExternalPackages: ['ssh2','cpu-features'],
 
   // Modern JavaScript optimization - target browsers that support ES2020+
   // Note: swcMinify is enabled by default in Next.js 15+

@@ -95,7 +95,7 @@ const BlogNewsletter = ({ className = '' }: BlogNewsletterProps) => {
           </div>
         </form>
         
-        <div className="mt-4 pt-4 border-t border-border">
+        <div className="mt-4 pt-4 border-t border-gray-200">
           <div className="flex flex-wrap gap-2 justify-center">
             <Badge variant="outline" className="text-xs font-noto-sans">5,000+ subscribers</Badge>
             <Badge variant="outline" className="text-xs font-noto-sans">Weekly updates</Badge>
