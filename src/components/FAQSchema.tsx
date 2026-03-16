@@ -55,10 +55,10 @@ const FAQSchema: React.FC = () => {
       },
       {
         "@type": "Question",
-        "name": "What areas do you serve in Ernakulam?",
+        "name": "What areas do you serve in Kochi and nearby locations?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We serve most areas in Ernakulam district including Kochi city, Fort Kochi, Mattancherry, Edapally, Kakkanadu, Palarivattom, Thripunithura, Kaloor, Thrikkakara, Eroor, Varapuzha, Eloor, MG Road, Vypin, Marine Drive, and surrounding areas. Please contact us with your specific location, and we'll confirm if we can provide service in your area. We're constantly expanding our service areas."
+          "text": "We serve Kochi and surrounding areas in Ernakulam district, including Fort Kochi, Mattancherry, Edapally, Kakkanadu, Palarivattom, Thripunithura, Kaloor, Thrikkakara, Eroor, Varapuzha, Eloor, MG Road, Vypin, Marine Drive, and more. Please contact us with your specific location, and we'll confirm if we can provide service in your area."
         }
       },
       {
@@ -74,7 +74,7 @@ const FAQSchema: React.FC = () => {
         "name": "Where can I find pet grooming near me in Kochi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Masterpet provides at-home pet grooming services across Kochi and Ernakulam district. We come directly to your doorstep, so you don't need to travel anywhere! Our service areas include Edapally, Kaloor, Ernakulam, Kakkanad, Fort Kochi, Vytilla, Maradu, Thrippunithura, Aluva, Angamaly, and many more locations. Simply contact us with your address, and we'll confirm if we serve your area."
+          "text": "Masterpet provides at-home pet grooming services across Kochi and surrounding areas in Ernakulam district. We come directly to your doorstep, so you don't need to travel anywhere. Our service areas include Edapally, Kaloor, Kakkanad, Fort Kochi, Vytilla, Maradu, Thrippunithura, Aluva, Angamaly, and many more locations. Simply contact us with your address, and we'll confirm if we serve your area."
         }
       },
       {

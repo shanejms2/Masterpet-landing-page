@@ -4,6 +4,7 @@ import Link from "next/link";
 import { MapPin, ArrowRight, ChevronLeft, ChevronRight, Search } from "lucide-react";
 import Container from "./Container";
 import { areaConfig } from "@/lib/areaConfig";
+import { getWhatsAppUrl } from "@/lib/constants";
 
 interface AreaCarouselProps {
   currentArea?: string;
@@ -207,7 +208,7 @@ const AreaCarousel = ({ currentArea, showSearch = true }: AreaCarouselProps) => 
                     </Link>
                     
                     <Link
-                      href={`https://wa.me/918590643269?text=${encodeURIComponent(`Hi Masterpet! I want to book a grooming session in ${area.name}. [From Masterpet Website]`)}`}
+                      href={getWhatsAppUrl(`Hi Masterpet! I want to book a grooming session in ${area.name}. [From Masterpet Website]`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`

@@ -1,29 +1,35 @@
 import React from "react";
+import { COMPANY_INFO, absoluteUrl } from "@/lib/constants";
 
 const NAPSchema: React.FC = () => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Masterpet - Mobile At Home Pet Grooming Ernakulam",
-    "image": "https://www.masterpet.co.in/logo.svg",
+    "name": COMPANY_INFO.brandName,
+    "alternateName": COMPANY_INFO.legalName,
+    "description": COMPANY_INFO.businessDescription,
+    "image": absoluteUrl(COMPANY_INFO.logoPath),
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Anu Villa, XVI / 80, Nethaji Rd, near YMCA Indoor Stadium, Periyar Nagar",
-      "addressLocality": "Aluva",
-      "addressRegion": "Kerala",
-      "postalCode": "683101",
-      "addressCountry": "IN"
+      "streetAddress": COMPANY_INFO.addressLine1,
+      "addressLocality": COMPANY_INFO.addressLocality,
+      "addressRegion": COMPANY_INFO.addressRegion,
+      "postalCode": COMPANY_INFO.postalCode,
+      "addressCountry": COMPANY_INFO.addressCountry
     },
-    "telephone": "+91 85906 43269",
-    "url": "https://www.masterpet.co.in/",
-    "openingHours": "Mo-Su 09:00-20:30",
+    "telephone": COMPANY_INFO.phoneDisplay,
+    "email": COMPANY_INFO.email,
+    "url": COMPANY_INFO.website,
+    "openingHours": COMPANY_INFO.openingHoursSchema,
     "geo": {
       "@type": "GeoCoordinates",
       "latitude": 10.1065,
       "longitude": 76.3516
     },
     "sameAs": [
-      "https://wa.me/918590643269"
+      COMPANY_INFO.googleBusinessUrl,
+      COMPANY_INFO.justdialUrl,
+      `https://wa.me/${COMPANY_INFO.whatsappNumber}`
     ],
     "priceRange": "₹₹",
     "aggregateRating": {
@@ -31,8 +37,8 @@ const NAPSchema: React.FC = () => {
       "ratingValue": "5.0",
       "bestRating": "5",
       "worstRating": "4",
-      "ratingCount": "413",
-      "reviewCount": "413"
+      "ratingCount": "512",
+      "reviewCount": "512"
     },
     "review": [
       {
@@ -82,15 +88,15 @@ const NAPSchema: React.FC = () => {
     "areaServed": [
       {
         "@type": "City",
-        "name": "Kochi"
+        "name": COMPANY_INFO.serviceCity
       },
       {
-        "@type": "City", 
-        "name": "Ernakulam"
+        "@type": "AdministrativeArea",
+        "name": COMPANY_INFO.serviceRegion
       },
       {
         "@type": "City",
-        "name": "Aluva"
+        "name": COMPANY_INFO.addressLocality
       }
     ],
     "hasOfferCatalog": {

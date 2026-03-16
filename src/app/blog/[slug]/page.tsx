@@ -5,6 +5,7 @@ import BlogPost from '@/components/blog/BlogPost';
 import BlogNavigation from '@/components/blog/BlogNavigation';
 import BlogCard from '@/components/blog/BlogCard';
 import BlogPostTracker from '@/components/blog/BlogPostTracker';
+import { COMPANY_INFO, absoluteUrl } from '@/lib/constants';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -27,27 +28,27 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     description: post.meta.description,
     keywords: `${post.meta.tags?.join(', ') || ''}, pet grooming, kochi pet grooming, at-home pet grooming`,
     authors: [{ name: post.meta.author }],
-    creator: 'Masterpet Care Private Limited',
-    publisher: 'Masterpet Care Private Limited',
+    creator: COMPANY_INFO.legalName,
+    publisher: COMPANY_INFO.legalName,
     openGraph: {
       title: post.meta.title,
       description: post.meta.description,
       type: 'article',
-      url: `https://www.masterpet.co.in/blog/${post.slug}`,
-      siteName: 'Masterpet',
+      url: absoluteUrl(`/blog/${post.slug}`),
+      siteName: COMPANY_INFO.siteName,
       publishedTime: post.meta.date,
       modifiedTime: post.meta.date,
       authors: [post.meta.author],
       images: post.meta.image ? [
         {
-          url: post.meta.image.startsWith('http') ? post.meta.image : `https://www.masterpet.co.in${post.meta.image}`,
+          url: post.meta.image.startsWith('http') ? post.meta.image : absoluteUrl(post.meta.image),
           width: 1200,
           height: 630,
           alt: post.meta.title,
         }
       ] : [
         {
-          url: 'https://www.masterpet.co.in/brand_assets/Logo-Mark/Green/MP_LogoMark_greenfill.png',
+          url: absoluteUrl(COMPANY_INFO.logoPath),
           width: 1200,
           height: 630,
           alt: 'Masterpet Blog',
@@ -60,11 +61,11 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       title: post.meta.title,
       description: post.meta.description,
       images: post.meta.image ? 
-        (post.meta.image.startsWith('http') ? post.meta.image : `https://www.masterpet.co.in${post.meta.image}`) : 
-        'https://www.masterpet.co.in/brand_assets/Logo-Mark/Green/MP_LogoMark_greenfill.png',
+        (post.meta.image.startsWith('http') ? post.meta.image : absoluteUrl(post.meta.image)) :
+        absoluteUrl(COMPANY_INFO.logoPath),
     },
     alternates: {
-      canonical: `https://www.masterpet.co.in/blog/${post.slug}`,
+      canonical: absoluteUrl(`/blog/${post.slug}`),
     },
   };
 }
@@ -111,19 +112,19 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
     dateModified: post.meta.date,
     publisher: {
       '@type': 'Organization',
-      name: 'Masterpet',
+      name: COMPANY_INFO.brandName,
       logo: {
         '@type': 'ImageObject',
-        url: '/logo.png',
+        url: absoluteUrl(COMPANY_INFO.logoPath),
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://masterpet.com/blog/${post.slug}`,
+      '@id': absoluteUrl(`/blog/${post.slug}`),
     },
     image: post.meta.image ? {
       '@type': 'ImageObject',
-      url: post.meta.image,
+      url: post.meta.image.startsWith('http') ? post.meta.image : absoluteUrl(post.meta.image),
     } : undefined,
     keywords: post.meta.tags?.join(', '),
   };

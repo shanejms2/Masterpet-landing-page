@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
 import Container from "@/components/Container";
-
-const whatsappNumber = "918590643269";
+import { COMPANY_INFO } from "@/lib/constants";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
@@ -19,7 +18,7 @@ const ContactPage = () => {
     }
     setError("");
     const text = `Hi Masterpet!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`;
-    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   };
 
@@ -102,11 +101,11 @@ const ContactPage = () => {
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
               <h2 className="font-heading text-xl text-brand-blue mb-2">Direct Contact</h2>
               <div className="flex flex-col gap-2 text-brand-blue font-body text-base">
-                <a href="tel:+918590643269" className="hover:text-brand-green underline-offset-2" aria-label="Call Masterpet">📞 +91 85906 43269</a>
-                <a href="https://wa.me/918590643269" className="hover:text-brand-green underline-offset-2" aria-label="WhatsApp Masterpet">💬 WhatsApp us</a>
-                <a href="mailto:hello@masterpet.co.in" className="hover:text-brand-green underline-offset-2" aria-label="Email Masterpet">✉️ hello@masterpet.co.in</a>
-                <span>Hours: 9:00 AM – 8:30 PM (Open all days)</span>
-                <span>Address: Anu Villa, XVI / 80, Nethaji Rd, near YMCA Indoor Stadium, Periyar Nagar, Aluva, Kerala 683101</span>
+                <a href={`tel:${COMPANY_INFO.phone}`} className="hover:text-brand-green underline-offset-2" aria-label="Call Masterpet">📞 {COMPANY_INFO.phoneDisplay}</a>
+                <a href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`} className="hover:text-brand-green underline-offset-2" aria-label="WhatsApp Masterpet">💬 WhatsApp us</a>
+                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-brand-green underline-offset-2" aria-label="Email Masterpet">✉️ {COMPANY_INFO.email}</a>
+                <span>Hours: {COMPANY_INFO.hoursDisplay} (Open all days)</span>
+                <span>Address: {COMPANY_INFO.addressLine1}, {COMPANY_INFO.addressLocality}, {COMPANY_INFO.addressRegion} {COMPANY_INFO.postalCode}</span>
               </div>
             </div>
             <div className="rounded-lg overflow-hidden w-full" aria-label="Google Map showing Masterpet location">

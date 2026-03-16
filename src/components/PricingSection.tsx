@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Container from "./Container";
+import { getWhatsAppUrl } from "@/lib/constants";
 
 const plans = [
   {
@@ -111,7 +112,7 @@ const addOns = [
 
 const PricingSection = () => {
   const handleWhatsAppBooking = (message: string) => {
-    const whatsappUrl = `https://wa.me/918590643269?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = getWhatsAppUrl(message);
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 

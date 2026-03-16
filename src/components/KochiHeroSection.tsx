@@ -5,6 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Star, ArrowRight } from "lucide-react";
 import Container from "./Container";
 import type { gsap } from 'gsap';
+import { getWhatsAppUrl as buildWhatsAppUrl } from "@/lib/constants";
 
 interface KochiHeroSectionProps {
   area?: string;
@@ -103,8 +104,7 @@ const KochiHeroSection = ({ area }: KochiHeroSectionProps) => {
   };
 
   const getWhatsAppUrl = () => {
-    const text = encodeURIComponent(getWhatsAppText());
-    return `https://wa.me/918590643269?text=${text}`;
+    return buildWhatsAppUrl(getWhatsAppText());
   };
 
   return (

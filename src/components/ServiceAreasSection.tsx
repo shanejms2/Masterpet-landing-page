@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
 import Container from "./Container";
+import { getWhatsAppUrl } from "@/lib/constants";
 
 const serviceAreas = [
   {
@@ -87,7 +88,7 @@ const ServiceAreasSection = () => {
                 </Link>
                 
                 <Link
-                  href={`https://wa.me/918590643269?text=${encodeURIComponent(`Hi Masterpet! I want to book a grooming session in ${area.name}. [From Masterpet Website]`)}`}
+                  href={getWhatsAppUrl(`Hi Masterpet! I want to book a grooming session in ${area.name}. [From Masterpet Website]`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-brand-blue text-white rounded-lg font-fractul font-medium hover:bg-brand-blue/90 transition-colors text-sm"
@@ -111,7 +112,7 @@ const ServiceAreasSection = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://wa.me/918590643269?text=Hi%20Masterpet!%20Do%20you%20provide%20grooming%20services%20in%20my%20area?%20[From%20Masterpet%20Website]"
+                href={getWhatsAppUrl("Hi Masterpet! Do you provide grooming services in my area? [From Masterpet Website]")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-green text-brand-blue rounded-lg font-fractul font-medium hover:bg-brand-green/90 transition-colors"

@@ -1,4 +1,5 @@
 import React from "react";
+import { COMPANY_INFO, absoluteUrl } from "@/lib/constants";
 
 interface ReviewSchemaProps {
   reviews?: Array<{
@@ -37,14 +38,17 @@ const ReviewSchema: React.FC<ReviewSchemaProps> = ({ reviews = [] }) => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "Masterpet - Mobile At Home Pet Grooming Ernakulam",
+    "name": COMPANY_INFO.brandName,
+    "alternateName": COMPANY_INFO.legalName,
+    "url": COMPANY_INFO.website,
+    "image": absoluteUrl(COMPANY_INFO.logoPath),
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "5.0",
       "bestRating": "5",
       "worstRating": "4", 
-      "ratingCount": "413",
-      "reviewCount": "413"
+      "ratingCount": "512",
+      "reviewCount": "512"
     },
     "review": reviewData.map(review => ({
       "@type": "Review",

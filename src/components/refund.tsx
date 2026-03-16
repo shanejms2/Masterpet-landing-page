@@ -1,4 +1,5 @@
 import React from "react";
+import { COMPANY_INFO } from "@/lib/constants";
 
 const RefundPolicy = () => {
     return (
@@ -28,7 +29,7 @@ const RefundPolicy = () => {
             <section className="mb-6">
                 <h2 className="text-2xl font-semibold mb-2">3. Refund Process</h2>
                 <p>
-                    To request a refund, contact us at support@masterpet.com within 7 days of the service date. Refunds will be processed to your original payment method within 5-10 business days.
+                    To request a refund, contact us at {COMPANY_INFO.email} within 7 days of the service date. Refunds will be processed to your original payment method within 5-10 business days.
                 </p>
             </section>
         </div>

@@ -8,6 +8,7 @@ import Logo from './ui/Logo';
 import { X, Menu, Phone } from "lucide-react";
 import { NAV_LINKS } from "./navConfig";
 import { usePathname } from "next/navigation";
+import { COMPANY_INFO } from "@/lib/constants";
 
 export function MainNavigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -93,13 +94,13 @@ export function MainNavigation() {
           {/* Desktop Call Button */}
           <div className="hidden md:flex flex-row items-center w-auto sm:ml-4 gap-3">
             <a
-              href="tel:+918590643269"
+              href={`tel:${COMPANY_INFO.phone}`}
               className="flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green/10 hover:bg-brand-green/20 text-brand-blue font-fractul font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 outline-none group"
-              aria-label="Call Masterpet at +91 85906 43269"
+              aria-label={`Call ${COMPANY_INFO.brandName} at ${COMPANY_INFO.phoneDisplay}`}
               tabIndex={0}
             >
               <Phone className="h-4 w-4 text-brand-green group-hover:text-brand-green/80 transition-colors" />
-              <span className="text-sm">+91 85906 43269</span>
+              <span className="text-sm">{COMPANY_INFO.phoneDisplay}</span>
             </a>
           </div>
           {/* Hamburger for mobile */}
@@ -158,13 +159,13 @@ export function MainNavigation() {
         {/* Call-to-Action Buttons */}
         <div className="flex flex-col gap-3 px-6 pb-8 mt-auto w-full">
           <a
-            href="tel:+918590643269"
+            href={`tel:${COMPANY_INFO.phone}`}
             className="flex items-center gap-3 w-full justify-center py-3 px-4 rounded-full bg-brand-green/10 hover:bg-brand-green/20 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 text-brand-blue font-fractul font-medium shadow-sm"
-            aria-label="Call Masterpet at +91 85906 43269"
+            aria-label={`Call ${COMPANY_INFO.brandName} at ${COMPANY_INFO.phoneDisplay}`}
             tabIndex={0}
           >
             <Phone className="h-5 w-5 text-brand-green" />
-            <span>+91 85906 43269</span>
+            <span>{COMPANY_INFO.phoneDisplay}</span>
             <span className="ml-auto px-2 py-1 rounded-full bg-brand-green/20 text-xs font-medium">Call us</span>
           </a>
 

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Heart, Mail, Phone, MapPin } from "lucide-react";
 import { areaConfig } from "@/lib/areaConfig";
+import { COMPANY_INFO } from "@/lib/constants";
 
 const socials = [
   { href: "https://instagram.com/masterpet_official", label: "Instagram", icon: "/icons/instagram.svg" },
@@ -12,11 +13,11 @@ const socials = [
 
 const quickLinks = [
   { href: "/contact", label: "Contact" },
-  { href: "#pricing", label: "Services" },
-  { href: "#process", label: "Process" },
-  { href: "#testimonials", label: "Reviews" },
+  { href: "/#pricing", label: "Services" },
+  { href: "/#process", label: "Process" },
+  { href: "/#testimonials", label: "Reviews" },
   { href: "/blog", label: "Blog" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/#faq", label: "FAQ" },
 ];
 
 const legalLinks = [
@@ -91,34 +92,34 @@ const Footer = () => (
           <h3 className="font-heading font-semibold text-[#00008D]">Contact</h3>
           <div className="space-y-3">
             <a
-              href="tel:+918590643269"
+              href={`tel:${COMPANY_INFO.phone}`}
               className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
             >
               <Phone className="w-4 h-4" />
-              <span>+91 85906 43269</span>
+              <span>{COMPANY_INFO.phoneDisplay}</span>
             </a>
             <a
-              href="https://wa.me/918590643269"
+              href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
               className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
             >
               <Mail className="w-4 h-4" />
               <span>WhatsApp us</span>
             </a>
             <a
-              href="mailto:hello@masterpet.co.in"
+              href={`mailto:${COMPANY_INFO.email}`}
               className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
             >
               <Mail className="w-4 h-4" />
-              <span>hello@masterpet.co.in</span>
+              <span>{COMPANY_INFO.email}</span>
             </a>
             <a
-              href="https://maps.app.goo.gl/h4QxTZVmMNWcaA1Q7"
+              href={COMPANY_INFO.googleBusinessUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
             >
               <MapPin className="w-4 h-4" />
-              <span>Aluva, Kerala</span>
+              <span>{COMPANY_INFO.addressLocality}, {COMPANY_INFO.addressRegion}</span>
             </a>
           </div>
         </div>
@@ -151,7 +152,7 @@ const Footer = () => (
           <h3 className="font-heading font-semibold text-[#00008D]">Business Hours</h3>
           <div className="space-y-2">
             <p className="text-sm text-[#00008D]/80">
-              9:30 AM – 7:30 PM
+              {COMPANY_INFO.hoursDisplay}
             </p>
             <p className="text-sm text-[#00008D]/80">
               Open all days

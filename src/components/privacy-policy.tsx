@@ -1,9 +1,10 @@
 import React from "react";
+import { COMPANY_INFO } from "@/lib/constants";
 
 const PrivacyPolicy = () => (
   <div className="max-w-2xl w-full text-[#1b1582] font-fractul text-base md:text-lg leading-relaxed bg-white/80 rounded-xl shadow p-6">
     <p className="mb-4 font-semibold">Last updated: June 14, 2025</p>
-    <p className="mb-4">At Masterpet - Mobile At Home Pet Grooming Ernakulam (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and mobile app.</p>
+    <p className="mb-4">At {COMPANY_INFO.brandName} (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), your privacy is important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and mobile app.</p>
     <h2 className="font-bold mt-6 mb-2">Permissions</h2>
     <ul className="list-disc pl-6 mb-4">
       <li><b>Location:</b> We request access to your device's location to provide at-home pet grooming services, calculate travel costs, and determine if we can service your area. Location is only collected with your explicit permission and is not used for any other purpose.</li>
@@ -59,8 +60,8 @@ const PrivacyPolicy = () => (
     <h2 className="font-bold mt-6 mb-2">11. Contact Us</h2>
     <p className="mb-2">If you have any questions about this Privacy Policy or wish to exercise your rights, please contact us at:</p>
     <ul className="list-disc pl-6">
-      <li><b>Email:</b> hello@masterpet.co.in</li>
-      <li><b>Phone:</b> +91 85906 43269</li>
+      <li><b>Email:</b> {COMPANY_INFO.email}</li>
+      <li><b>Phone:</b> {COMPANY_INFO.phoneDisplay}</li>
     </ul>
   </div>
 );
