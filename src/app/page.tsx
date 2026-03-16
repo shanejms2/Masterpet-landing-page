@@ -1,4 +1,3 @@
-import NAPSchema from "@/components/NAPSchema";
 import dynamic from "next/dynamic";
 import HeroSection from '../components/HeroSection';
 import CommunitiesMarquee from '../components/CommunitiesMarquee';
@@ -28,7 +27,6 @@ const VideoShowcaseSection = dynamic(() => import('../components/VideoShowcaseSe
 export default function Home() {
   return (
     <>
-      <NAPSchema />
       <HeroSection />
       <CommunitiesMarquee />
       <VideoShowcaseSection />

@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Container from "./Container";
 import FAQSchema from "./FAQSchema";
+import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
 
 const faqs = [
   {
@@ -32,8 +33,8 @@ const faqs = [
     answer: "Yes! We provide professional grooming services for both dogs and cats. Our team is trained to handle different breeds and temperaments. We use specialized techniques and products suitable for each species to ensure the best results and comfort for your pet."
   },
   {
-    question: "What areas do you serve in Ernakulam?",
-    answer: "We serve most areas in Ernakulam district including Kochi city, Fort Kochi, Mattancherry, Edapally, Kakkanadu, Palarivattom, Thripunithura, Kaloor, Thrikkakara, Eroor, Varapuzha, Eloor, MG Road, Vypin, Marine Drive, and surrounding areas. Please contact us with your specific location, and we'll confirm if we can provide service in your area. We're constantly expanding our service areas."
+    question: "What areas do you serve in Kochi and nearby locations?",
+    answer: "We serve Kochi and surrounding areas in Ernakulam district, including Fort Kochi, Mattancherry, Edapally, Kakkanadu, Palarivattom, Thripunithura, Kaloor, Thrikkakara, Eroor, Varapuzha, Eloor, MG Road, Vypin, Marine Drive, and more. Please contact us with your specific location, and we'll confirm if we can provide service in your area."
   },
   {
     question: "How long does a typical grooming session take?",
@@ -41,7 +42,7 @@ const faqs = [
   },
   {
     question: "Where can I find pet grooming near me in Kochi?",
-    answer: "Masterpet provides at-home pet grooming services across Kochi and Ernakulam district. We come directly to your doorstep, so you don't need to travel anywhere! Our service areas include Edapally, Kaloor, Ernakulam, Kakkanad, Fort Kochi, Vytilla, Maradu, Thrippunithura, Aluva, Angamaly, and many more locations. Simply contact us with your address, and we'll confirm if we serve your area."
+    answer: "Masterpet provides at-home pet grooming services across Kochi and surrounding areas in Ernakulam district. We come directly to your doorstep, so you don't need to travel anywhere. Our service areas include Edapally, Kaloor, Kakkanad, Fort Kochi, Vytilla, Maradu, Thrippunithura, Aluva, Angamaly, and many more locations. Simply contact us with your address, and we'll confirm if we serve your area."
   },
   {
     question: "Do you offer dog nail cutting near me?",
@@ -49,7 +50,7 @@ const faqs = [
   },
   {
     question: "Is there mobile pet grooming near me in Kochi?",
-    answer: "Yes! Masterpet is Kochi's premier mobile pet grooming service. We bring our fully equipped grooming van to your doorstep, eliminating the stress of traveling with your pet. Our mobile service covers Kochi city, Ernakulam, and surrounding areas including Edapally, Kaloor, Kakkanad, Fort Kochi, Vytilla, Maradu, and more. Book your slot and we'll come to you!"
+    answer: "Yes! Masterpet is a mobile pet grooming service for Kochi and surrounding areas in Ernakulam district. We bring our fully equipped grooming van to your doorstep, eliminating the stress of traveling with your pet. Our service covers Kochi city, Edapally, Kaloor, Kakkanad, Fort Kochi, Vytilla, Maradu, and more. Book your slot and we'll come to you."
   },
   {
     question: "What's included in your pet grooming home service?",
@@ -57,11 +58,11 @@ const faqs = [
   },
   {
     question: "How do I find the best pet grooming near me?",
-    answer: "Look for convenience, expertise, and safety! Masterpet offers the best of all three. We come to your home (no travel stress), our team includes a veterinarian with 10+ years experience, and we use professional equipment in a hygienic environment. We serve Kochi, Ernakulam, and surrounding areas. Read our customer reviews and book a session to experience the difference!"
+    answer: "Look for convenience, expertise, and safety. Masterpet offers all three. We come to your home, our team includes a veterinarian with 10+ years experience, and we use professional equipment in a hygienic environment. We serve Kochi and surrounding areas in Ernakulam district. Read our customer reviews and book a session to experience the difference."
   },
   {
-    question: "Do you provide dog grooming near me in Ernakulam?",
-    answer: "Absolutely! We provide comprehensive dog grooming services throughout Ernakulam district. Our services include bathing, haircutting, nail trimming, ear cleaning, and more. We come to your home in Ernakulam, Kochi, Edapally, Kaloor, Kakkanad, and surrounding areas. Our team is trained to handle all dog breeds and sizes, ensuring your furry friend gets the best care possible."
+    question: "Do you provide dog grooming near me in Kochi?",
+    answer: "Absolutely. We provide comprehensive dog grooming services throughout Kochi and surrounding areas in Ernakulam district. Our services include bathing, haircutting, nail trimming, ear cleaning, and more. We come to your home in Kochi, Edapally, Kaloor, Kakkanad, and nearby locations. Our team is trained to handle all dog breeds and sizes, ensuring your furry friend gets the best care possible."
   },
   {
     question: "What makes your nail cutting service safe for dogs?",
@@ -75,21 +76,21 @@ const contactMethods = [
     title: "WhatsApp",
     description: "Quick booking and support",
     action: "Chat Now",
-    href: "https://wa.me/918590643269?text=Hi%20Masterpet!%20I%20have%20a%20question%20about%20your%20services.%20[From%20Masterpet%20Website]"
+    href: getWhatsAppUrl("Hi Masterpet! I have a question about your services. [From Masterpet Website]")
   },
   {
     icon: Phone,
     title: "Call Us",
     description: "Speak with our team",
     action: "Call Now",
-    href: "tel:+918590643269"
+    href: `tel:${COMPANY_INFO.phone}`
   },
   {
     icon: Mail,
     title: "Email",
     description: "Send us a message",
     action: "Email Us",
-    href: "mailto:info@masterpet.in"
+    href: `mailto:${COMPANY_INFO.email}`
   }
 ];
 

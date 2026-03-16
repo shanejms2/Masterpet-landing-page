@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { areaConfig } from '@/lib/areaConfig';
 import { getAllPosts } from '@/lib/blog';
 
 const BASE_URL = 'https://www.masterpet.co.in';
@@ -10,25 +9,18 @@ const staticPages = [
   'terms-and-conditions',
   'cancellation-policy',
   'return-policy',
-  'grooming-report',
   'contact',
-  'account-deletion',
   'kochi-pet-grooming',
   'blog',
 ];
 
 export async function GET() {
-  // Generate area-specific URLs
-  const areaUrls = areaConfig.map(area => 
-    `kochi-pet-grooming/${area.slug}`
-  );
-
   // Generate blog post URLs
   const blogPosts = getAllPosts();
   const blogUrls = blogPosts.map(post => `blog/${post.slug}`);
 
-  // Combine static pages with area pages and blog posts
-  const allPages = [...staticPages, ...areaUrls, ...blogUrls];
+  // Keep the sitemap focused on indexable, canonical pages.
+  const allPages = [...staticPages, ...blogUrls];
 
   // Get current date for lastmod
   const currentDate = new Date().toISOString().split('T')[0];

@@ -1,4 +1,5 @@
 import React from "react";
+import { COMPANY_INFO } from "@/lib/constants";
 
 const TermsAndConditions = () => {
     return (
@@ -47,7 +48,7 @@ const TermsAndConditions = () => {
             <section className="mb-6">
                 <h2 className="text-2xl font-semibold mb-2">6. Contact Us</h2>
                 <p>
-                    For questions about these Terms and Conditions, email us at support@masterpet.com.
+                    For questions about these Terms and Conditions, email us at {COMPANY_INFO.email}.
                 </p>
             </section>
         </div>

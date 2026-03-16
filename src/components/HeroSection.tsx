@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Star, ArrowRight } from "lucide-react";
 import Container from "./Container";
+import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
 
 const HeroSection = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -145,7 +146,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
               <a
                 ref={buttonRef}
-                href="https://wa.me/919876543210?text=Hi! I'm interested in booking a pet grooming session."
+                href={getWhatsAppUrl("Hi Masterpet! I am interested in booking a pet grooming session. [From Masterpet Website]")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
@@ -196,7 +197,7 @@ const HeroSection = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-brand-green rounded-full"></div>
-                <span>No Travel Stress</span>
+                <span>No Travel Stress in {COMPANY_INFO.serviceCity}</span>
               </div>
             </div>
           </div>

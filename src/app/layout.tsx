@@ -8,34 +8,35 @@ import MainWrapper from "@/components/MainWrapper";
 import NAPSchema from "@/components/NAPSchema";
 import FooterWrapper from '@/components/FooterWrapper';
 import AnnouncementBannerWrapper from "@/components/AnnouncementBannerWrapper";
+import { COMPANY_INFO, absoluteUrl } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
-  description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by 1000+ pet parents. Book your session today!",
+  title: `${COMPANY_INFO.brandName} - At-Home Pet Grooming in ${COMPANY_INFO.serviceCity} | Professional Dog & Cat Grooming`,
+  description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by pet parents across Kochi and surrounding areas. Book your session today!",
   keywords: ["pet grooming near me", "dog grooming kochi", "cat grooming ernakulam", "at-home pet grooming", "mobile pet grooming", "dog nail cutting near me", "pet grooming home service", "Masterpet", "Kochi pet grooming"],
-  authors: [{ name: "Masterpet Care Private Limited" }],
-  creator: "Masterpet Care Private Limited",
-  publisher: "Masterpet Care Private Limited",
+  authors: [{ name: COMPANY_INFO.legalName }],
+  creator: COMPANY_INFO.legalName,
+  publisher: COMPANY_INFO.legalName,
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.masterpet.co.in'),
+  metadataBase: new URL(COMPANY_INFO.website),
   alternates: {
-    canonical: 'https://www.masterpet.co.in',
+    canonical: COMPANY_INFO.website,
   },
   openGraph: {
-    title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
-    description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by 1000+ pet parents. Book your session today!",
-    url: 'https://www.masterpet.co.in',
-    siteName: 'Masterpet',
+    title: `${COMPANY_INFO.brandName} - At-Home Pet Grooming in ${COMPANY_INFO.serviceCity} | Professional Dog & Cat Grooming`,
+    description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by pet parents across Kochi and surrounding areas. Book your session today!",
+    url: COMPANY_INFO.website,
+    siteName: COMPANY_INFO.siteName,
     images: [
       {
-        url: '/og-image.jpg',
+        url: absoluteUrl(COMPANY_INFO.logoPath),
         width: 1200,
         height: 630,
-        alt: 'Masterpet - Professional At-Home Pet Grooming Service in Kochi',
+        alt: `${COMPANY_INFO.brandName} logo`,
       },
     ],
     locale: 'en_US',
@@ -43,10 +44,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
-    description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by 1000+ pet parents. Book your session today!",
-    images: ['/og-image.jpg'],
-    creator: '@masterpet_official',
+    title: `${COMPANY_INFO.brandName} - At-Home Pet Grooming in ${COMPANY_INFO.serviceCity} | Professional Dog & Cat Grooming`,
+    description: "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by pet parents across Kochi and surrounding areas. Book your session today!",
+    images: [absoluteUrl(COMPANY_INFO.logoPath)],
+    creator: COMPANY_INFO.socialHandle,
   },
   robots: {
     index: true,
@@ -58,9 +59,6 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  verification: {
-    google: 'your-google-verification-code',
   },
 };
 

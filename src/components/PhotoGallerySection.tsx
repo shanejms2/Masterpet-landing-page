@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Container from "./Container";
+import { getWhatsAppUrl } from "@/lib/constants";
 
 // Gallery data with actual grooming photos
 const galleryImages = [
@@ -21,7 +22,7 @@ const galleryImages = [
   {
     id: 3,
     src: "/gallery/persian cat.jpeg",
-    alt: "Persian cat grooming transformation - professional cat grooming service by Masterpet in Ernakulam"
+    alt: "Persian cat grooming transformation - professional cat grooming service by Masterpet in Kochi"
   },
   {
     id: 4,
@@ -46,7 +47,7 @@ const galleryImages = [
   {
     id: 8,
     src: "/gallery/lab.jpg",
-    alt: "Labrador dog grooming session - professional dog grooming at home service in Ernakulam"
+    alt: "Labrador dog grooming session - professional dog grooming at home service in Kochi"
   },
   {
     id: 9,
@@ -66,12 +67,12 @@ const galleryImages = [
   {
     id: 12,
     src: "/gallery/persian cat 2.jpg",
-    alt: "Persian cat grooming session - professional cat grooming service by Masterpet in Ernakulam"
+    alt: "Persian cat grooming session - professional cat grooming service by Masterpet in Kochi"
   },
   {
     id: 13,
     src: "/gallery/ghibili dog.png",
-    alt: "Cute dog grooming session - professional pet grooming service by Masterpet in Ernakulam"
+    alt: "Cute dog grooming session - professional pet grooming service by Masterpet in Kochi"
   },
   {
     id: 14,
@@ -86,7 +87,7 @@ const galleryImages = [
   {
     id: 16,
     src: "/gallery/grooming truck outside.png",
-    alt: "Masterpet mobile grooming van - professional at-home pet grooming service in Ernakulam"
+    alt: "Masterpet mobile grooming van - professional at-home pet grooming service in Kochi"
   },
   {
     id: 17,
@@ -228,7 +229,7 @@ const PhotoGallerySection = () => {
           <Button 
             size="lg"
             className="bg-brand-green text-brand-blue hover:bg-brand-blue hover:text-white font-heading text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => window.open('https://wa.me/918590643269?text=Hi%20Masterpet!%20I%20want%20to%20book%20a%20grooming%20session.%20[From%20Masterpet%20Website]', '_blank')}
+            onClick={() => window.open(getWhatsAppUrl("Hi Masterpet! I want to book a grooming session. [From Masterpet Website]"), '_blank')}
           >
                           Book Your Pet's Transformation
           </Button>

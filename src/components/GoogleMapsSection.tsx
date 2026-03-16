@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Container from './Container';
+import { COMPANY_INFO } from '@/lib/constants';
 
 interface GoogleMapsSectionProps {
   className?: string;
@@ -87,11 +88,11 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
       const infoWindow = new window.google.maps.InfoWindow({
         content: `
           <div style="padding: 10px; max-width: 250px;">
-            <h3 style="margin: 0 0 8px 0; color: #1b1582; font-weight: bold;">Masterpet</h3>
-            <p style="margin: 0 0 5px 0; font-size: 14px;">Mobile At Home Pet Grooming</p>
-            <p style="margin: 0 0 5px 0; font-size: 12px;">📍 Anu Villa, XVI / 80, Nethaji Rd, Aluva</p>
-            <p style="margin: 0 0 5px 0; font-size: 12px;">📞 +91 85906 43269</p>
-            <p style="margin: 0; font-size: 12px; color: #caf857; font-weight: bold;">Serving Kochi & Surrounding Areas</p>
+            <h3 style="margin: 0 0 8px 0; color: #1b1582; font-weight: bold;">${COMPANY_INFO.brandName}</h3>
+            <p style="margin: 0 0 5px 0; font-size: 14px;">At-home pet grooming</p>
+            <p style="margin: 0 0 5px 0; font-size: 12px;">📍 ${COMPANY_INFO.addressLine1}, ${COMPANY_INFO.addressLocality}</p>
+            <p style="margin: 0 0 5px 0; font-size: 12px;">📞 ${COMPANY_INFO.phoneDisplay}</p>
+            <p style="margin: 0; font-size: 12px; color: #caf857; font-weight: bold;">Serving ${COMPANY_INFO.serviceAreaText}</p>
           </div>
         `
       });
@@ -251,7 +252,7 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
               ref={mapRef} 
               className="w-full h-96 md:h-[600px] relative"
               role="img"
-              aria-label="Google Maps showing Masterpet service areas in Kochi"
+              aria-label={`Google Maps showing ${COMPANY_INFO.brandName} service areas in ${COMPANY_INFO.serviceCity}`}
             >
               {/* Fallback when map can't load */}
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100">

@@ -2,6 +2,22 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { requireAuth } from "@/lib/auth"
 import { LogoutButton } from "@/components/LogoutButton"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Dashboard | Masterpet",
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      "max-snippet": -1,
+      "max-image-preview": "none",
+      "max-video-preview": -1,
+    },
+  },
+}
 
 export default async function DashboardLayout({
   children,

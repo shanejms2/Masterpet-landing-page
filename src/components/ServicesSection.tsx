@@ -1,4 +1,5 @@
 import Container from "./Container";
+import { getWhatsAppUrl } from "@/lib/constants";
 
 const packages = [
   {
@@ -90,8 +91,6 @@ const addOns = [
   },
 ];
 
-const whatsappBase = "https://wa.me/918590643269?text=";
-
 const ServicesSection = () => (
   <section className="w-full bg-white py-8 md:py-12" id="services" aria-label="Our Grooming Packages">
     <Container>
@@ -117,7 +116,7 @@ const ServicesSection = () => (
               ))}
             </ul>
             <a
-              href={`${whatsappBase}${encodeURIComponent('Hi! I want to book the ' + pkg.name + ' package. [From Masterpet Website]')}`}
+              href={getWhatsAppUrl('Hi! I want to book the ' + pkg.name + ' package. [From Masterpet Website]')}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-auto font-heading bg-brand-green text-brand-blue px-5 py-2 rounded-full shadow hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-colors text-base w-full text-center"
@@ -145,7 +144,7 @@ const ServicesSection = () => (
               </h4>
               <p className="font-body text-brand-blue mb-3 text-sm sm:text-base">{addOn.description}</p>
               <a
-                href={`${whatsappBase}${encodeURIComponent(`Hi! I want to add the ${addOn.name} to my grooming package. [From Masterpet Website]`)}`}
+                href={getWhatsAppUrl(`Hi! I want to add the ${addOn.name} to my grooming package. [From Masterpet Website]`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-heading bg-brand-green text-brand-blue px-4 py-2 rounded-full shadow hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-colors text-sm w-full text-center"

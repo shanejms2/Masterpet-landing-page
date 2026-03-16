@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Container from "./Container";
+import { getWhatsAppUrl } from "@/lib/constants";
 
-const whatsappLink = "https://wa.me/918590643269?text=Hi!%20I%20want%20to%20book%20a%20grooming%20session%20with%20Masterpet.%20[From%20Masterpet%20Website]";
+const whatsappLink = getWhatsAppUrl(
+  "Hi Masterpet! I want to book a grooming session with Masterpet. [From Masterpet Website]"
+);
 
 const FinalCTASection = () => (
   <section className="w-full py-16 md:py-24" aria-label="Final Call to Action">
