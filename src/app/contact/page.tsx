@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Container from "@/components/Container";
 import { COMPANY_INFO } from "@/lib/constants";
+import { Phone, MessageCircle, Mail } from "lucide-react";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
@@ -100,10 +101,30 @@ const ContactPage = () => {
           <div className="flex flex-col gap-6 justify-between">
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
               <h2 className="font-heading text-xl text-brand-blue mb-2">Direct Contact</h2>
-              <div className="flex flex-col gap-2 text-brand-blue font-body text-base">
-                <a href={`tel:${COMPANY_INFO.phone}`} className="hover:text-brand-green underline-offset-2" aria-label="Call Masterpet">📞 {COMPANY_INFO.phoneDisplay}</a>
-                <a href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`} className="hover:text-brand-green underline-offset-2" aria-label="WhatsApp Masterpet">💬 WhatsApp us</a>
-                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-brand-green underline-offset-2" aria-label="Email Masterpet">✉️ {COMPANY_INFO.email}</a>
+              <div className="flex flex-col gap-3 text-brand-blue font-body text-base">
+                <a
+                  href={`tel:${COMPANY_INFO.phone}`}
+                  className="inline-flex items-center gap-2 hover:text-brand-green underline-offset-2 focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
+                >
+                  <Phone className="h-4 w-4 shrink-0 text-brand-green" aria-hidden="true" />
+                  <span>{COMPANY_INFO.phoneDisplay}</span>
+                </a>
+                <a
+                  href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
+                  className="inline-flex items-center gap-2 hover:text-brand-green underline-offset-2 focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="h-4 w-4 shrink-0 text-brand-green" aria-hidden="true" />
+                  <span>WhatsApp us</span>
+                </a>
+                <a
+                  href={`mailto:${COMPANY_INFO.email}`}
+                  className="inline-flex items-center gap-2 hover:text-brand-green underline-offset-2 focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
+                >
+                  <Mail className="h-4 w-4 shrink-0 text-brand-green" aria-hidden="true" />
+                  <span>{COMPANY_INFO.email}</span>
+                </a>
                 <span>Hours: {COMPANY_INFO.hoursDisplay} (Open all days)</span>
                 <span>Address: {COMPANY_INFO.addressLine1}, {COMPANY_INFO.addressLocality}, {COMPANY_INFO.addressRegion} {COMPANY_INFO.postalCode}</span>
               </div>

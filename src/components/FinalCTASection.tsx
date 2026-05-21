@@ -13,9 +13,9 @@ const FinalCTASection = () => (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Content */}
           <div className="text-left">
-            <h3 className="font-fractul font-bold text-3xl md:text-4xl text-brand-blue mb-4">
+            <h2 className="font-fractul font-bold text-3xl md:text-4xl text-brand-blue mb-4">
               Ready to Give Your Pet the Best Grooming Experience?
-            </h3>
+            </h2>
             <p className="font-body text-lg text-brand-blue/70 mb-6">
               Book your at-home grooming session with Masterpet today and let your pet enjoy professional care, comfort, and a whole lot of love—right at your doorstep!
             </p>

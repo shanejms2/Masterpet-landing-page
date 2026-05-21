@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server"
+import { requireApiAuth } from "@/lib/api-auth"
 
 export async function GET() {
+  const unauthorized = await requireApiAuth()
+  if (unauthorized) return unauthorized
+
   try {
     const fastApiUrl = process.env.FASTAPI_URL || 'http://167.235.23.131:8000'
     const fastApiKey = process.env.FASTAPI_API_KEY

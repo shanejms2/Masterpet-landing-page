@@ -7,7 +7,7 @@ import { COMPANY_INFO } from "@/lib/constants";
 const socials = [
   { href: "https://instagram.com/masterpet_official", label: "Instagram", icon: "/icons/instagram.svg" },
   { href: "https://www.facebook.com/profile.php?id=61555806585903", label: "Facebook", icon: "/icons/facebook.svg" },
-  { href: "https://l.facebook.com/l.php?u=https%3A%2F%2Fyoutube.com%2F%40Masterpetofficial&h=AT33jAGNp2g5ZPtea3eY2fAdwsoQ50sRc479nOoXLFjhtgsxv1vuA-kabnadp30a9p8Re4d_071ypuTnevQfJqvJRE9BTSEmQ1fMr2SFxDPiD4PjUfF3wT4lPyNbV_seyUUCvo1hra58D2h97YMQhpALpw", label: "YouTube", icon: "/icons/youtube.svg" },
+  { href: "https://www.youtube.com/@Masterpetofficial", label: "YouTube", icon: "/icons/youtube.svg" },
   { href: "https://www.linkedin.com/company/masterpet-care/", label: "LinkedIn", icon: "/icons/linkedin.svg" },
 ];
 

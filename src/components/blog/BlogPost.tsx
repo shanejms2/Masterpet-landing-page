@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { Badge } from '@/components/ui/badge';
-import { Calendar, Clock, User, Tag, Bookmark } from 'lucide-react';
+import { Calendar, Clock, User, Tag, Link2 } from 'lucide-react';
 import { BlogPost as BlogPostType } from '@/types/blog';
 import { formatDate, calculateReadingTime } from '@/lib/client-utils';
 import SocialShare from './SocialShare';
@@ -15,6 +15,16 @@ interface BlogPostProps {
 
 const BlogPost = ({ post, className = '' }: BlogPostProps) => {
   const readingTime = post.meta.readingTime || calculateReadingTime(post.content);
+
+  const handleCopyLink = async () => {
+    const url = typeof window !== 'undefined' ? window.location.href : '';
+    if (!url) return;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      // Clipboard unavailable; link still usable from address bar
+    }
+  };
 
   return (
     <article className={`max-w-4xl mx-auto ${className}`}>
@@ -83,11 +93,13 @@ const BlogPost = ({ post, className = '' }: BlogPostProps) => {
             <LikeButton post={post} />
             <SocialShare post={post} />
             <button
+              type="button"
+              onClick={handleCopyLink}
               className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-colors duration-200 font-noto-sans"
-              aria-label="Bookmark this post"
+              aria-label="Copy link to this post"
             >
-              <Bookmark className="h-4 w-4" />
-              <span className="font-noto-sans">Bookmark</span>
+              <Link2 className="h-4 w-4" aria-hidden="true" />
+              <span className="font-noto-sans">Copy link</span>
             </button>
           </div>
         </div>

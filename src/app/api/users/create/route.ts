@@ -1,7 +1,11 @@
 import { createAdminClient } from "@/utils/supabase";
 import { NextRequest, NextResponse } from "next/server";
+import { requireApiAuth } from "@/lib/api-auth";
 
 export async function POST(req: NextRequest) {
+    const unauthorized = await requireApiAuth();
+    if (unauthorized) return unauthorized;
+
     try {
         const { first_name, last_name, phone, dob, type, behaviour, source, meal_type } = await req.json();
         if (!first_name || !phone || !dob) {
