@@ -18,10 +18,7 @@ Allow: /blog
 Disallow: /api/
 Disallow: /api/bookings/
 Disallow: /api/generate-grooming-report/
-Disallow: /api/proxy-grooming/
 Disallow: /api/upload/
-Disallow: /api/search/
-Disallow: /api/users/
 
 # Block reports directory (contains sensitive grooming reports)
 Disallow: /reports/
@@ -31,10 +28,6 @@ Disallow: /account-deletion/
 
 # Block grooming report page (contains sensitive data)
 Disallow: /grooming-report/
-
-# Block admin and auth surfaces
-Disallow: /dashboard/
-Disallow: /login/
 
 # Block any potential admin or private areas
 Disallow: /admin/

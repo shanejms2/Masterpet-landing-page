@@ -311,7 +311,7 @@ const PricingSection = () => {
                 </div>
                 <h4 className="font-heading text-xl md:text-2xl text-brand-blue mb-4">100% Satisfaction</h4>
                 <p className="font-body text-base md:text-lg text-brand-blue/70 max-w-xs">
-                  Trusted by 1000+ pet parents across Kerala with excellent reviews.
+                  Trusted by 2000+ pet parents across Kerala with excellent reviews.
                 </p>
               </div>
             </div>

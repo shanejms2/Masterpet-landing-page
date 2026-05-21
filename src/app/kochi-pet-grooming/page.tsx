@@ -15,7 +15,7 @@ import FinalCTASection from '@/components/FinalCTASection';
 
 export const metadata: Metadata = {
   title: "At-Home Pet Grooming in Kochi | Professional Mobile Grooming Services",
-  description: "Professional at-home pet grooming in Kochi. Trusted by 1000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep. Book your grooming session today!",
+  description: "Professional at-home pet grooming in Kochi. Trusted by 2000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep. Book your grooming session today!",
   keywords: ["pet grooming Kochi", "mobile pet grooming Kochi", "dog grooming Kochi", "cat grooming Kochi", "at-home grooming Kochi", "pet grooming services Kochi"],
   authors: [{ name: "Masterpet Care Private Limited" }],
   creator: "Masterpet Care Private Limited",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "At-Home Pet Grooming in Kochi | Professional Mobile Grooming Services",
-    description: "Professional at-home pet grooming in Kochi. Trusted by 1000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep.",
+    description: "Professional at-home pet grooming in Kochi. Trusted by 2000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep.",
     url: 'https://www.masterpet.co.in/kochi-pet-grooming',
     siteName: 'Masterpet',
     images: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "At-Home Pet Grooming in Kochi | Professional Mobile Grooming Services",
-    description: "Professional at-home pet grooming in Kochi. Trusted by 1000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep.",
+    description: "Professional at-home pet grooming in Kochi. Trusted by 2000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep.",
     images: ['/og-image.jpg'],
     creator: '@masterpet_official',
   },

@@ -123,7 +123,7 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green/20 text-brand-blue border border-brand-green/30 mb-6"
             >
               <Star className="h-4 w-4 text-brand-green" />
-              <span className="font-body text-sm font-semibold">Trusted by 1000+ Pet Parents</span>
+              <span className="font-body text-sm font-semibold">Trusted by 2000+ Pet Parents</span>
             </div>
             
             <h1

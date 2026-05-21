@@ -72,7 +72,7 @@ const TestimonialsSection = () => {
         <div className="text-center mb-16">
           <Badge variant="secondary" className="mb-4 bg-brand-green/20 text-brand-blue border-brand-green/30">
             <Star className="w-3 h-3 mr-1" />
-            Trusted by 1000+ Pet Parents
+            Trusted by 2000+ Pet Parents
           </Badge>
           <h2 className="font-fractul font-bold text-3xl md:text-4xl lg:text-5xl text-brand-blue mb-4">
             What Pet Parents Say

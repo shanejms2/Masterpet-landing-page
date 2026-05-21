@@ -46,7 +46,7 @@ Masterpet is an at-home pet grooming company serving Kochi and surrounding areas
 - Sitemap: https://www.masterpet.co.in/sitemap.xml
 - Blog sitemap: https://www.masterpet.co.in/sitemap-blog.xml
 - Robots: https://www.masterpet.co.in/robots.txt
-- Private or utility routes such as login, dashboard, grooming report, and account deletion are not intended for indexing
+- Private or utility routes such as grooming report and account deletion are not intended for indexing
 
 ## Preferred Terminology
 - Use "Masterpet" as the public business name

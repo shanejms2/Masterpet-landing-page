@@ -86,7 +86,7 @@ const KochiHeroSection = ({ area }: KochiHeroSectionProps) => {
     if (area) {
       return `Trusted by Pet Parents in ${area}`;
     }
-    return "Trusted by 1000+ Pet Parents in Kochi";
+    return "Trusted by 2000+ Pet Parents in Kochi";
   };
 
   const getParagraphText = () => {

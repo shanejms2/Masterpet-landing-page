@@ -33,7 +33,7 @@ const stats = [
     borderColor: "border-blue-200"
   },
   {
-    value: "1000+",
+    value: "2000+",
     label: "Happy Pet Parents",
     icon: Users,
     color: "from-green-500 to-green-600",

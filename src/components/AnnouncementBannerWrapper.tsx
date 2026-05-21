@@ -4,7 +4,7 @@ import AnnouncementBanner from "@/components/AnnouncementBanner";
 
 const AnnouncementBannerWrapper = () => {
   const pathname = usePathname();
-  if (pathname === "/grooming-report" || pathname.startsWith("/dashboard") || pathname === "/login") return null;
+  if (pathname === "/grooming-report") return null;
   return <AnnouncementBanner />;
 };
 

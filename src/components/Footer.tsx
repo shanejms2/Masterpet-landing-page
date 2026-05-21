@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, Mail, Phone, MapPin } from "lucide-react";
+import { ChevronDown, Heart, Mail, Phone, MapPin } from "lucide-react";
 import { areaConfig } from "@/lib/areaConfig";
 import { COMPANY_INFO } from "@/lib/constants";
+
+/** Shown outside the accordion; remainder stay in <details> for crawlable HTML. */
+const FEATURED_AREA_COUNT = 6;
 
 const socials = [
   { href: "https://instagram.com/masterpet_official", label: "Instagram", icon: "/icons/instagram.svg" },
@@ -27,8 +30,12 @@ const legalLinks = [
   { href: "/cancellation-policy", label: "Cancellation Policy" },
 ];
 
-// Use all areas for maximum SEO benefit
 const footerAreas = areaConfig;
+const featuredAreas = footerAreas.slice(0, FEATURED_AREA_COUNT);
+const moreAreas = footerAreas.slice(FEATURED_AREA_COUNT);
+
+const areaLinkClass =
+  "text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors";
 
 const Footer = () => (
   <footer className="w-full border-t bg-[#D9EEFC]">
@@ -124,27 +131,53 @@ const Footer = () => (
           </div>
         </div>
 
-        {/* Service Areas */}
+        {/* Service Areas — featured links + collapsible full list (all URLs stay in HTML) */}
         <div className="space-y-4">
           <h3 className="font-heading font-semibold text-[#00008D]">Service Areas</h3>
-          <nav className="flex flex-col space-y-2">
+          <nav aria-label="Featured service areas" className="flex flex-col space-y-2">
             <Link
               href="/kochi-pet-grooming"
-              className="text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors font-medium"
+              className={`${areaLinkClass} font-medium`}
             >
               All Kochi Areas
             </Link>
-            {footerAreas.map((area) => (
+            {featuredAreas.map((area) => (
               <Link
                 key={area.slug}
                 href={`/kochi-pet-grooming/${area.slug}`}
-                className="text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
+                className={areaLinkClass}
               >
                 Pet Grooming in {area.name}
               </Link>
             ))}
-
           </nav>
+          {moreAreas.length > 0 && (
+            <details className="group">
+              <summary
+                className={`${areaLinkClass} flex cursor-pointer list-none items-center gap-1 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-sm [&::-webkit-details-marker]:hidden`}
+              >
+                <ChevronDown
+                  className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180"
+                  aria-hidden="true"
+                />
+                More service areas ({moreAreas.length})
+              </summary>
+              <nav
+                aria-label="All service areas"
+                className="mt-2 flex max-h-52 flex-col space-y-2 overflow-y-auto pr-1"
+              >
+                {moreAreas.map((area) => (
+                  <Link
+                    key={area.slug}
+                    href={`/kochi-pet-grooming/${area.slug}`}
+                    className={areaLinkClass}
+                  >
+                    Pet Grooming in {area.name}
+                  </Link>
+                ))}
+              </nav>
+            </details>
+          )}
         </div>
 
         {/* Business Hours & Legal */}
