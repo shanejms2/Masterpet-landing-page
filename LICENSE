@@ -1,0 +1,46 @@
+Copyright (c) 2024–2026 Masterpet Care Private Limited. All rights reserved.
+
+## Portfolio & viewing only
+
+This repository is published publicly so the work may be **viewed** for portfolio,
+recruitment, and evaluation purposes (for example, on GitHub or in a case study).
+
+**No other rights are granted.**
+
+## You may
+
+- View this source code and the project description in a browser or on GitHub.
+- Link to this repository when crediting the work in a portfolio or résumé.
+
+## You may not (without prior written permission)
+
+- Use, copy, modify, merge, or publish this code or any part of it.
+- Run, deploy, host, or distribute this software or derivatives of it.
+- Create derivative works based on this repository.
+- Use this code in commercial products, client projects, templates, or courses.
+- Sublicense or sell access to this code.
+- Remove or alter copyright or license notices.
+
+Forking on GitHub for **personal offline study** is technically possible on the
+platform, but **does not grant a license to use the fork** for any purpose other
+than private reference. Any other use requires written permission.
+
+## Ownership
+
+“Masterpet”, related branding, and business content in this repository are
+property of Masterpet Care Private Limited. Third-party libraries remain under
+their respective licenses (see `package.json` and `node_modules`).
+
+## No warranty
+
+This software is provided “as is”, without warranty of any kind, express or
+implied. In no event shall the copyright holder be liable for any claim or
+damages arising from viewing or attempted use of this repository.
+
+## Permission requests
+
+For licensing, collaboration, or other uses, contact:
+
+**hello@masterpet.co.in**
+
+Unauthorized use may violate applicable copyright and other laws.
