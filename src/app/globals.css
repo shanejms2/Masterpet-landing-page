@@ -7,8 +7,21 @@
   box-sizing: border-box;
 }
 
-/* Optimize font loading - moved to critical CSS in layout.tsx */
-/* Font declarations are now in the critical CSS to prevent render blocking */
+@font-face {
+  font-family: "Gliker";
+  src: url("/fonts/Gliker-Regular.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fractul";
+  src: url("/fonts/Fractul-Regular.ttf") format("truetype");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
 
 /* Hide scrollbar for webkit browsers */
 .scrollbar-hide {
@@ -55,34 +68,6 @@
   --radius: 0.5rem;
 }
 
-.dark {
-  --background: #0A0A90; /* Example: dark mode background */
-  --section-background: #1a237e; /* Example: dark mode section */
-  --foreground: 0 0% 98%;
-  --card: 0 0% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 0 0% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 0 0% 9%;
-  --secondary: 0 0% 14.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 0 0% 14.9%;
-  --muted-foreground: 0 0% 63.9%;
-  --accent: 0 0% 14.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 14.9%;
-  --input: 0 0% 14.9%;
-  --ring: 0 0% 83.1%;
-  --chart-1: 220 70% 50%;
-  --chart-2: 160 60% 45%;
-  --chart-3: 30 80% 55%;
-  --chart-4: 280 65% 60%;
-  --chart-5: 340 75% 55%;
-}
-
 /* Base styles with performance optimizations */
 @layer base {
   html {
@@ -91,9 +76,11 @@
   }
   
   body {
-    font-family: 'Gliker', Arial, Helvetica, sans-serif;
+    font-family: "Gliker", Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #fff;
+    min-height: 100vh;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

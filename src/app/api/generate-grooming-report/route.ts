@@ -1,44 +1,67 @@
-import { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
-import puppeteer from 'puppeteer';
+import { NextRequest, NextResponse } from "next/server";
+import { launchBrowser } from "@/lib/puppeteer-browser";
+
+export const runtime = "nodejs";
+export const maxDuration = 60;
+
+const MAX_BODY_BYTES = 100_000;
 
 export async function POST(req: NextRequest) {
-  const data = await req.json();
+  const contentLength = req.headers.get("content-length");
+  if (contentLength && Number(contentLength) > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: "Payload too large" }, { status: 413 });
+  }
 
-  // Launch Puppeteer
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
+  let data: unknown;
+  try {
+    data = await req.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+  }
 
-  // Get the base URL from environment or default to localhost for development
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  
-  // Go to your domain root first to get a valid origin for localStorage
-  await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+  if (!data || typeof data !== "object") {
+    return NextResponse.json({ error: "Report data is required" }, { status: 400 });
+  }
 
-  // Inject data into localStorage
-  await page.evaluate((input) => {
-    localStorage.setItem('groomingReportData', JSON.stringify(input));
-  }, data);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  let browser;
 
-  // Now go to the grooming report page (should read from localStorage)
-  await page.goto(`${baseUrl}/grooming-report`, { waitUntil: 'networkidle0' });
+  try {
+    browser = await launchBrowser();
+    const page = await browser.newPage();
 
-  // Generate PDF (auto-increment logic can be added if saving to disk, but here we return buffer)
-  const pdfBuffer = await page.pdf({
-    format: 'A4',
-    printBackground: true,
-    margin: { top: 0, right: 0, bottom: 0, left: 0 },
-    scale: 0.75
-  });
+    await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
 
-  await browser.close();
+    await page.evaluate((input) => {
+      localStorage.setItem("groomingReportData", JSON.stringify(input));
+    }, data);
 
-  // Return PDF as response
-  return new NextResponse(Buffer.from(pdfBuffer), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename="grooming-report.pdf"',
-    },
-  });
-} 
+    await page.goto(`${baseUrl}/grooming-report`, {
+      waitUntil: "networkidle0",
+      timeout: 60_000,
+    });
+
+    const pdfBuffer = await page.pdf({
+      format: "A4",
+      printBackground: true,
+      margin: { top: 0, right: 0, bottom: 0, left: 0 },
+      scale: 0.75,
+    });
+
+    return new NextResponse(Buffer.from(pdfBuffer), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": 'attachment; filename="grooming-report.pdf"',
+      },
+    });
+  } catch (error) {
+    console.error("Grooming report PDF generation failed:", error);
+    return NextResponse.json(
+      { error: "Failed to generate grooming report PDF" },
+      { status: 500 }
+    );
+  } finally {
+    await browser?.close();
+  }
+}

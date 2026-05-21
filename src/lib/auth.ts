@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { hasValidSessionToken } from '@/lib/session'
 
 export interface User {
   username: string
@@ -10,12 +11,10 @@ export async function getCurrentUser(): Promise<User | null> {
   const cookieStore = await cookies()
   const sessionToken = cookieStore.get('session-token')
   
-  if (!sessionToken) {
+  if (!hasValidSessionToken(sessionToken?.value)) {
     return null
   }
-  
-  // In a real app, you'd verify the token with your database
-  // For now, we'll just check if it exists
+
   return {
     username: 'admin',
     isAuthenticated: true

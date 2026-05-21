@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import NAPSchema from "@/components/NAPSchema";
 import KochiHeroSection from '@/components/KochiHeroSection';
+import BreadcrumbListSchema from "@/components/BreadcrumbListSchema";
 import BreadcrumbNavigation from '@/components/BreadcrumbNavigation';
 import AreaCarousel from '@/components/AreaCarousel';
 import CommunitiesMarquee from '@/components/CommunitiesMarquee';
@@ -113,13 +113,22 @@ export default async function AreaPage({ params }: PageProps) {
 
   return (
     <>
-      <NAPSchema />
+      <BreadcrumbListSchema
+        items={[
+          { name: "Home", url: "https://www.masterpet.co.in" },
+          { name: "Kochi Pet Grooming", url: "https://www.masterpet.co.in/kochi-pet-grooming" },
+          {
+            name: `${area.name} Pet Grooming`,
+            url: `https://www.masterpet.co.in/kochi-pet-grooming/${area.slug}`,
+          },
+        ]}
+      />
       <HeroScrollHandler />
-      <BreadcrumbNavigation 
+      <BreadcrumbNavigation
         items={[
           { label: "Kochi Pet Grooming", href: "/kochi-pet-grooming" },
-          { label: `${area.name} Pet Grooming` }
-        ]} 
+          { label: `${area.name} Pet Grooming` },
+        ]}
       />
       <KochiHeroSection area={area.name} />
       <AreaCarousel currentArea={area.slug} />

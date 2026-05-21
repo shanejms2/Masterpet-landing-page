@@ -1,10 +1,8 @@
-import NAPSchema from "@/components/NAPSchema";
 import Footer from "@/components/Footer";
 
 export default function CancellationPolicy() {
   return (
     <>
-      <NAPSchema />
       <main className="min-h-[60vh] w-full flex flex-col items-center justify-center py-16 px-4">
         <h1 className="font-gliker text-3xl md:text-4xl text-[#1b1582] mb-6 text-center">Cancellation Policy</h1>
         <div className="max-w-2xl w-full text-[#1b1582] font-fractul text-base md:text-lg leading-relaxed bg-white/80 rounded-xl shadow p-6">

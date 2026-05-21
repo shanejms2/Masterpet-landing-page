@@ -1,4 +1,4 @@
-import NAPSchema from "@/components/NAPSchema";
+import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import HeroSection from '../components/HeroSection';
 import CommunitiesMarquee from '../components/CommunitiesMarquee';
@@ -9,6 +9,15 @@ import TestimonialsSection from '../components/TestimonialsSection';
 import FAQSection from '../components/FAQSection';
 import GoogleMapsSection from '../components/GoogleMapsSection';
 import FinalCTASection from '../components/FinalCTASection';
+
+export const metadata: Metadata = {
+  title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
+  description:
+    "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by pet parents across Kochi and surrounding areas. Book your session today!",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 // Lazy load heavy components to reduce initial bundle size
 const VideoShowcaseSection = dynamic(() => import('../components/VideoShowcaseSection'), {
@@ -28,7 +37,6 @@ const VideoShowcaseSection = dynamic(() => import('../components/VideoShowcaseSe
 export default function Home() {
   return (
     <>
-      <NAPSchema />
       <HeroSection />
       <CommunitiesMarquee />
       <VideoShowcaseSection />

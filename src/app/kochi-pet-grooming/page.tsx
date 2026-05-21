@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import NAPSchema from "@/components/NAPSchema";
 import KochiHeroSection from '@/components/KochiHeroSection';
+import BreadcrumbListSchema from "@/components/BreadcrumbListSchema";
 import AreaCarousel from '@/components/AreaCarousel';
 import BreadcrumbNavigation from '@/components/BreadcrumbNavigation';
 import CommunitiesMarquee from '@/components/CommunitiesMarquee';
@@ -71,11 +71,14 @@ export const metadata: Metadata = {
 export default function KochiPetGrooming() {
   return (
     <>
-      <NAPSchema />
-      <BreadcrumbNavigation 
+      <BreadcrumbListSchema
         items={[
-          { label: "Kochi Pet Grooming", href: "/kochi-pet-grooming" }
-        ]} 
+          { name: "Home", url: "https://www.masterpet.co.in" },
+          { name: "Kochi Pet Grooming", url: "https://www.masterpet.co.in/kochi-pet-grooming" },
+        ]}
+      />
+      <BreadcrumbNavigation
+        items={[{ label: "Kochi Pet Grooming", href: "/kochi-pet-grooming" }]}
       />
       <KochiHeroSection />
       <AreaCarousel />

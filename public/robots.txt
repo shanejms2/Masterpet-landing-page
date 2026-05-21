@@ -32,6 +32,10 @@ Disallow: /account-deletion/
 # Block grooming report page (contains sensitive data)
 Disallow: /grooming-report/
 
+# Block admin and auth surfaces
+Disallow: /dashboard/
+Disallow: /login/
+
 # Block any potential admin or private areas
 Disallow: /admin/
 Disallow: /private/

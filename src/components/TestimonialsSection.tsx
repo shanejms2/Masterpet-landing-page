@@ -1,11 +1,9 @@
-"use client";
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Star, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Container from "./Container";
-import ReviewSchema from "./ReviewSchema";
+import { PLATFORM_REVIEW_COUNTS } from "@/lib/business-schema";
 
 const testimonials = [
   {
@@ -49,7 +47,7 @@ const platformRatings = [
   {
     platform: "Google Maps",
     rating: 5.0,
-    reviews: 168,
+    reviews: PLATFORM_REVIEW_COUNTS.googleMaps,
     icon: "/icons/google_maps.png",
     color: "bg-blue-500",
     link: "https://maps.app.goo.gl/h4QxTZVmMNWcaA1Q7",
@@ -58,7 +56,7 @@ const platformRatings = [
   {
     platform: "Justdial",
     rating: 5.0,
-    reviews: 245,
+    reviews: PLATFORM_REVIEW_COUNTS.justdial,
     icon: "/icons/justdial.png", // You'll need to add this icon
     color: "bg-yellow-500",
     link: "https://www.justdial.com/Ernakulam/Masterpet-Mobile-At-Home-Pet-Grooming-Ernakulam-Near-YMCA-Indoor-Stadium-Aluva/0484PX484-X484-241005012209-C8K9_BZDET?trkid=&term=&ncatid=11002277&area=&search=Showing%20Results%20for%20%22Masterpet%20Care%20Pvt%20Ltd%22%20in%20Kochi&mncatname=Masterpet%20Care%20Pvt%20Ltd&ftterm=Masterpet%20Care%20Pvt%20Ltd&abd_btn=&abd_heading=&isFreetxt=1&bd=2&cat_b2b_flag=&searchfrom=lst",
@@ -225,7 +223,6 @@ const TestimonialsSection = () => {
         </div>
 
       </Container>
-      <ReviewSchema />
     </section>
   );
 };

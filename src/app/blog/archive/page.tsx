@@ -5,9 +5,17 @@ import { formatDate } from '@/lib/blog';
 export const metadata: Metadata = {
   title: 'Blog Archive - Masterpet Pet Grooming Services',
   description: 'Browse all blog posts from Masterpet. Expert pet grooming tips, customer stories, and insights organized by date and tags.',
+  alternates: {
+    canonical: '/blog/archive',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     title: 'Blog Archive - Masterpet Pet Grooming Services',
     description: 'Browse all blog posts from Masterpet organized by date and tags.',
+    url: 'https://www.masterpet.co.in/blog/archive',
   },
 };
 
