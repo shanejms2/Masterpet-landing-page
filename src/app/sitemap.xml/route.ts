@@ -1,53 +1,60 @@
-import { NextResponse } from 'next/server';
-import { getAllPosts } from '@/lib/blog';
+import { NextResponse } from "next/server";
+import { areaConfig } from "@/lib/areaConfig";
+import { getAllPosts } from "@/lib/blog";
 
-const BASE_URL = 'https://www.masterpet.co.in';
+const BASE_URL = "https://www.masterpet.co.in";
 
+/** Indexable static routes only (exclude noindex/private pages). */
 const staticPages = [
-  '', // Home
-  'privacy',
-  'terms-and-conditions',
-  'cancellation-policy',
-  'return-policy',
-  'contact',
-  'kochi-pet-grooming',
-  'blog',
+  "",
+  "privacy",
+  "terms-and-conditions",
+  "cancellation-policy",
+  "return-policy",
+  "contact",
+  "kochi-pet-grooming",
+  "blog",
+  "blog/archive",
 ];
 
+function getPageMeta(page: string) {
+  if (page === "") {
+    return { priority: "1.0", changefreq: "weekly" };
+  }
+  if (page === "blog") {
+    return { priority: "0.9", changefreq: "daily" };
+  }
+  if (page.startsWith("blog/")) {
+    return { priority: "0.7", changefreq: "weekly" };
+  }
+  if (page.startsWith("kochi-pet-grooming/")) {
+    return { priority: "0.75", changefreq: "monthly" };
+  }
+  if (page === "kochi-pet-grooming") {
+    return { priority: "0.85", changefreq: "weekly" };
+  }
+  return { priority: "0.8", changefreq: "monthly" };
+}
+
 export async function GET() {
-  // Generate blog post URLs
-  const blogPosts = getAllPosts();
-  const blogUrls = blogPosts.map(post => `blog/${post.slug}`);
+  const areaUrls = areaConfig.map((area) => `kochi-pet-grooming/${area.slug}`);
+  const blogUrls = getAllPosts().map((post) => `blog/${post.slug}`);
+  const allPages = [...staticPages, ...areaUrls, ...blogUrls];
+  const currentDate = new Date().toISOString().split("T")[0];
 
-  // Keep the sitemap focused on indexable, canonical pages.
-  const allPages = [...staticPages, ...blogUrls];
+  const urls = allPages
+    .map((page) => {
+      const url = page === "" ? BASE_URL : `${BASE_URL}/${page}`;
+      const { priority, changefreq } = getPageMeta(page);
 
-  // Get current date for lastmod
-  const currentDate = new Date().toISOString().split('T')[0];
-
-  const urls = allPages.map(
-    (page) => {
-      const url = page === '' ? BASE_URL : `${BASE_URL}/${page}`;
-      
-      // Set priority based on page type
-      let priority = '0.8';
-      if (page === '') priority = '1.0';
-      else if (page === 'blog') priority = '0.9';
-      else if (page.startsWith('blog/')) priority = '0.7';
-      
-      // Set change frequency based on page type
-      let changefreq = 'monthly';
-      if (page.startsWith('blog/')) changefreq = 'weekly';
-      else if (page === 'blog') changefreq = 'daily';
-      
       return `<url>
   <loc>${url}</loc>
   <lastmod>${currentDate}</lastmod>
   <changefreq>${changefreq}</changefreq>
   <priority>${priority}</priority>
 </url>`;
-    }
-  ).join('');
+    })
+    .join("");
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -57,8 +64,8 @@ export async function GET() {
   return new NextResponse(sitemap, {
     status: 200,
     headers: {
-      'Content-Type': 'application/xml',
-      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+      "Content-Type": "application/xml",
+      "Cache-Control": "public, max-age=3600, s-maxage=3600",
     },
   });
-} 
+}

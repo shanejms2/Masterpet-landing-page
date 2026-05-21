@@ -1,11 +1,9 @@
-"use client";
-
 import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getWhatsAppUrl } from "@/lib/constants";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Container from "./Container";
-import { getWhatsAppUrl } from "@/lib/constants";
 
 const plans = [
   {
@@ -111,11 +109,6 @@ const addOns = [
 ];
 
 const PricingSection = () => {
-  const handleWhatsAppBooking = (message: string) => {
-    const whatsappUrl = getWhatsAppUrl(message);
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  };
-
   return (
     <section className="w-full bg-white py-16 md:py-24" id="pricing" aria-label="Grooming Packages and Pricing">
       <Container>
@@ -208,7 +201,7 @@ const PricingSection = () => {
 
               <CardFooter className="pt-6">
                 <Button
-                  onClick={() => handleWhatsAppBooking(plan.whatsappMessage)}
+                  asChild
                   className={`w-full font-heading ${
                     plan.popular
                       ? "bg-brand-blue text-white hover:bg-brand-blue/90"
@@ -216,7 +209,13 @@ const PricingSection = () => {
                   } transition-colors`}
                   size="lg"
                 >
-                  {plan.cta}
+                  <a
+                    href={getWhatsAppUrl(plan.whatsappMessage)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {plan.cta}
+                  </a>
                 </Button>
               </CardFooter>
             </Card>
@@ -262,11 +261,19 @@ const PricingSection = () => {
 
               <CardFooter>
                 <Button
-                  onClick={() => handleWhatsAppBooking(`Hi! I want to add the ${addOn.name} to my grooming package. [From Masterpet Website]`)}
+                  asChild
                   variant="outline"
                   className="w-full font-heading border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white transition-colors"
                 >
-                  Add to Booking
+                  <a
+                    href={getWhatsAppUrl(
+                      `Hi! I want to add the ${addOn.name} to my grooming package. [From Masterpet Website]`
+                    )}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Add to Booking
+                  </a>
                 </Button>
               </CardFooter>
             </Card>

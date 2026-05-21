@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import KochiHeroSection from '@/components/KochiHeroSection';
+import BreadcrumbListSchema from "@/components/BreadcrumbListSchema";
 import AreaCarousel from '@/components/AreaCarousel';
 import BreadcrumbNavigation from '@/components/BreadcrumbNavigation';
 import CommunitiesMarquee from '@/components/CommunitiesMarquee';
@@ -11,35 +12,34 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import GoogleMapsSection from '@/components/GoogleMapsSection';
 import FinalCTASection from '@/components/FinalCTASection';
-import { COMPANY_INFO, absoluteUrl } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: `At-Home Pet Grooming in ${COMPANY_INFO.serviceCity} | Professional Mobile Grooming Services`,
-  description: "Professional at-home pet grooming in Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep across Kochi and surrounding areas. Book your grooming session today!",
+  title: "At-Home Pet Grooming in Kochi | Professional Mobile Grooming Services",
+  description: "Professional at-home pet grooming in Kochi. Trusted by 1000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep. Book your grooming session today!",
   keywords: ["pet grooming Kochi", "mobile pet grooming Kochi", "dog grooming Kochi", "cat grooming Kochi", "at-home grooming Kochi", "pet grooming services Kochi"],
-  authors: [{ name: COMPANY_INFO.legalName }],
-  creator: COMPANY_INFO.legalName,
-  publisher: COMPANY_INFO.legalName,
+  authors: [{ name: "Masterpet Care Private Limited" }],
+  creator: "Masterpet Care Private Limited",
+  publisher: "Masterpet Care Private Limited",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(COMPANY_INFO.website),
+  metadataBase: new URL('https://www.masterpet.co.in'),
   alternates: {
     canonical: '/kochi-pet-grooming',
   },
   openGraph: {
-    title: `At-Home Pet Grooming in ${COMPANY_INFO.serviceCity} | Professional Mobile Grooming Services`,
-    description: "Professional at-home pet grooming in Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep across Kochi and surrounding areas.",
-    url: absoluteUrl('/kochi-pet-grooming'),
-    siteName: COMPANY_INFO.siteName,
+    title: "At-Home Pet Grooming in Kochi | Professional Mobile Grooming Services",
+    description: "Professional at-home pet grooming in Kochi. Trusted by 1000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep.",
+    url: 'https://www.masterpet.co.in/kochi-pet-grooming',
+    siteName: 'Masterpet',
     images: [
       {
-        url: absoluteUrl(COMPANY_INFO.logoPath),
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: `${COMPANY_INFO.brandName} logo`,
+        alt: 'Professional At-Home Pet Grooming Services in Kochi',
       },
     ],
     locale: 'en_US',
@@ -47,10 +47,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-      title: `At-Home Pet Grooming in ${COMPANY_INFO.serviceCity} | Professional Mobile Grooming Services`,
-      description: "Professional at-home pet grooming in Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep across Kochi and surrounding areas.",
-      images: [absoluteUrl(COMPANY_INFO.logoPath)],
-      creator: COMPANY_INFO.socialHandle,
+    title: "At-Home Pet Grooming in Kochi | Professional Mobile Grooming Services",
+    description: "Professional at-home pet grooming in Kochi. Trusted by 1000+ pet parents across Kochi. Hygienic, stress-free grooming for dogs and cats at your doorstep.",
+    images: ['/og-image.jpg'],
+    creator: '@masterpet_official',
   },
   robots: {
     index: true,
@@ -63,15 +63,22 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: 'your-google-verification-code',
+  },
 };
 
 export default function KochiPetGrooming() {
   return (
     <>
-      <BreadcrumbNavigation 
+      <BreadcrumbListSchema
         items={[
-          { label: "Kochi Pet Grooming", href: "/kochi-pet-grooming" }
-        ]} 
+          { name: "Home", url: "https://www.masterpet.co.in" },
+          { name: "Kochi Pet Grooming", url: "https://www.masterpet.co.in/kochi-pet-grooming" },
+        ]}
+      />
+      <BreadcrumbNavigation
+        items={[{ label: "Kochi Pet Grooming", href: "/kochi-pet-grooming" }]}
       />
       <KochiHeroSection />
       <AreaCarousel />

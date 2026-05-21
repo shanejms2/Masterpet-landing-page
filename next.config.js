@@ -1,4 +1,7 @@
-/** @type {import('next').NextConfig} */
+/**
+ * Next.js configuration (sole config file — do not add next.config.ts).
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   // Performance optimizations
   compress: true,
@@ -17,7 +20,7 @@ const nextConfig = {
     ],
   },
   // Ensure native deps are not bundled on server
-  serverExternalPackages: ['ssh2','cpu-features'],
+  serverExternalPackages: ['ssh2', 'cpu-features', '@sparticuz/chromium', 'puppeteer-core'],
 
   // Modern JavaScript optimization - target browsers that support ES2020+
   // Note: swcMinify is enabled by default in Next.js 15+

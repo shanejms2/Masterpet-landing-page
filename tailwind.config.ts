@@ -1,79 +1,278 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Single Tailwind config for the project (landing pages, blog, shadcn/ui).
+ * Previously split across tailwind.config.js and tailwind.config.ts.
+ */
 export default {
-	darkMode: ["class"],
-	content: [
-		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-	],
-
-	theme: {
-    	extend: {
-    		fontFamily: {
-    			sans: [
-    				'var(--font-gliker)',
-    				'var(--font-fractual)'
-    			]
-    		},
-    		colors: {
-    			background: 'hsl(var(--background))',
-    			foreground: 'hsl(var(--foreground))',
-    			card: {
-    				DEFAULT: 'hsl(var(--card))',
-    				foreground: 'hsl(var(--card-foreground))'
-    			},
-    			popover: {
-    				DEFAULT: 'hsl(var(--popover))',
-    				foreground: 'hsl(var(--popover-foreground))'
-    			},
-    			primary: {
-    				DEFAULT: 'hsl(var(--primary))',
-    				foreground: 'hsl(var(--primary-foreground))'
-    			},
-    			secondary: {
-    				DEFAULT: 'hsl(var(--secondary))',
-    				foreground: 'hsl(var(--secondary-foreground))'
-    			},
-    			muted: {
-    				DEFAULT: 'hsl(var(--muted))',
-    				foreground: 'hsl(var(--muted-foreground))'
-    			},
-    			accent: {
-    				DEFAULT: 'hsl(var(--accent))',
-    				foreground: 'hsl(var(--accent-foreground))'
-    			},
-    			destructive: {
-    				DEFAULT: 'hsl(var(--destructive))',
-    				foreground: 'hsl(var(--destructive-foreground))'
-    			},
-    			border: 'hsl(var(--border))',
-    			input: 'hsl(var(--input))',
-    			ring: 'hsl(var(--ring))',
-    			chart: {
-    				'1': 'hsl(var(--chart-1))',
-    				'2': 'hsl(var(--chart-2))',
-    				'3': 'hsl(var(--chart-3))',
-    				'4': 'hsl(var(--chart-4))',
-    				'5': 'hsl(var(--chart-5))'
-    			},
-    			sidebar: {
-    				DEFAULT: 'hsl(var(--sidebar-background))',
-    				foreground: 'hsl(var(--sidebar-foreground))',
-    				primary: 'hsl(var(--sidebar-primary))',
-    				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-    				accent: 'hsl(var(--sidebar-accent))',
-    				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-    				border: 'hsl(var(--sidebar-border))',
-    				ring: 'hsl(var(--sidebar-ring))'
-    			}
-    		},
-    		borderRadius: {
-    			lg: 'var(--radius)',
-    			md: 'calc(var(--radius) - 2px)',
-    			sm: 'calc(var(--radius) - 4px)'
-    		}
-    	}
+  darkMode: ["class"],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-gliker)", "var(--font-fractul)", "Arial", "sans-serif"],
+        heading: ["Gliker", "sans-serif"],
+        body: ["Fractul", "sans-serif"],
+        fractul: ["Fractul", "sans-serif"],
+        gliker: ["Gliker", "sans-serif"],
+        "noto-sans": ["var(--font-noto-sans)", "Arial", "sans-serif"],
+        lora: ["var(--font-lora)", "Georgia", "serif"],
+      },
+      colors: {
+        brand: {
+          blue: "#0A0A90",
+          green: "#A2ED4A",
+        },
+        background: "var(--background)",
+        "section-background": "var(--section-background)",
+        foreground: "hsl(var(--foreground))",
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        chart: {
+          "1": "hsl(var(--chart-1))",
+          "2": "hsl(var(--chart-2))",
+          "3": "hsl(var(--chart-3))",
+          "4": "hsl(var(--chart-4))",
+          "5": "hsl(var(--chart-5))",
+        },
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "none",
+            color: "#333",
+            lineHeight: "1.6",
+            fontSize: "16px",
+            h1: {
+              fontFamily: "Lora, Georgia, serif",
+              color: "#222",
+              fontWeight: "700",
+              fontSize: "42px",
+              lineHeight: "1.2",
+              marginTop: "2.5em",
+              marginBottom: "1.2em",
+              borderBottom: "none",
+              paddingBottom: "0",
+            },
+            h2: {
+              fontFamily: "Lora, Georgia, serif",
+              color: "#222",
+              fontWeight: "600",
+              fontSize: "32px",
+              lineHeight: "1.25",
+              marginTop: "2.5em",
+              marginBottom: "1em",
+            },
+            h3: {
+              fontFamily: "Lora, Georgia, serif",
+              color: "#222",
+              fontWeight: "600",
+              fontSize: "24px",
+              lineHeight: "1.3",
+              marginTop: "2.5em",
+              marginBottom: "0.75em",
+            },
+            h4: {
+              fontFamily: "Lora, Georgia, serif",
+              color: "#222",
+              fontWeight: "600",
+              fontSize: "20px",
+              lineHeight: "1.3",
+              marginTop: "2em",
+              marginBottom: "0.5em",
+            },
+            p: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              marginTop: "0",
+              marginBottom: "1.2em",
+              lineHeight: "1.6",
+              fontSize: "16px",
+              fontWeight: "400",
+              color: "#333",
+            },
+            ul: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              listStyleType: "disc",
+              paddingLeft: "2rem",
+              marginTop: "1.5rem",
+              marginBottom: "1.5rem",
+            },
+            ol: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              listStyleType: "decimal",
+              paddingLeft: "2rem",
+              marginTop: "1.5rem",
+              marginBottom: "1.5rem",
+            },
+            li: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              lineHeight: "1.6",
+              color: "#333",
+            },
+            "li::marker": {
+              color: "#3b82f6",
+            },
+            a: {
+              color: "#3b82f6",
+              textDecoration: "none",
+              fontWeight: "400",
+              "&:hover": {
+                textDecoration: "underline",
+                textDecorationThickness: "1px",
+              },
+            },
+            strong: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              color: "#222",
+              fontWeight: "600",
+            },
+            em: {
+              fontFamily: "Lora, Georgia, serif",
+              color: "#222",
+              fontStyle: "italic",
+            },
+            blockquote: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              borderLeftWidth: "4px",
+              borderLeftColor: "#3b82f6",
+              backgroundColor: "#f8fafc",
+              padding: "1.5rem",
+              borderRadius: "0 0.5rem 0.5rem 0",
+              fontStyle: "normal",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              color: "#333",
+              fontSize: "18px",
+              fontWeight: "600",
+            },
+            code: {
+              fontFamily:
+                'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+              backgroundColor: "#f1f5f9",
+              color: "#222",
+              padding: "0.25rem 0.5rem",
+              borderRadius: "0.25rem",
+              fontSize: "14px",
+              fontWeight: "400",
+            },
+            pre: {
+              backgroundColor: "#1e293b",
+              color: "#f8fafc",
+              padding: "1.5rem",
+              borderRadius: "0.5rem",
+              overflowX: "auto",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+            },
+            img: {
+              borderRadius: "0.5rem",
+              boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              border: "1px solid #e2e8f0",
+            },
+            hr: {
+              borderColor: "#e2e8f0",
+              marginTop: "3rem",
+              marginBottom: "3rem",
+              borderWidth: "1px",
+            },
+            table: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              borderCollapse: "collapse",
+              width: "100%",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+            },
+            th: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              border: "1px solid #cbd5e1",
+              backgroundColor: "#f8fafc",
+              padding: "0.75rem",
+              textAlign: "left",
+              fontWeight: "600",
+              color: "#222",
+            },
+            td: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              border: "1px solid #cbd5e1",
+              padding: "0.75rem",
+              color: "#333",
+            },
+            dl: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+            },
+            dt: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              fontWeight: "600",
+              color: "#222",
+              marginBottom: "0.5rem",
+            },
+            dd: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              color: "#333",
+              marginLeft: "1rem",
+              marginBottom: "1rem",
+            },
+            small: {
+              fontFamily: "Noto Sans, Arial, sans-serif",
+              fontSize: "14px",
+              lineHeight: "1.4",
+              color: "#666",
+            },
+          },
+        },
+      },
     },
-	plugins: [require("tailwindcss-animate")],
+  },
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;
