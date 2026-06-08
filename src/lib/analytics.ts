@@ -91,3 +91,17 @@ export const trackConversion = (action: string, value?: number) => {
     });
   }
 };
+
+export const trackWhatsappClick = () => {
+  window.gtag?.('event', 'whatsapp_click', {
+    event_category: 'lead',
+    event_label: 'website_whatsapp',
+  });
+};
+
+export const trackPhoneClick = () => {
+  window.gtag?.('event', 'phone_click', {
+    event_category: 'lead',
+    event_label: 'website_phone',
+  });
+};

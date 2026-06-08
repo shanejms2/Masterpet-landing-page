@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Container from "./Container";
 import { getWhatsAppUrl } from "@/lib/constants";
+import { trackWhatsappClick } from "@/lib/analytics";
 
 const whatsappLink = getWhatsAppUrl(
   "Hi Masterpet! I want to book a grooming session with Masterpet. [From Masterpet Website]"
@@ -21,6 +24,7 @@ const FinalCTASection = () => (
             </p>
             <a
               href={whatsappLink}
+              onClick={() => trackWhatsappClick()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg font-semibold"

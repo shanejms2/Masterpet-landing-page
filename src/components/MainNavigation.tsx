@@ -8,6 +8,7 @@ import { X, Menu, Phone } from "lucide-react";
 import { NAV_LINKS } from "./navConfig";
 import { usePathname } from "next/navigation";
 import { COMPANY_INFO } from "@/lib/constants";
+import { trackPhoneClick } from "@/lib/analytics";
 
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
@@ -119,6 +120,7 @@ export function MainNavigation() {
             <div className="hidden md:flex flex-row items-center w-auto sm:ml-4 gap-3">
               <a
                 href={`tel:${COMPANY_INFO.phone}`}
+                onClick={() => trackPhoneClick()}
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green/10 hover:bg-brand-green/20 text-brand-blue font-fractul font-medium transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 outline-none group"
                 aria-label={`Call ${COMPANY_INFO.brandName} at ${COMPANY_INFO.phoneDisplay}`}
               >
@@ -183,6 +185,7 @@ export function MainNavigation() {
         <div className="flex flex-col gap-3 px-6 pb-8 mt-auto w-full">
           <a
             href={`tel:${COMPANY_INFO.phone}`}
+            onClick={() => trackPhoneClick()}
             className="flex items-center gap-3 w-full justify-center py-3 px-4 rounded-full bg-brand-green/10 hover:bg-brand-green/20 transition-all duration-200 focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 text-brand-blue font-fractul font-medium shadow-sm"
             aria-label={`Call ${COMPANY_INFO.brandName} at ${COMPANY_INFO.phoneDisplay}`}
           >

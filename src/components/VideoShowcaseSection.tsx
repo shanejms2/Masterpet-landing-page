@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Play, Pause, Volume2, VolumeX, Loader2 } from "lucide-react";
 import Container from "./Container";
 import { getWhatsAppUrl } from "@/lib/constants";
+import { trackWhatsappClick } from "@/lib/analytics";
 
 const videos = [
   {
@@ -518,7 +519,10 @@ const VideoShowcaseSection: React.FC = () => {
           <Button 
             size="lg"
             className="bg-brand-green text-brand-blue hover:bg-brand-blue hover:text-white font-heading text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-            onClick={() => window.open(getWhatsAppUrl("Hi Masterpet! I want to book a grooming session. [From Masterpet Website]"), '_blank')}
+            onClick={() => {
+              trackWhatsappClick();
+              window.open(getWhatsAppUrl("Hi Masterpet! I want to book a grooming session. [From Masterpet Website]"), '_blank');
+            }}
           >
             Book Now
           </Button>

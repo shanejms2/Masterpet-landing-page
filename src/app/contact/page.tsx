@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Container from "@/components/Container";
 import { COMPANY_INFO } from "@/lib/constants";
+import { trackPhoneClick, trackWhatsappClick } from "@/lib/analytics";
 import { Phone, MessageCircle, Mail } from "lucide-react";
 
 const ContactPage = () => {
@@ -20,6 +21,7 @@ const ContactPage = () => {
     setError("");
     const text = `Hi Masterpet!\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`;
     const url = `https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${encodeURIComponent(text)}`;
+    trackWhatsappClick();
     window.open(url, "_blank");
   };
 
@@ -104,6 +106,7 @@ const ContactPage = () => {
               <div className="flex flex-col gap-3 text-brand-blue font-body text-base">
                 <a
                   href={`tel:${COMPANY_INFO.phone}`}
+                  onClick={() => trackPhoneClick()}
                   className="inline-flex items-center gap-2 hover:text-brand-green underline-offset-2 focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
                 >
                   <Phone className="h-4 w-4 shrink-0 text-brand-green" aria-hidden="true" />
@@ -111,6 +114,7 @@ const ContactPage = () => {
                 </a>
                 <a
                   href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
+                  onClick={() => trackWhatsappClick()}
                   className="inline-flex items-center gap-2 hover:text-brand-green underline-offset-2 focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
                   target="_blank"
                   rel="noopener noreferrer"

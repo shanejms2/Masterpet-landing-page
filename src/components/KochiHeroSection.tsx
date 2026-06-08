@@ -6,6 +6,7 @@ import { Star, ArrowRight } from "lucide-react";
 import Container from "./Container";
 import type { gsap } from 'gsap';
 import { getWhatsAppUrl as buildWhatsAppUrl } from "@/lib/constants";
+import { trackWhatsappClick } from "@/lib/analytics";
 
 interface KochiHeroSectionProps {
   area?: string;
@@ -165,6 +166,7 @@ const KochiHeroSection = ({ area }: KochiHeroSectionProps) => {
                 className="inline-flex items-center justify-center font-heading bg-brand-blue text-white px-8 py-4 rounded-full shadow-lg hover:bg-brand-green hover:text-brand-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green transition-all duration-300 text-lg sm:text-xl gap-3 group"
                 tabIndex={0}
                 aria-label="Book Now on WhatsApp"
+                onClick={() => trackWhatsappClick()}
               >
                 <FaWhatsapp className="text-2xl group-hover:scale-110 transition-transform" aria-hidden="true" />
                 Book Grooming

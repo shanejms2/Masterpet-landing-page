@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
 import Container from "./Container";
 import { getWhatsAppUrl } from "@/lib/constants";
+import { trackPhoneClick, trackWhatsappClick } from "@/lib/analytics";
 
 const serviceAreas = [
   {
@@ -89,6 +92,7 @@ const ServiceAreasSection = () => {
                 
                 <Link
                   href={getWhatsAppUrl(`Hi Masterpet! I want to book a grooming session in ${area.name}. [From Masterpet Website]`)}
+                  onClick={() => trackWhatsappClick()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-brand-blue text-white rounded-lg font-fractul font-medium hover:bg-brand-blue/90 transition-colors text-sm"
@@ -113,6 +117,7 @@ const ServiceAreasSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href={getWhatsAppUrl("Hi Masterpet! Do you provide grooming services in my area? [From Masterpet Website]")}
+                onClick={() => trackWhatsappClick()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-green text-brand-blue rounded-lg font-fractul font-medium hover:bg-brand-green/90 transition-colors"
@@ -125,6 +130,7 @@ const ServiceAreasSection = () => {
               
               <a
                 href="tel:+918590643269"
+                onClick={() => trackPhoneClick()}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-blue text-white rounded-lg font-fractul font-medium hover:bg-brand-blue/90 transition-colors"
                 tabIndex={0}
                 aria-label="Call us to check service availability"

@@ -1,6 +1,9 @@
+"use client";
+
 import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppUrl } from "@/lib/constants";
+import { trackWhatsappClick } from "@/lib/analytics";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Container from "./Container";
@@ -211,6 +214,7 @@ const PricingSection = () => {
                 >
                   <a
                     href={getWhatsAppUrl(plan.whatsappMessage)}
+                    onClick={() => trackWhatsappClick()}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -269,6 +273,7 @@ const PricingSection = () => {
                     href={getWhatsAppUrl(
                       `Hi! I want to add the ${addOn.name} to my grooming package. [From Masterpet Website]`
                     )}
+                    onClick={() => trackWhatsappClick()}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

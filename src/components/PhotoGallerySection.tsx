@@ -1,6 +1,9 @@
+"use client";
+
 import Container from "./Container";
 import PhotoGalleryCarousel, { type GalleryImage } from "./PhotoGalleryCarousel";
 import { getWhatsAppUrl } from "@/lib/constants";
+import { trackWhatsappClick } from "@/lib/analytics";
 
 const galleryImages: GalleryImage[] = [
   {
@@ -117,6 +120,7 @@ const PhotoGallerySection = () => {
           </p>
           <a
             href={getWhatsAppUrl("Hi Masterpet! I want to book a grooming session. [From Masterpet Website]")}
+            onClick={() => trackWhatsappClick()}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-brand-green text-brand-blue hover:bg-brand-blue hover:text-white font-heading text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"

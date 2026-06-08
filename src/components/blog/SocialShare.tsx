@@ -15,7 +15,7 @@ import {
   ExternalLink
 } from 'lucide-react';
 import { BlogPost } from '@/types/blog';
-import { trackBlogShare } from '@/lib/analytics';
+import { trackBlogShare, trackWhatsappClick } from '@/lib/analytics';
 
 interface SocialShareProps {
   post: BlogPost;
@@ -93,6 +93,9 @@ const SocialShare = ({ post, className = '' }: SocialShareProps) => {
   };
 
   const handleSocialShare = (href: string, platform: string) => {
+    if (platform === 'WhatsApp') {
+      trackWhatsappClick();
+    }
     window.open(href, '_blank', 'width=600,height=400,scrollbars=yes,resizable=yes');
     trackBlogShare(platform, postTitle);
   };

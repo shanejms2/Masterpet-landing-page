@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, Heart, Mail, Phone, MapPin } from "lucide-react";
 import { areaConfig } from "@/lib/areaConfig";
 import { COMPANY_INFO } from "@/lib/constants";
+import { trackPhoneClick, trackWhatsappClick } from "@/lib/analytics";
 
 /** Shown outside the accordion; remainder stay in <details> for crawlable HTML. */
 const FEATURED_AREA_COUNT = 6;
@@ -100,6 +103,7 @@ const Footer = () => (
           <div className="space-y-3">
             <a
               href={`tel:${COMPANY_INFO.phone}`}
+              onClick={() => trackPhoneClick()}
               className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
             >
               <Phone className="w-4 h-4" />
@@ -107,6 +111,7 @@ const Footer = () => (
             </a>
             <a
               href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
+              onClick={() => trackWhatsappClick()}
               className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
             >
               <Mail className="w-4 h-4" />

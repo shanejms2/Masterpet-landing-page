@@ -5,6 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { Star, ArrowRight } from "lucide-react";
 import Container from "./Container";
 import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
+import { trackWhatsappClick } from "@/lib/analytics";
 
 const HeroSection = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -152,9 +153,11 @@ const HeroSection = () => {
                 className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
                 tabIndex={0}
                 aria-label="Book grooming session on WhatsApp"
+                onClick={() => trackWhatsappClick()}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
+                    trackWhatsappClick();
                     window.open(e.currentTarget.href, '_blank');
                   }
                 }}

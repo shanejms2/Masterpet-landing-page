@@ -1,3 +1,5 @@
+"use client";
+
 import { MessageCircle, Phone, Mail } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -5,6 +7,7 @@ import Container from "./Container";
 import FAQSchema from "./FAQSchema";
 import FAQAccordion from "./FAQAccordion";
 import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
+import { trackPhoneClick, trackWhatsappClick } from "@/lib/analytics";
 
 const contactMethods = [
   {
@@ -65,6 +68,13 @@ const FAQSection = () => {
                     <a
                       key={method.title}
                       href={method.href}
+                      onClick={() => {
+                        if (method.href.includes("wa.me")) {
+                          trackWhatsappClick();
+                        } else if (method.href.startsWith("tel:")) {
+                          trackPhoneClick();
+                        }
+                      }}
                       target={method.href.startsWith("http") ? "_blank" : undefined}
                       rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-brand-blue/30 hover:bg-brand-blue/5 transition-all duration-300 group"

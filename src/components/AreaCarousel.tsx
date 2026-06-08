@@ -5,6 +5,7 @@ import { MapPin, ArrowRight, ChevronLeft, ChevronRight, Search } from "lucide-re
 import Container from "./Container";
 import { areaConfig } from "@/lib/areaConfig";
 import { getWhatsAppUrl } from "@/lib/constants";
+import { trackWhatsappClick } from "@/lib/analytics";
 
 interface AreaCarouselProps {
   currentArea?: string;
@@ -209,6 +210,7 @@ const AreaCarousel = ({ currentArea, showSearch = true }: AreaCarouselProps) => 
                     
                     <Link
                       href={getWhatsAppUrl(`Hi Masterpet! I want to book a grooming session in ${area.name}. [From Masterpet Website]`)}
+                      onClick={() => trackWhatsappClick()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`
