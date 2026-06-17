@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import WebSiteSchema from "@/components/WebSiteSchema";
 import HeroSection from '../components/HeroSection';
 import CommunitiesMarquee from '../components/CommunitiesMarquee';
 import PhotoGallerySection from '../components/PhotoGallerySection';
@@ -37,6 +38,7 @@ const VideoShowcaseSection = dynamic(() => import('../components/VideoShowcaseSe
 export default function Home() {
   return (
     <>
+      <WebSiteSchema />
       <HeroSection />
       <CommunitiesMarquee />
       <VideoShowcaseSection />

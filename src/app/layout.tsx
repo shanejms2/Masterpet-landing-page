@@ -10,6 +10,7 @@ import AnnouncementBannerWrapper from "@/components/AnnouncementBannerWrapper";
 import { lora, notoSans } from "@/lib/fonts";
 
 export const metadata: Metadata = {
+  applicationName: "Masterpet",
   title: "Masterpet - At-Home Pet Grooming in Kochi | Professional Dog & Cat Grooming",
   description:
     "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi. Trusted by pet parents across Kochi and surrounding areas. Book your session today!",
