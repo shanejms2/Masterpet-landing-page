@@ -8,6 +8,7 @@ import NAPSchema from "@/components/NAPSchema";
 import FooterWrapper from "@/components/FooterWrapper";
 import AnnouncementBannerWrapper from "@/components/AnnouncementBannerWrapper";
 import { lora, notoSans } from "@/lib/fonts";
+import { GOOGLE_ADS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   applicationName: "Masterpet",
@@ -154,6 +155,19 @@ export default function RootLayout({
               page_location: window.location.href,
               send_page_view: true,
               transport_type: 'beacon'
+            });
+            gtag('config', '${GOOGLE_ADS.conversionId}');
+            gtag('config', '${GOOGLE_ADS.phoneConversionSendTo}', {
+              phone_conversion_number: '${GOOGLE_ADS.phoneConversionNumber}',
+              phone_conversion_callback: function(formatted_number, mobile_number) {
+                document.querySelectorAll('[data-google-ads-phone]').forEach(function(el) {
+                  el.setAttribute('href', 'tel:' + mobile_number);
+                  var label = el.querySelector('[data-google-ads-phone-label]');
+                  if (label) {
+                    label.textContent = formatted_number;
+                  }
+                });
+              }
             });
           `}
         </Script>

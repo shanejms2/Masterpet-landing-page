@@ -7,30 +7,13 @@ import Container from "./Container";
 import FAQSchema from "./FAQSchema";
 import FAQAccordion from "./FAQAccordion";
 import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
-import { trackPhoneClick, trackWhatsappClick } from "@/lib/analytics";
-
-const contactMethods = [
-  {
-    icon: MessageCircle,
-    title: "WhatsApp",
-    description: "Quick booking and support",
-    href: getWhatsAppUrl("Hi Masterpet! I have a question about your services. [From Masterpet Website]"),
-  },
-  {
-    icon: Phone,
-    title: "Call Us",
-    description: "Speak with our team",
-    href: `tel:${COMPANY_INFO.phone.replace(/\s/g, "")}`,
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    description: "Send us a message",
-    href: `mailto:${COMPANY_INFO.email}`,
-  },
-];
+import { trackWhatsappClick } from "@/lib/analytics";
+import PhoneLink from "./PhoneLink";
 
 const FAQSection = () => {
+  const whatsappHref = getWhatsAppUrl(
+    "Hi Masterpet! I have a question about your services. [From Masterpet Website]"
+  );
   return (
     <section className="w-full bg-background py-16 md:py-24" id="faq" aria-label="Frequently Asked Questions">
       <Container>
@@ -64,37 +47,66 @@ const FAQSection = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  {contactMethods.map((method) => (
-                    <a
-                      key={method.title}
-                      href={method.href}
-                      onClick={() => {
-                        if (method.href.includes("wa.me")) {
-                          trackWhatsappClick();
-                        } else if (method.href.startsWith("tel:")) {
-                          trackPhoneClick();
-                        }
-                      }}
-                      target={method.href.startsWith("http") ? "_blank" : undefined}
-                      rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-brand-blue/30 hover:bg-brand-blue/5 transition-all duration-300 group"
-                    >
-                      <div className="w-8 h-8 bg-brand-blue/10 rounded-full flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                        <method.icon className="h-4 w-4 text-brand-blue group-hover:text-white" />
+                  <a
+                    href={whatsappHref}
+                    onClick={() => trackWhatsappClick()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-brand-blue/30 hover:bg-brand-blue/5 transition-all duration-300 group"
+                  >
+                    <div className="w-8 h-8 bg-brand-blue/10 rounded-full flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                      <MessageCircle className="h-4 w-4 text-brand-blue group-hover:text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-body text-sm font-semibold text-brand-blue truncate">
+                        WhatsApp
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="font-body text-sm font-semibold text-brand-blue truncate">
-                          {method.title}
-                        </div>
-                        <p className="font-body text-xs text-brand-blue/60 truncate">
-                          {method.description}
-                        </p>
+                      <p className="font-body text-xs text-brand-blue/60 truncate">
+                        Quick booking and support
+                      </p>
+                    </div>
+                    <div className="text-xs font-body text-brand-blue/60 group-hover:text-brand-blue transition-colors">
+                      →
+                    </div>
+                  </a>
+                  <PhoneLink className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-brand-blue/30 hover:bg-brand-blue/5 transition-all duration-300 group">
+                    <div className="w-8 h-8 bg-brand-blue/10 rounded-full flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                      <Phone className="h-4 w-4 text-brand-blue group-hover:text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-body text-sm font-semibold text-brand-blue truncate">
+                        Call Us
                       </div>
-                      <div className="text-xs font-body text-brand-blue/60 group-hover:text-brand-blue transition-colors">
-                        →
+                      <p
+                        className="font-body text-xs text-brand-blue/60 truncate"
+                        data-google-ads-phone-label
+                      >
+                        {COMPANY_INFO.phoneDisplay}
+                      </p>
+                    </div>
+                    <div className="text-xs font-body text-brand-blue/60 group-hover:text-brand-blue transition-colors">
+                      →
+                    </div>
+                  </PhoneLink>
+                  <a
+                    href={`mailto:${COMPANY_INFO.email}`}
+                    className="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-brand-blue/30 hover:bg-brand-blue/5 transition-all duration-300 group"
+                  >
+                    <div className="w-8 h-8 bg-brand-blue/10 rounded-full flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                      <Mail className="h-4 w-4 text-brand-blue group-hover:text-white" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-body text-sm font-semibold text-brand-blue truncate">
+                        Email
                       </div>
-                    </a>
-                  ))}
+                      <p className="font-body text-xs text-brand-blue/60 truncate">
+                        Send us a message
+                      </p>
+                    </div>
+                    <div className="text-xs font-body text-brand-blue/60 group-hover:text-brand-blue transition-colors">
+                      →
+                    </div>
+                  </a>
                 </CardContent>
               </Card>
 

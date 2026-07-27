@@ -4,7 +4,8 @@ import Link from "next/link";
 import { MapPin, ArrowRight } from "lucide-react";
 import Container from "./Container";
 import { getWhatsAppUrl } from "@/lib/constants";
-import { trackPhoneClick, trackWhatsappClick } from "@/lib/analytics";
+import { trackWhatsappClick } from "@/lib/analytics";
+import PhoneLink from "./PhoneLink";
 
 const serviceAreas = [
   {
@@ -128,15 +129,13 @@ const ServiceAreasSection = () => {
                 <ArrowRight className="w-4 h-4" />
               </a>
               
-              <a
-                href="tel:+918590643269"
-                onClick={() => trackPhoneClick()}
+              <PhoneLink
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-blue text-white rounded-lg font-fractul font-medium hover:bg-brand-blue/90 transition-colors"
                 tabIndex={0}
                 aria-label="Call us to check service availability"
               >
                 Call Us
-              </a>
+              </PhoneLink>
             </div>
           </div>
         </div>

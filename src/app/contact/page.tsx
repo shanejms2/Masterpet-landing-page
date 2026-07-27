@@ -2,8 +2,9 @@
 import { useState } from "react";
 import Container from "@/components/Container";
 import { COMPANY_INFO } from "@/lib/constants";
-import { trackPhoneClick, trackWhatsappClick } from "@/lib/analytics";
+import { trackWhatsappClick } from "@/lib/analytics";
 import { Phone, MessageCircle, Mail } from "lucide-react";
+import PhoneLink from "@/components/PhoneLink";
 
 const ContactPage = () => {
   const [name, setName] = useState("");
@@ -104,14 +105,10 @@ const ContactPage = () => {
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200">
               <h2 className="font-heading text-xl text-brand-blue mb-2">Direct Contact</h2>
               <div className="flex flex-col gap-3 text-brand-blue font-body text-base">
-                <a
-                  href={`tel:${COMPANY_INFO.phone}`}
-                  onClick={() => trackPhoneClick()}
-                  className="inline-flex items-center gap-2 hover:text-brand-green underline-offset-2 focus-visible:ring-2 focus-visible:ring-brand-blue rounded"
-                >
+                <PhoneLink className="inline-flex items-center gap-2 hover:text-brand-green underline-offset-2 focus-visible:ring-2 focus-visible:ring-brand-blue rounded">
                   <Phone className="h-4 w-4 shrink-0 text-brand-green" aria-hidden="true" />
-                  <span>{COMPANY_INFO.phoneDisplay}</span>
-                </a>
+                  <span data-google-ads-phone-label>{COMPANY_INFO.phoneDisplay}</span>
+                </PhoneLink>
                 <a
                   href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
                   onClick={() => trackWhatsappClick()}

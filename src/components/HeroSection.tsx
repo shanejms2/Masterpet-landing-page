@@ -2,10 +2,11 @@
 import Image from "next/image";
 import { useRef, useEffect, useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { Star, ArrowRight } from "lucide-react";
+import { Star, ArrowRight, Phone } from "lucide-react";
 import Container from "./Container";
 import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
 import { trackWhatsappClick } from "@/lib/analytics";
+import PhoneLink from "./PhoneLink";
 
 const HeroSection = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
@@ -145,43 +146,31 @@ const HeroSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <a
+              <PhoneLink
                 ref={buttonRef}
+                className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
+                tabIndex={0}
+              >
+                <Phone className="h-6 w-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                Call Now
+                <span className="sr-only" data-google-ads-phone-label>
+                  {COMPANY_INFO.phoneDisplay}
+                </span>
+              </PhoneLink>
+
+              <a
+                ref={secondaryCtaRef}
                 href={getWhatsAppUrl("Hi Masterpet! I am interested in booking a pet grooming session. [From Masterpet Website]")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
+                className="inline-flex items-center justify-center font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white hover:border-brand-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
                 tabIndex={0}
                 aria-label="Book grooming session on WhatsApp"
                 onClick={() => trackWhatsappClick()}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    trackWhatsappClick();
-                    window.open(e.currentTarget.href, '_blank');
-                  }
-                }}
               >
                 <FaWhatsapp className="text-2xl group-hover:scale-110 transition-transform" aria-hidden="true" />
-                Book Grooming
+                WhatsApp
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-              </a>
-              
-              <a
-                ref={secondaryCtaRef}
-                href="#pricing"
-                className="inline-flex items-center justify-center font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white hover:border-brand-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-2"
-                tabIndex={0}
-                aria-label="View pricing and packages"
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-              >
-                View Packages
-                <ArrowRight className="h-5 w-5" aria-hidden="true" />
               </a>
             </div>
             

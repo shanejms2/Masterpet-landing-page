@@ -5,7 +5,8 @@ import Link from "next/link";
 import { ChevronDown, Heart, Mail, Phone, MapPin } from "lucide-react";
 import { areaConfig } from "@/lib/areaConfig";
 import { COMPANY_INFO } from "@/lib/constants";
-import { trackPhoneClick, trackWhatsappClick } from "@/lib/analytics";
+import { trackWhatsappClick } from "@/lib/analytics";
+import PhoneLink from "./PhoneLink";
 
 /** Shown outside the accordion; remainder stay in <details> for crawlable HTML. */
 const FEATURED_AREA_COUNT = 6;
@@ -101,14 +102,10 @@ const Footer = () => (
         <div className="space-y-4">
           <h3 className="font-heading font-semibold text-[#00008D]">Contact</h3>
           <div className="space-y-3">
-            <a
-              href={`tel:${COMPANY_INFO.phone}`}
-              onClick={() => trackPhoneClick()}
-              className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
-            >
+            <PhoneLink className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors">
               <Phone className="w-4 h-4" />
-              <span>{COMPANY_INFO.phoneDisplay}</span>
-            </a>
+              <span data-google-ads-phone-label>{COMPANY_INFO.phoneDisplay}</span>
+            </PhoneLink>
             <a
               href={`https://wa.me/${COMPANY_INFO.whatsappNumber}`}
               onClick={() => trackWhatsappClick()}

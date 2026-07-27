@@ -4,6 +4,7 @@ export const COMPANY_INFO = {
   website: "https://www.masterpet.co.in",
   siteName: "Masterpet",
   phone: "+918590643269",
+  /** Must match Google Ads phone_conversion_number exactly (including spaces) */
   phoneDisplay: "+91 85906 43269",
   whatsappNumber: "918590643269",
   email: "hello@masterpet.co.in",
@@ -23,6 +24,13 @@ export const COMPANY_INFO = {
   logoPath: "/brand_assets/Logo-Mark/Green/MP_LogoMark_greenfill.png",
   googleBusinessUrl: "https://maps.app.goo.gl/h4QxTZVmMNWcaA1Q7",
   justdialUrl: "https://jsdl.in/DT-25AZFB2UZUC",
+} as const;
+
+/** Google Ads website call conversion (forwarding number) */
+export const GOOGLE_ADS = {
+  conversionId: "AW-16630949671",
+  phoneConversionSendTo: "AW-16630949671/5VVtCKX6ltccEKfOoPo9",
+  phoneConversionNumber: COMPANY_INFO.phoneDisplay,
 } as const;
 
 export const absoluteUrl = (path = "") => {
