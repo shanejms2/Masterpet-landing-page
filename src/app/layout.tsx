@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
@@ -133,6 +132,39 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/brand_assets/Profile/Favicon/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#1b1582" />
+        {/* Inline in <head> so Google Ads tag scanner can detect AW- without waiting on hydration */}
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS.conversionId}`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-0GBLF1WP82', {
+                page_title: document.title,
+                page_location: window.location.href,
+                send_page_view: true,
+                transport_type: 'beacon'
+              });
+              gtag('config', '${GOOGLE_ADS.conversionId}');
+              gtag('config', '${GOOGLE_ADS.phoneConversionSendTo}', {
+                phone_conversion_number: '${GOOGLE_ADS.phoneConversionNumber}',
+                phone_conversion_callback: function(formatted_number, mobile_number) {
+                  document.querySelectorAll('[data-google-ads-phone]').forEach(function(el) {
+                    el.setAttribute('href', 'tel:' + mobile_number);
+                    var label = el.querySelector('[data-google-ads-phone-label]');
+                    if (label) {
+                      label.textContent = formatted_number;
+                    }
+                  });
+                }
+              });
+            `,
+          }}
+        />
       </head>
       <body className="font-gliker bg-background min-h-screen">
         <AnnouncementBannerWrapper />
@@ -141,36 +173,6 @@ export default function RootLayout({
         <FooterWrapper />
         <SpeedInsights />
         <Analytics />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-0GBLF1WP82"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-0GBLF1WP82', {
-              page_title: document.title,
-              page_location: window.location.href,
-              send_page_view: true,
-              transport_type: 'beacon'
-            });
-            gtag('config', '${GOOGLE_ADS.conversionId}');
-            gtag('config', '${GOOGLE_ADS.phoneConversionSendTo}', {
-              phone_conversion_number: '${GOOGLE_ADS.phoneConversionNumber}',
-              phone_conversion_callback: function(formatted_number, mobile_number) {
-                document.querySelectorAll('[data-google-ads-phone]').forEach(function(el) {
-                  el.setAttribute('href', 'tel:' + mobile_number);
-                  var label = el.querySelector('[data-google-ads-phone-label]');
-                  if (label) {
-                    label.textContent = formatted_number;
-                  }
-                });
-              }
-            });
-          `}
-        </Script>
       </body>
     </html>
   );
