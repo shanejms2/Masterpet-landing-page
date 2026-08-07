@@ -11,19 +11,29 @@ export const COMPANY_INFO = {
   socialHandle: "@masterpet_official",
   hoursDisplay: "9:00 AM - 9:00 PM",
   openingHoursSchema: "Mo-Su 09:00-21:00",
-  addressLine1: "Anu Villa, XVI / 80, Nethaji Rd, near YMCA Indoor Stadium, Periyar Nagar",
-  addressLocality: "Aluva",
+  /** Primary public NAP — matches Google Business Profile (Vennala shop) */
+  addressLine1: "Vadakkadath Building, 42/563, Vennala High School Rd, opposite St. Mathews Church",
+  addressLocality: "Vennala",
+  addressCity: "Kochi",
   addressRegion: "Kerala",
-  postalCode: "683101",
+  postalCode: "682028",
   addressCountry: "IN",
+  latitude: 9.9945,
+  longitude: 76.3258,
   serviceCity: "Kochi",
   serviceRegion: "Ernakulam district",
   serviceAreaText: "Kochi and surrounding areas in Ernakulam district, Kerala, India",
   businessDescription:
-    "Professional, hygienic, and stress-free at-home pet grooming for dogs and cats in Kochi and surrounding areas.",
+    "Pet store and professional at-home pet grooming for dogs and cats in Kochi and surrounding areas.",
   logoPath: "/brand_assets/Logo-Mark/Green/MP_LogoMark_greenfill.png",
   googleBusinessUrl: "https://maps.app.goo.gl/h4QxTZVmMNWcaA1Q7",
   justdialUrl: "https://jsdl.in/DT-25AZFB2UZUC",
+  socialUrls: [
+    "https://instagram.com/masterpet_official",
+    "https://www.facebook.com/profile.php?id=61555806585903",
+    "https://www.youtube.com/@Masterpetofficial",
+    "https://www.linkedin.com/company/masterpet-care/",
+  ],
 } as const;
 
 /** Google Ads website call conversion (forwarding number) */
@@ -42,3 +52,6 @@ export const absoluteUrl = (path = "") => {
 
 export const getWhatsAppUrl = (message: string) =>
   `https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+export const getFullAddress = () =>
+  `${COMPANY_INFO.addressLine1}, ${COMPANY_INFO.addressLocality}, ${COMPANY_INFO.addressCity}, ${COMPANY_INFO.addressRegion} ${COMPANY_INFO.postalCode}`;

@@ -129,7 +129,11 @@ const Footer = () => (
               className="flex items-center gap-2 text-sm text-[#00008D]/80 hover:text-[#00008D] transition-colors"
             >
               <MapPin className="w-4 h-4" />
-              <span>{COMPANY_INFO.addressLocality}, {COMPANY_INFO.addressRegion}</span>
+              <span>
+                {COMPANY_INFO.addressLine1}, {COMPANY_INFO.addressLocality},{" "}
+                {COMPANY_INFO.addressCity}, {COMPANY_INFO.addressRegion}{" "}
+                {COMPANY_INFO.postalCode}
+              </span>
             </a>
           </div>
         </div>

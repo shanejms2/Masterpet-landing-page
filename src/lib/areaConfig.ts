@@ -17,7 +17,8 @@ export const areaConfig: AreaConfig[] = [
     {
     name: "Edapally",
     slug: "edapally",
-    description: "",
+    description:
+      "Masterpet brings professional at-home dog and cat grooming to Edapally and nearby neighbourhoods. Skip the salon run — our groomers come to your doorstep around Edapally Junction, the market, and residential colonies with hygienic, stress-free care.",
     neighborhoods: [
       "Edapally Junction",
       "Edapally Market Area",
@@ -55,16 +56,17 @@ export const areaConfig: AreaConfig[] = [
       "Edapally Bus Stand vicinity"
     ],
     localHighlights: [
-      "Convenient access from Edapally Junction",
-      "Serving Edapally Market area",
-      "Coverage around Edapally Railway Station",
-      "Professional service in residential areas"
+      "Doorstep grooming near Edapally Junction and Lulu Mall corridor",
+      "Serving Edapally Market and railway colony homes",
+      "Ideal if you want salon-quality care without travelling with your pet",
+      "Same Masterpet team that runs the Vennala pet shop"
     ]
   },
   {
     name: "Kaloor",
     slug: "kaloor",
-    description: "",
+    description:
+      "Looking for at-home pet grooming in Kaloor, Kochi? Masterpet serves homes around Kaloor Junction, the stadium road, and nearby colonies with mobile grooming for dogs and cats — comfortable for anxious pets and convenient for busy parents.",
     neighborhoods: [
       "Kaloor Junction",
       "Kaloor Market Area", 
@@ -102,10 +104,10 @@ export const areaConfig: AreaConfig[] = [
       "Kaloor Bus Stand vicinity"
     ],
     localHighlights: [
-      "Easy access from Kaloor Junction",
-      "Serving Kaloor Market area",
-      "Coverage around Kaloor Stadium",
-      "Professional service in residential colonies"
+      "Quick booking for homes near Kaloor Junction and stadium",
+      "Stress-free for pets who dislike car travel",
+      "Hygienic mobile setup brought to your apartment or house",
+      "Close to Vennala — visit our pet shop for food and accessories"
     ]
   },
   {
@@ -246,11 +248,13 @@ export const areaConfig: AreaConfig[] = [
   {
     name: "Kakkanad",
     slug: "kakkanad",
-    description: "",
+    description:
+      "At-home pet grooming for Kakkanad and Infopark-area homes. Masterpet brings hygienic dog and cat grooming to your doorstep so you don’t fight traffic with a stressed pet — ideal for apartments around the junction, Infopark, and Kakkanad market.",
     neighborhoods: [
       "Kakkanad Junction",
       "Infopark Area",
-      "Kakkanad Market Area"
+      "Kakkanad Market Area",
+      "CSEZ / tech-park neighbourhoods",
     ],
     testimonials: [
       {
@@ -279,9 +283,10 @@ export const areaConfig: AreaConfig[] = [
       "Kakkanad Market area"
     ],
     localHighlights: [
-      "Easy access from Kakkanad Junction",
-      "Serving Infopark area",
-      "Coverage around Kakkanad Market"
+      "Trusted by pet parents near Infopark and Kakkanad Junction",
+      "Doorstep service for busy work-from-home and office schedules",
+      "Full groom, hygiene, and mini packages available at home",
+      "Pair with a visit to our Vennala pet shop for food and gear"
     ]
   },
   {
@@ -2501,11 +2506,13 @@ export const areaConfig: AreaConfig[] = [
   {
     name: "Palarivattom",
     slug: "palarivattom",
-    description: "",
+    description:
+      "Palarivattom pet parents choose Masterpet for at-home dog and cat grooming minutes from the junction and market. We’re also a short trip from our Vennala pet shop — stock up on food and accessories, then book doorstep grooming without the salon hassle.",
     neighborhoods: [
       "Palarivattom Junction",
       "Palarivattom Market",
-      "Palarivattom Temple"
+      "Palarivattom Temple",
+      "Pipeline / connector roads toward Vennala",
     ],
     testimonials: [
       {
@@ -2534,9 +2541,10 @@ export const areaConfig: AreaConfig[] = [
       "Palarivattom Temple area"
     ],
     localHighlights: [
-      "Convenient access from Palarivattom Junction",
-      "Serving Palarivattom Market area",
-      "Coverage around Temple area"
+      "5–10 minutes from the Masterpet Vennala shop",
+      "Doorstep grooming around Palarivattom Junction and market",
+      "Great for apartments where travelling with pets is hard",
+      "WhatsApp to confirm slot and product availability"
     ]
   },
   {
@@ -3362,11 +3370,14 @@ export const areaConfig: AreaConfig[] = [
   {
     name: "Vennala",
     slug: "vennala",
-    description: "",
+    description:
+      "Vennala is home to the Masterpet pet shop on Vennala High School Road (opposite St. Mathews Church) and our at-home grooming service for local apartments and houses. Get food and essentials in-store, or book mobile grooming at your doorstep across Vennala.",
     neighborhoods: [
+      "Vennala High School Road",
+      "St. Mathews Church area",
       "Vennala Junction",
       "Vennala Market",
-      "Vennala Temple"
+      "Residential lanes toward Palarivattom and Kathrikadavu",
     ],
     testimonials: [
       {
@@ -3395,9 +3406,10 @@ export const areaConfig: AreaConfig[] = [
       "Vennala Temple area"
     ],
     localHighlights: [
-      "Easy access from Vennala Junction",
-      "Serving Vennala Market area",
-      "Coverage around Temple area"
+      "Visit our Vennala pet shop for food, treats, and accessories",
+      "At-home grooming for dogs and cats across Vennala homes",
+      "Landmark: opposite St. Mathews Church, Vennala High School Rd",
+      "Open daily — call or WhatsApp to book"
     ]
   }
 ];

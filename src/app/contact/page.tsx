@@ -127,7 +127,11 @@ const ContactPage = () => {
                   <span>{COMPANY_INFO.email}</span>
                 </a>
                 <span>Hours: {COMPANY_INFO.hoursDisplay} (Open all days)</span>
-                <span>Address: {COMPANY_INFO.addressLine1}, {COMPANY_INFO.addressLocality}, {COMPANY_INFO.addressRegion} {COMPANY_INFO.postalCode}</span>
+                <span>
+                  Address: {COMPANY_INFO.addressLine1},{" "}
+                  {COMPANY_INFO.addressLocality}, {COMPANY_INFO.addressCity},{" "}
+                  {COMPANY_INFO.addressRegion} {COMPANY_INFO.postalCode}
+                </span>
               </div>
             </div>
             <div className="rounded-lg overflow-hidden w-full" aria-label="Google Map showing Masterpet location">

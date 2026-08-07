@@ -63,7 +63,7 @@ function PetShopJsonLd() {
     priceRange: "₹₹",
     address: {
       "@type": "PostalAddress",
-      streetAddress: `${PET_SHOP.addressLine1}, ${PET_SHOP.addressLandmark}`,
+      streetAddress: COMPANY_INFO.addressLine1,
       addressLocality: PET_SHOP.addressLocality,
       addressRegion: PET_SHOP.addressRegion,
       postalCode: PET_SHOP.postalCode,

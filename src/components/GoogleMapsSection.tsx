@@ -54,8 +54,11 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
         fallback.style.display = 'none';
       }
 
-      // Masterpet business location (Aluva)
-      const masterpetLocation = { lat: 10.1065, lng: 76.3516 };
+      // Masterpet business location (Vennala shop — matches GBP)
+      const masterpetLocation = {
+        lat: COMPANY_INFO.latitude,
+        lng: COMPANY_INFO.longitude,
+      };
 
       const map = new window.google.maps.Map(mapRef.current, {
         center: masterpetLocation,

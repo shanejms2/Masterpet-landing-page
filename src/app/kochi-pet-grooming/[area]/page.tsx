@@ -13,6 +13,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import FAQSection from '@/components/FAQSection';
 import FinalCTASection from '@/components/FinalCTASection';
 import HeroScrollHandler from '@/components/HeroScrollHandler';
+import AreaLocalSection from '@/components/AreaLocalSection';
 import { areaConfig } from '@/lib/areaConfig';
 
 interface PageProps {
@@ -97,9 +98,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         'max-snippet': -1,
       },
     },
-    verification: {
-      google: 'your-google-verification-code',
-    },
   };
 }
 
@@ -131,6 +129,7 @@ export default async function AreaPage({ params }: PageProps) {
         ]}
       />
       <KochiHeroSection area={area.name} />
+      <AreaLocalSection area={area} />
       <AreaCarousel currentArea={area.slug} />
       <CommunitiesMarquee />
       <VideoShowcaseSection />

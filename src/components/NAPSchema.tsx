@@ -1,33 +1,36 @@
 import {
-  AGGREGATE_REVIEW_COUNT,
   buildAggregateRatingSchema,
   buildFeaturedReviewSchema,
 } from "@/lib/business-schema";
+import { absoluteUrl, COMPANY_INFO } from "@/lib/constants";
 
 const NAPSchema = () => {
   const schemaData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Masterpet - Mobile At Home Pet Grooming Ernakulam",
-    image: "https://www.masterpet.co.in/logo.svg",
+    name: "Masterpet Kochi – Pet Store, Pet Grooming and At-Home Mobile Grooming",
+    image: absoluteUrl(COMPANY_INFO.logoPath),
     address: {
       "@type": "PostalAddress",
-      streetAddress:
-        "Anu Villa, XVI / 80, Nethaji Rd, near YMCA Indoor Stadium, Periyar Nagar",
-      addressLocality: "Aluva",
-      addressRegion: "Kerala",
-      postalCode: "683101",
-      addressCountry: "IN",
+      streetAddress: COMPANY_INFO.addressLine1,
+      addressLocality: COMPANY_INFO.addressLocality,
+      addressRegion: COMPANY_INFO.addressRegion,
+      postalCode: COMPANY_INFO.postalCode,
+      addressCountry: COMPANY_INFO.addressCountry,
     },
-    telephone: "+91 85906 43269",
-    url: "https://www.masterpet.co.in/",
-    openingHours: "Mo-Su 09:00-20:30",
+    telephone: COMPANY_INFO.phoneDisplay,
+    url: COMPANY_INFO.website,
+    openingHours: COMPANY_INFO.openingHoursSchema,
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 10.1065,
-      longitude: 76.3516,
+      latitude: COMPANY_INFO.latitude,
+      longitude: COMPANY_INFO.longitude,
     },
-    sameAs: ["https://wa.me/918590643269"],
+    sameAs: [
+      COMPANY_INFO.googleBusinessUrl,
+      `https://wa.me/${COMPANY_INFO.whatsappNumber}`,
+      ...COMPANY_INFO.socialUrls,
+    ],
     priceRange: "₹₹",
     aggregateRating: buildAggregateRatingSchema(),
     review: buildFeaturedReviewSchema(),
@@ -35,7 +38,7 @@ const NAPSchema = () => {
     areaServed: [
       { "@type": "City", name: "Kochi" },
       { "@type": "City", name: "Ernakulam" },
-      { "@type": "City", name: "Aluva" },
+      { "@type": "Place", name: "Vennala" },
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",

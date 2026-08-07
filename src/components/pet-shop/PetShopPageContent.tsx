@@ -12,6 +12,8 @@ import { trackWhatsappClick } from "@/lib/analytics";
 import {
   PET_SHOP,
   PET_SHOP_CATEGORIES,
+  PET_SHOP_FAQS,
+  PET_SHOP_REACH_TIPS,
   VENNALA_NEARBY_AREAS,
 } from "@/lib/pet-shop";
 
@@ -217,9 +219,37 @@ export default function PetShopPageContent() {
         </Container>
       </section>
 
-      {/* Nearby areas — conversion CTAs */}
+      {/* How to reach */}
       <section
         className="w-full py-16 md:py-24 bg-white"
+        aria-label="How to reach Masterpet Vennala"
+      >
+        <Container>
+          <div className="max-w-3xl mb-12">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-brand-blue mb-3">
+              How to reach the shop
+            </h2>
+            <p className="font-body text-lg text-brand-blue/70">
+              Easy to find if you know Vennala High School Road and St. Mathews
+              Church.
+            </p>
+          </div>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl">
+            {PET_SHOP_REACH_TIPS.map((tip) => (
+              <li key={tip.title} className="border-l-4 border-brand-blue/20 pl-5">
+                <h3 className="font-heading text-xl font-semibold text-brand-blue mb-1">
+                  {tip.title}
+                </h3>
+                <p className="font-body text-brand-blue/70">{tip.detail}</p>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </section>
+
+      {/* Nearby areas — conversion CTAs + grooming links */}
+      <section
+        className="w-full py-16 md:py-24 bg-gradient-to-b from-[#D9EEFC]/40 to-white"
         id="near-vennala"
         aria-label="Areas near Vennala pet shop"
       >
@@ -230,36 +260,73 @@ export default function PetShopPageContent() {
             </h2>
             <p className="font-body text-lg text-brand-blue/70">
               Pet parents from these neighbourhoods visit us for supplies —
-              message us your area and we&apos;ll help you get here or book
-              at-home grooming.
+              message us your area, or book at-home grooming nearby.
             </p>
           </div>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {VENNALA_NEARBY_AREAS.map((area) => (
-              <li key={area.name}>
-                <a
-                  href={directionsWhatsApp(area.name)}
-                  onClick={() => trackWhatsappClick()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-3 py-4 px-1 border-b border-brand-blue/10 hover:border-brand-green transition-colors"
-                >
-                  <span>
-                    <span className="block font-heading text-lg font-semibold text-brand-blue group-hover:text-brand-blue">
-                      {area.name}
-                    </span>
-                    <span className="font-body text-sm text-brand-blue/60">
-                      {area.blurb}
-                    </span>
-                  </span>
-                  <ArrowRight
-                    className="h-5 w-5 text-brand-blue/40 group-hover:text-brand-blue group-hover:translate-x-0.5 transition-all shrink-0"
-                    aria-hidden
-                  />
-                </a>
+              <li
+                key={area.name}
+                className="border-b border-brand-blue/10 pb-4"
+              >
+                <span className="block font-heading text-lg font-semibold text-brand-blue">
+                  {area.name}
+                </span>
+                <span className="font-body text-sm text-brand-blue/60 block mb-3">
+                  {area.blurb}
+                </span>
+                <div className="flex flex-wrap gap-3 text-sm">
+                  <a
+                    href={directionsWhatsApp(area.name)}
+                    onClick={() => trackWhatsappClick()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-body text-brand-blue underline-offset-2 hover:underline inline-flex items-center gap-1"
+                  >
+                    WhatsApp
+                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                  </a>
+                  {area.groomingSlug ? (
+                    <Link
+                      href={`/kochi-pet-grooming/${area.groomingSlug}`}
+                      className="font-body text-brand-blue/70 underline-offset-2 hover:underline hover:text-brand-blue"
+                    >
+                      At-home grooming in {area.name}
+                    </Link>
+                  ) : null}
+                </div>
               </li>
             ))}
           </ul>
+        </Container>
+      </section>
+
+      {/* FAQ */}
+      <section
+        className="w-full py-16 md:py-24 bg-white"
+        aria-label="Pet shop frequently asked questions"
+      >
+        <Container>
+          <div className="max-w-3xl mb-10">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-brand-blue mb-3">
+              Pet shop FAQs
+            </h2>
+            <p className="font-body text-lg text-brand-blue/70">
+              Quick answers before you visit or message us.
+            </p>
+          </div>
+          <dl className="max-w-3xl space-y-8">
+            {PET_SHOP_FAQS.map((item) => (
+              <div key={item.question}>
+                <dt className="font-heading text-xl font-semibold text-brand-blue mb-2">
+                  {item.question}
+                </dt>
+                <dd className="font-body text-brand-blue/75 leading-relaxed">
+                  {item.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </Container>
       </section>
 
