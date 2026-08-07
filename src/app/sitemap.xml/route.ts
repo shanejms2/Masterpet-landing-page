@@ -12,6 +12,7 @@ const staticPages = [
   "cancellation-policy",
   "return-policy",
   "contact",
+  "pet-shop-kochi",
   "kochi-pet-grooming",
   "blog",
   "blog/archive",
@@ -30,7 +31,7 @@ function getPageMeta(page: string) {
   if (page.startsWith("kochi-pet-grooming/")) {
     return { priority: "0.75", changefreq: "monthly" };
   }
-  if (page === "kochi-pet-grooming") {
+  if (page === "kochi-pet-grooming" || page === "pet-shop-kochi") {
     return { priority: "0.85", changefreq: "weekly" };
   }
   return { priority: "0.8", changefreq: "monthly" };

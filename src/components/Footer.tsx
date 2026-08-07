@@ -19,6 +19,7 @@ const socials = [
 ];
 
 const quickLinks = [
+  { href: "/pet-shop-kochi", label: "Pet Shop" },
   { href: "/contact", label: "Contact" },
   { href: "/#pricing", label: "Services" },
   { href: "/#process", label: "Process" },
