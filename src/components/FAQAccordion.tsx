@@ -20,7 +20,7 @@ export default function FAQAccordion() {
         const panelId = `faq-content-${index}`;
 
         return (
-          <Card key={index} className="border-gray-200 hover:border-brand-blue/50 transition-all duration-300">
+          <Card key={index} className="overflow-hidden">
             <CardHeader className="pb-4">
               <button
                 id={buttonId}

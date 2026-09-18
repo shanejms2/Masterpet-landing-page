@@ -13,7 +13,7 @@ interface BreadcrumbNavigationProps {
 
 const BreadcrumbNavigation = ({ items }: BreadcrumbNavigationProps) => {
   return (
-    <nav className="w-full bg-white border-b border-gray-100 py-3">
+    <nav className="w-full bg-white border-b border-brand-blue/[0.06] py-3">
       <Container>
         <ol className="flex items-center space-x-2 text-sm">
           <li>

@@ -28,25 +28,16 @@ const stats = [
     value: "15+",
     label: "Premium Communities",
     icon: Building2,
-    color: "from-blue-500 to-blue-600",
-    bgColor: "bg-blue-50",
-    borderColor: "border-blue-200"
   },
   {
     value: "2000+",
     label: "Happy Pet Parents",
     icon: Users,
-    color: "from-green-500 to-green-600",
-    bgColor: "bg-green-50",
-    borderColor: "border-green-200"
   },
   {
     value: "100%",
     label: "Satisfaction Rate",
     icon: Star,
-    color: "from-purple-500 to-purple-600",
-    bgColor: "bg-purple-50",
-    borderColor: "border-purple-200"
   }
 ];
 
@@ -151,11 +142,12 @@ const CommunitiesMarquee = () => {
   const logos = [...logoFiles, ...logoFiles];
 
   return (
-    <section className="w-full bg-gradient-to-b from-white to-gray-50/30 py-12 md:py-16" id="communities" aria-label="Trusted Communities">
+    <section className="mp-section-muted" id="communities" aria-label="Trusted Communities">
       <Container>
         {/* Header Section */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-fractul text-3xl md:text-4xl lg:text-5xl font-bold text-brand-blue mb-4 tracking-tight">
+          <p className="mp-kicker mb-3">Across Kochi</p>
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-brand-blue mb-4 tracking-tight">
             Trusted by Leading Communities
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/70 max-w-2xl mx-auto">
@@ -166,8 +158,8 @@ const CommunitiesMarquee = () => {
         {/* Logo Marquee */}
         <div className="relative">
           {/* Gradient Overlays for Smooth Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#F6F7F9] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#F6F7F9] to-transparent z-10 pointer-events-none" />
           
           <div className="overflow-x-hidden">
             <div
@@ -184,7 +176,7 @@ const CommunitiesMarquee = () => {
                   className="flex-shrink-0 flex items-center justify-center group"
                 >
                   {/* Logo Container with Consistent Dimensions */}
-                  <div className="relative w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center p-4 hover:shadow-md hover:border-brand-green/20 transition-all duration-300">
+                  <div className="relative w-32 h-16 md:w-40 md:h-20 lg:w-48 lg:h-24 bg-white rounded-2xl shadow-sm border border-brand-blue/8 flex items-center justify-center p-4 hover:shadow-md hover:border-brand-green/40 transition-all duration-300">
                     <Image
                       src={logo.src}
                       alt={logo.alt}
@@ -216,14 +208,11 @@ const CommunitiesMarquee = () => {
                     ref={el => {
                       statsRefs.current[index] = el;
                     }}
-                    className={`group relative p-6 md:p-8 rounded-2xl border-2 ${stat.bgColor} ${stat.borderColor} hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer`}
+                    className="group relative p-6 md:p-8 rounded-2xl border border-brand-blue/[0.08] bg-white"
                   >
-                    {/* Background Gradient */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
-                    
                     {/* Icon */}
                     <div className="flex justify-center mb-4">
-                      <div className={`p-3 rounded-full bg-gradient-to-br ${stat.color} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <div className="p-3 rounded-xl bg-[#F6F7F9] text-brand-blue">
                         <IconComponent className="h-6 w-6" />
                       </div>
                     </div>
@@ -241,9 +230,6 @@ const CommunitiesMarquee = () => {
                         {stat.label}
                       </div>
                     </div>
-                    
-                    {/* Hover Effect */}
-                    <div className="absolute inset-0 border-2 border-transparent group-hover:border-brand-green/30 rounded-2xl transition-all duration-300" />
                   </div>
                 );
               })}

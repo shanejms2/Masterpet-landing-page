@@ -24,7 +24,7 @@ const BlogCard = ({ post, className = '' }: BlogCardProps) => {
 
   return (
     <Card 
-      className={`group overflow-hidden border-0 bg-white shadow-sm hover:shadow-md transition-all duration-300 ${className}`}
+      className={`group overflow-hidden border border-brand-blue/[0.08] bg-white hover:border-brand-blue/20 transition-colors ${className}`}
       tabIndex={0}
       onKeyDown={handleKeyDown}
       role="button"
@@ -55,7 +55,7 @@ const BlogCard = ({ post, className = '' }: BlogCardProps) => {
           </div>
 
           {/* Title */}
-          <h3 className="font-lora text-lg font-semibold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-200">
+          <h3 className="font-heading text-lg font-semibold text-brand-blue mb-3 group-hover:text-brand-blue/80 transition-colors">
             {post.meta.title}
           </h3>
 
@@ -65,7 +65,7 @@ const BlogCard = ({ post, className = '' }: BlogCardProps) => {
           </p>
 
           {/* Read More */}
-          <div className="flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all duration-200">
+          <div className="flex items-center gap-1 text-sm font-medium text-brand-blue group-hover:gap-2 transition-all duration-200">
             <span className="font-noto-sans">Read more</span>
             <ArrowRight className="h-3 w-3" />
           </div>

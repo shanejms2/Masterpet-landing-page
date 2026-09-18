@@ -16,6 +16,7 @@ const staticPages = [
   "kochi-pet-grooming",
   "blog",
   "blog/archive",
+  "crm",
 ];
 
 function getPageMeta(page: string) {
@@ -31,7 +32,7 @@ function getPageMeta(page: string) {
   if (page.startsWith("kochi-pet-grooming/")) {
     return { priority: "0.75", changefreq: "monthly" };
   }
-  if (page === "kochi-pet-grooming" || page === "pet-shop-kochi") {
+  if (page === "kochi-pet-grooming" || page === "pet-shop-kochi" || page === "crm") {
     return { priority: "0.85", changefreq: "weekly" };
   }
   return { priority: "0.8", changefreq: "monthly" };

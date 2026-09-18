@@ -46,7 +46,7 @@ const SearchBar = ({ onSearch, placeholder = 'Search blog posts...', className =
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="pl-10 pr-10 h-10 font-noto-sans"
+          className="pl-10 pr-10 h-11 font-body rounded-full border-brand-blue/15"
           aria-label="Search blog posts"
         />
         {query && (

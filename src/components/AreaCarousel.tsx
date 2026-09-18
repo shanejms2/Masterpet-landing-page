@@ -78,10 +78,10 @@ const AreaCarousel = ({ currentArea, showSearch = true }: AreaCarouselProps) => 
   }, []);
 
   return (
-    <section className="w-full py-16 bg-gradient-to-br from-blue-50/50 to-green-50/50">
+    <section className="mp-section-muted">
       <Container>
         <div className="text-center mb-8">
-          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-brand-blue font-bold mb-4">
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-brand-blue font-bold mb-4 tracking-tight">
             Pet Grooming Near You
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/80 max-w-3xl mx-auto mb-6">
@@ -143,8 +143,8 @@ const AreaCarousel = ({ currentArea, showSearch = true }: AreaCarouselProps) => 
                   className={`
                     relative flex-shrink-0 w-80 rounded-3xl p-6 transition-all duration-500 transform hover:scale-105 my-4
                     ${isCurrentArea 
-                      ? 'bg-gradient-to-br from-brand-green/10 via-white to-brand-blue/5 border-2 border-brand-green shadow-xl shadow-brand-green/20' 
-                      : 'bg-gradient-to-br from-white via-gray-50/50 to-brand-blue/5 border border-gray-200 shadow-lg hover:shadow-xl hover:border-brand-green/30'
+                      ? 'bg-white border-2 border-brand-blue' 
+                      : 'bg-white border border-brand-blue/[0.08] hover:border-brand-blue/25'
                     }
                   `}
                 >

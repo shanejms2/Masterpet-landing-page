@@ -19,6 +19,8 @@ export const PET_SHOP = {
   phone: COMPANY_INFO.phone,
   phoneDisplay: COMPANY_INFO.phoneDisplay,
   mapsUrl: COMPANY_INFO.googleBusinessUrl,
+  mapsEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3928.5!2d76.3228652!3d10.0023627!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080fe07f8500d5:0x2325c1d55999e999!2sMasterpet!5e0!3m2!1sen!2sin",
   latitude: COMPANY_INFO.latitude,
   longitude: COMPANY_INFO.longitude,
   path: "/pet-shop-kochi",

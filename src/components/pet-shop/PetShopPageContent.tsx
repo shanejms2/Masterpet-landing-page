@@ -2,11 +2,47 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { ArrowRight, Clock, MapPin, Navigation, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Bone,
+  Car,
+  Clock,
+  MapPin,
+  Navigation,
+  Phone,
+  Route,
+  Scissors,
+  ShoppingBag,
+  Sparkles,
+} from "lucide-react";
 import Container from "@/components/Container";
 import PhoneLink from "@/components/PhoneLink";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
 import { trackWhatsappClick } from "@/lib/analytics";
 import {
@@ -26,376 +62,404 @@ const directionsWhatsApp = (area: string) =>
     `Hi Masterpet! I'm near ${area} and looking for the Vennala pet shop / pet supplies. [From Pet Shop page]`
   );
 
+const stockItems = [
+  { icon: Bone, ...PET_SHOP_CATEGORIES[0] },
+  { icon: ShoppingBag, ...PET_SHOP_CATEGORIES[1] },
+  { icon: Sparkles, ...PET_SHOP_CATEGORIES[2] },
+  { icon: Scissors, ...PET_SHOP_CATEGORIES[3] },
+];
+
+const reachItems = [
+  { icon: MapPin, ...PET_SHOP_REACH_TIPS[0] },
+  { icon: Navigation, ...PET_SHOP_REACH_TIPS[1] },
+  { icon: Route, ...PET_SHOP_REACH_TIPS[2] },
+  { icon: Car, ...PET_SHOP_REACH_TIPS[3] },
+];
+
 export default function PetShopPageContent() {
-  const heroBrandRef = useRef<HTMLParagraphElement>(null);
-  const heroTitleRef = useRef<HTMLHeadingElement>(null);
-  const heroCopyRef = useRef<HTMLParagraphElement>(null);
-  const heroCtaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const run = async () => {
-      try {
-        const gsapModule = await import("gsap");
-        if (cancelled) return;
-        const gsap = gsapModule.default;
-        gsap.fromTo(
-          [heroBrandRef.current, heroTitleRef.current, heroCopyRef.current, heroCtaRef.current],
-          { y: 28, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.65,
-            stagger: 0.12,
-            ease: "power3.out",
-            delay: 0.1,
-          }
-        );
-      } catch {
-        // CSS fallback: elements remain visible
-      }
-    };
-
-    void run();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
   return (
-    <>
-      {/* Hero — full-bleed, brand-first */}
-      <section
-        className="relative w-full min-h-[calc(100vh-80px)] overflow-hidden bg-gradient-to-br from-[#D9EEFC] via-white to-brand-green/25"
-        aria-label="Masterpet Pet Shop Vennala"
-      >
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.07]"
-          style={{
-            backgroundImage: "url('/brand_assets/Pattern/PATTERN.svg')",
-            backgroundSize: "420px",
-          }}
-          aria-hidden
-        />
-        <Container className="relative z-10 flex min-h-[calc(100vh-80px)] flex-col justify-center py-12 md:py-16">
-          <div className="max-w-3xl">
-            <p
-              ref={heroBrandRef}
-              className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold text-brand-blue mb-4 tracking-tight"
-            >
-              Masterpet
-            </p>
-            <h1
-              ref={heroTitleRef}
-              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-brand-blue leading-tight mb-5"
-            >
-              Pet Shop in Vennala, Kochi
-            </h1>
-            <p
-              ref={heroCopyRef}
-              className="font-body text-lg md:text-xl text-brand-blue/80 max-w-xl mb-8 leading-relaxed"
-            >
-              Food, treats, accessories, and everyday essentials for your pets —
-              opposite St. Mathews Church on Vennala High School Road.
-            </p>
-            <div
-              ref={heroCtaRef}
-              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
-            >
-              <PhoneLink className="inline-flex items-center justify-center gap-3 font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white transition-all duration-300 text-lg">
-                <Phone className="h-5 w-5" aria-hidden />
-                Call Shop
-                <span className="sr-only" data-google-ads-phone-label>
-                  {PET_SHOP.phoneDisplay}
-                </span>
-              </PhoneLink>
-              <a
-                href={shopWhatsApp}
-                onClick={() => trackWhatsappClick()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white transition-all duration-300 text-lg"
-              >
-                <FaWhatsapp className="text-xl" aria-hidden />
-                WhatsApp
-              </a>
-              <a
-                href={PET_SHOP.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 font-heading text-brand-blue px-6 py-4 underline-offset-4 hover:underline text-lg"
-              >
-                <Navigation className="h-5 w-5" aria-hidden />
-                Get directions
-              </a>
+    <div className="bg-background font-fractul">
+      <section className="border-b py-12 md:py-20" aria-label="Masterpet Pet Shop Vennala">
+        <Container>
+          <div className="flex flex-col gap-10">
+            <Breadcrumb>
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage>Pet Shop Kochi</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
+
+            <div className="grid items-center gap-10 lg:grid-cols-2">
+              <div className="flex flex-col items-start gap-6">
+                <Badge variant="secondary">Vennala shop · Open daily</Badge>
+                <h1 className="font-fractul text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+                  Pet Shop in Vennala, Kochi
+                </h1>
+                <p className="max-w-xl text-lg text-muted-foreground">
+                  Food, treats, accessories, and everyday essentials for your pets —
+                  opposite St. Mathews Church on Vennala High School Road.
+                </p>
+                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  <Button asChild size="lg" variant="brand">
+                    <PhoneLink>
+                      <Phone data-icon="inline-start" />
+                      Call shop
+                      <span className="sr-only" data-google-ads-phone-label>
+                        {PET_SHOP.phoneDisplay}
+                      </span>
+                    </PhoneLink>
+                  </Button>
+                  <Button asChild size="lg" variant="outline">
+                    <a
+                      href={shopWhatsApp}
+                      onClick={() => trackWhatsappClick()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaWhatsapp data-icon="inline-start" />
+                      WhatsApp
+                    </a>
+                  </Button>
+                  <Button asChild size="lg" variant="ghost">
+                    <a href={PET_SHOP.mapsUrl} target="_blank" rel="noopener noreferrer">
+                      <Navigation data-icon="inline-start" />
+                      Get directions
+                    </a>
+                  </Button>
+                </div>
+                <Alert>
+                  <Clock />
+                  <AlertTitle>Walk-ins welcome</AlertTitle>
+                  <AlertDescription>
+                    Open daily {PET_SHOP.hoursDisplay}. Message us before you come if you need a
+                    specific food or size.
+                  </AlertDescription>
+                </Alert>
+              </div>
+
+              <Card className="overflow-hidden">
+                <CardHeader>
+                  <CardTitle className="font-fractul">Find us in Vennala</CardTitle>
+                  <CardDescription>
+                    {PET_SHOP.addressLandmark}, {PET_SHOP.addressLocality}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-hidden rounded-xl border">
+                    <iframe
+                      src={PET_SHOP.mapsEmbedUrl}
+                      width="100%"
+                      height="280"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="strict-origin-when-cross-origin"
+                      title="Masterpet pet shop on Google Maps"
+                    />
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button asChild variant="outline" className="w-full">
+                    <a href={PET_SHOP.mapsUrl} target="_blank" rel="noopener noreferrer">
+                      Open in Google Maps
+                      <ArrowRight data-icon="inline-end" />
+                    </a>
+                  </Button>
+                </CardFooter>
+              </Card>
             </div>
           </div>
         </Container>
       </section>
 
-      {/* Visit */}
-      <section className="w-full py-16 md:py-24 bg-white" aria-label="Shop location and hours">
+      <section className="py-16 md:py-24" aria-label="Shop location and hours">
         <Container>
-          <div className="max-w-3xl">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-brand-blue mb-3">
+          <div className="mb-10 flex max-w-2xl flex-col gap-3">
+            <h2 className="font-fractul text-3xl font-bold tracking-tight md:text-4xl">
               Visit us in Vennala
             </h2>
-            <p className="font-body text-lg text-brand-blue/70 mb-10">
-              Walk in for pet supplies, or message us before you come so we can
-              keep your favourites ready.
+            <p className="text-muted-foreground">
+              Walk in for pet supplies, or message us before you come so we can keep your
+              favourites ready.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 border-t border-brand-blue/10 pt-10">
-            <div>
-              <div className="flex items-center gap-2 text-brand-blue mb-3">
-                <MapPin className="h-5 w-5 text-brand-green shrink-0" aria-hidden />
-                <h3 className="font-heading text-xl font-semibold">Address</h3>
-              </div>
-              <p className="font-body text-brand-blue/80 leading-relaxed">
-                {PET_SHOP.addressLine1}
-                <br />
-                {PET_SHOP.addressLandmark}
-                <br />
-                {PET_SHOP.addressLocality}, {PET_SHOP.addressCity},{" "}
-                {PET_SHOP.addressRegion} {PET_SHOP.postalCode}
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center gap-2 text-brand-blue mb-3">
-                <Clock className="h-5 w-5 text-brand-green shrink-0" aria-hidden />
-                <h3 className="font-heading text-xl font-semibold">Hours</h3>
-              </div>
-              <p className="font-body text-brand-blue/80 leading-relaxed">
-                Open daily
-                <br />
-                {PET_SHOP.hoursDisplay}
-              </p>
-            </div>
-            <div>
-              <div className="flex items-center gap-2 text-brand-blue mb-3">
-                <Phone className="h-5 w-5 text-brand-green shrink-0" aria-hidden />
-                <h3 className="font-heading text-xl font-semibold">Contact</h3>
-              </div>
-              <PhoneLink className="font-body text-brand-blue/80 hover:text-brand-blue underline-offset-2 hover:underline block mb-2">
-                <span data-google-ads-phone-label>{PET_SHOP.phoneDisplay}</span>
-              </PhoneLink>
-              <a
-                href={`mailto:${COMPANY_INFO.email}`}
-                className="font-body text-brand-blue/80 hover:text-brand-blue underline-offset-2 hover:underline"
-              >
-                {COMPANY_INFO.email}
-              </a>
-            </div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <Card>
+              <CardHeader className="flex flex-col gap-3">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
+                  <MapPin />
+                </div>
+                <CardTitle className="font-fractul">Address</CardTitle>
+                <CardDescription>
+                  {PET_SHOP.addressLine1}
+                  <br />
+                  {PET_SHOP.addressLandmark}
+                  <br />
+                  {PET_SHOP.addressLocality}, {PET_SHOP.addressCity}, {PET_SHOP.addressRegion}{" "}
+                  {PET_SHOP.postalCode}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-col gap-3">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
+                  <Clock />
+                </div>
+                <CardTitle className="font-fractul">Hours</CardTitle>
+                <CardDescription>
+                  Open daily
+                  <br />
+                  {PET_SHOP.hoursDisplay}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader className="flex flex-col gap-3">
+                <div className="flex size-10 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
+                  <Phone />
+                </div>
+                <CardTitle className="font-fractul">Contact</CardTitle>
+                <CardDescription className="flex flex-col gap-2">
+                  <PhoneLink className="text-foreground hover:underline">
+                    <span data-google-ads-phone-label>{PET_SHOP.phoneDisplay}</span>
+                  </PhoneLink>
+                  <a href={`mailto:${COMPANY_INFO.email}`} className="hover:underline">
+                    {COMPANY_INFO.email}
+                  </a>
+                </CardDescription>
+              </CardHeader>
+            </Card>
           </div>
         </Container>
       </section>
 
-      {/* What we stock */}
-      <section
-        className="w-full py-16 md:py-24 bg-gradient-to-b from-[#D9EEFC]/50 to-white"
-        aria-label="What you can find at the shop"
-      >
+      <section className="relative overflow-hidden border-t bg-muted/40 py-16 md:py-24" aria-label="What you can find at the shop">
+        <Image
+          src="/brand_assets/Mascot/catwball/MP_catwball.svg"
+          alt=""
+          aria-hidden
+          width={180}
+          height={180}
+          className="pointer-events-none absolute right-4 top-6 hidden size-32 object-contain md:block lg:right-10 lg:size-36"
+        />
         <Container>
-          <div className="max-w-3xl mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-brand-blue mb-3">
+          <div className="mb-10 flex max-w-2xl flex-col gap-3">
+            <h2 className="font-fractul text-3xl font-bold tracking-tight md:text-4xl">
               What you&apos;ll find
             </h2>
-            <p className="font-body text-lg text-brand-blue/70">
-              A neighbourhood pet shop stocked for daily care — not just
-              grooming day.
+            <p className="text-muted-foreground">
+              A neighbourhood pet shop stocked for daily care — not just grooming day.
             </p>
           </div>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8 max-w-4xl">
-            {PET_SHOP_CATEGORIES.map((item) => (
-              <li key={item.title} className="border-l-4 border-brand-green pl-5">
-                <h3 className="font-heading text-xl font-semibold text-brand-blue mb-1">
-                  {item.title}
-                </h3>
-                <p className="font-body text-brand-blue/70">{item.description}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {stockItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <Card key={item.title}>
+                  <CardHeader className="flex flex-col gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
+                      <Icon />
+                    </div>
+                    <CardTitle className="font-fractul">{item.title}</CardTitle>
+                    <CardDescription>{item.description}</CardDescription>
+                  </CardHeader>
+                </Card>
+              );
+            })}
+          </div>
         </Container>
       </section>
 
-      {/* How to reach */}
-      <section
-        className="w-full py-16 md:py-24 bg-white"
-        aria-label="How to reach Masterpet Vennala"
-      >
+      <section className="py-16 md:py-24" aria-label="How to reach Masterpet Vennala">
         <Container>
-          <div className="max-w-3xl mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-brand-blue mb-3">
+          <div className="mb-10 flex max-w-2xl flex-col gap-3">
+            <h2 className="font-fractul text-3xl font-bold tracking-tight md:text-4xl">
               How to reach the shop
             </h2>
-            <p className="font-body text-lg text-brand-blue/70">
-              Easy to find if you know Vennala High School Road and St. Mathews
-              Church.
+            <p className="text-muted-foreground">
+              Easy to find if you know Vennala High School Road and St. Mathews Church.
             </p>
           </div>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl">
-            {PET_SHOP_REACH_TIPS.map((tip) => (
-              <li key={tip.title} className="border-l-4 border-brand-blue/20 pl-5">
-                <h3 className="font-heading text-xl font-semibold text-brand-blue mb-1">
-                  {tip.title}
-                </h3>
-                <p className="font-body text-brand-blue/70">{tip.detail}</p>
-              </li>
-            ))}
-          </ul>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {reachItems.map((tip) => {
+              const Icon = tip.icon;
+              return (
+                <Card key={tip.title}>
+                  <CardHeader className="flex flex-col gap-3">
+                    <div className="flex size-10 items-center justify-center rounded-lg bg-secondary text-secondary-foreground">
+                      <Icon />
+                    </div>
+                    <CardTitle className="font-fractul">{tip.title}</CardTitle>
+                    <CardDescription>{tip.detail}</CardDescription>
+                  </CardHeader>
+                </Card>
+              );
+            })}
+          </div>
         </Container>
       </section>
 
-      {/* Nearby areas — conversion CTAs + grooming links */}
       <section
-        className="w-full py-16 md:py-24 bg-gradient-to-b from-[#D9EEFC]/40 to-white"
+        className="border-t bg-muted/40 py-16 md:py-24"
         id="near-vennala"
         aria-label="Areas near Vennala pet shop"
       >
         <Container>
-          <div className="max-w-3xl mb-12">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-brand-blue mb-3">
+          <div className="mb-10 flex max-w-2xl flex-col gap-3">
+            <h2 className="font-fractul text-3xl font-bold tracking-tight md:text-4xl">
               Near Vennala? We&apos;re close
             </h2>
-            <p className="font-body text-lg text-brand-blue/70">
-              Pet parents from these neighbourhoods visit us for supplies —
-              message us your area, or book at-home grooming nearby.
+            <p className="text-muted-foreground">
+              Pet parents from these neighbourhoods visit us for supplies — message us
+              your area, or book at-home grooming nearby.
             </p>
           </div>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {VENNALA_NEARBY_AREAS.map((area) => (
-              <li
-                key={area.name}
-                className="border-b border-brand-blue/10 pb-4"
-              >
-                <span className="block font-heading text-lg font-semibold text-brand-blue">
-                  {area.name}
-                </span>
-                <span className="font-body text-sm text-brand-blue/60 block mb-3">
-                  {area.blurb}
-                </span>
-                <div className="flex flex-wrap gap-3 text-sm">
-                  <a
-                    href={directionsWhatsApp(area.name)}
-                    onClick={() => trackWhatsappClick()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-body text-brand-blue underline-offset-2 hover:underline inline-flex items-center gap-1"
-                  >
-                    WhatsApp
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                  </a>
-                  {area.groomingSlug ? (
-                    <Link
-                      href={`/kochi-pet-grooming/${area.groomingSlug}`}
-                      className="font-body text-brand-blue/70 underline-offset-2 hover:underline hover:text-brand-blue"
+              <Card key={area.name}>
+                <CardHeader>
+                  <CardTitle className="font-fractul text-lg">{area.name}</CardTitle>
+                  <CardDescription>{area.blurb}</CardDescription>
+                </CardHeader>
+                <CardFooter className="flex flex-wrap gap-2">
+                  <Button asChild size="sm" variant="outline">
+                    <a
+                      href={directionsWhatsApp(area.name)}
+                      onClick={() => trackWhatsappClick()}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      At-home grooming in {area.name}
-                    </Link>
+                      WhatsApp
+                    </a>
+                  </Button>
+                  {area.groomingSlug ? (
+                    <Button asChild size="sm" variant="ghost">
+                      <Link href={`/kochi-pet-grooming/${area.groomingSlug}`}>Grooming</Link>
+                    </Button>
                   ) : null}
-                </div>
-              </li>
+                </CardFooter>
+              </Card>
             ))}
-          </ul>
-        </Container>
-      </section>
-
-      {/* FAQ */}
-      <section
-        className="w-full py-16 md:py-24 bg-white"
-        aria-label="Pet shop frequently asked questions"
-      >
-        <Container>
-          <div className="max-w-3xl mb-10">
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-brand-blue mb-3">
-              Pet shop FAQs
-            </h2>
-            <p className="font-body text-lg text-brand-blue/70">
-              Quick answers before you visit or message us.
-            </p>
           </div>
-          <dl className="max-w-3xl space-y-8">
-            {PET_SHOP_FAQS.map((item) => (
-              <div key={item.question}>
-                <dt className="font-heading text-xl font-semibold text-brand-blue mb-2">
-                  {item.question}
-                </dt>
-                <dd className="font-body text-brand-blue/75 leading-relaxed">
-                  {item.answer}
-                </dd>
-              </div>
-            ))}
-          </dl>
         </Container>
       </section>
 
-      {/* Grooming cross-sell */}
-      <section
-        className="w-full py-16 md:py-20 bg-brand-blue text-white"
-        aria-label="At-home grooming"
-      >
+      <section className="py-16 md:py-24" aria-label="Pet shop frequently asked questions">
         <Container>
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-            <div className="max-w-xl">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-3">
+          <div className="mx-auto max-w-2xl">
+            <Card>
+              <CardHeader>
+                <CardTitle className="font-fractul text-2xl md:text-3xl">
+                  <h2 className="text-inherit">Pet shop FAQs</h2>
+                </CardTitle>
+                <CardDescription>Quick answers before you visit or message us.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Accordion type="single" collapsible>
+                  {PET_SHOP_FAQS.map((item, index) => (
+                    <AccordionItem key={item.question} value={`faq-${index}`}>
+                      <AccordionTrigger>{item.question}</AccordionTrigger>
+                      <AccordionContent className="text-muted-foreground">
+                        {item.answer}
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </CardContent>
+            </Card>
+          </div>
+        </Container>
+      </section>
+
+      <section className="pb-16 md:pb-24" aria-label="At-home grooming">
+        <Container>
+          <div className="relative flex flex-col gap-6 overflow-hidden rounded-3xl bg-brand-blue p-8 text-white md:flex-row md:items-center md:justify-between md:p-12">
+            <div className="flex max-w-xl flex-col gap-3">
+              <Badge variant="on-dark" className="w-fit">
+                Same Masterpet team
+              </Badge>
+              <h2 className="font-fractul text-3xl font-bold tracking-tight md:text-4xl">
                 Need grooming too?
               </h2>
-              <p className="font-body text-lg text-white/80">
-                Same Masterpet team — professional at-home pet grooming across
-                Kochi, including homes near Vennala.
+              <p className="text-white/70">
+                Professional at-home pet grooming across Kochi, including homes near Vennala.
               </p>
             </div>
-            <Link
-              href="/kochi-pet-grooming"
-              className="inline-flex items-center justify-center gap-2 font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full text-lg font-semibold hover:bg-white transition-colors shrink-0"
-            >
-              At-home grooming
-              <ArrowRight className="h-5 w-5" aria-hidden />
-            </Link>
-          </div>
-        </Container>
-      </section>
-
-      {/* Final CTA */}
-      <section className="w-full py-16 md:py-24 bg-gradient-to-br from-[#D9EEFC] to-brand-green/20">
-        <Container>
-          <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-            <div className="flex-1 text-center md:text-left">
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-brand-blue mb-4">
-                Come say hi in Vennala
-              </h2>
-              <p className="font-body text-lg text-brand-blue/70 mb-8 max-w-lg">
-                Call, WhatsApp, or follow directions to Masterpet on Vennala
-                High School Road — open {PET_SHOP.hoursDisplay}.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-                <PhoneLink className="inline-flex items-center justify-center gap-2 font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full text-lg hover:bg-brand-blue hover:text-white transition-colors">
-                  <Phone className="h-5 w-5" aria-hidden />
-                  {PET_SHOP.phoneDisplay}
-                </PhoneLink>
-                <a
-                  href={PET_SHOP.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 font-heading border-2 border-brand-blue text-brand-blue px-8 py-4 rounded-full text-lg hover:bg-brand-blue hover:text-white transition-colors"
-                >
-                  Open in Maps
-                </a>
-              </div>
-            </div>
-            <div className="shrink-0">
+            <div className="flex items-end gap-4">
+              <Button asChild size="lg" variant="brand" className="shrink-0">
+                <Link href="/kochi-pet-grooming">
+                  At-home grooming
+                  <ArrowRight data-icon="inline-end" />
+                </Link>
+              </Button>
               <Image
-                src={COMPANY_INFO.logoPath}
-                alt="Masterpet"
+                src="/brand_assets/Mascot/withaheart/MP_withaheart.svg"
+                alt=""
+                aria-hidden
                 width={160}
                 height={160}
-                className="w-32 h-32 md:w-40 md:h-40 object-contain drop-shadow-lg"
+                className="hidden size-32 object-contain object-bottom lg:block"
               />
             </div>
           </div>
         </Container>
       </section>
-    </>
+
+      <section className="border-t bg-muted/40 py-16 md:py-20">
+        <Container>
+          <Card className="relative overflow-hidden">
+            <Image
+              src="/brand_assets/Mascot/bothwaving/MP_bothwaving.svg"
+              alt=""
+              aria-hidden
+              width={180}
+              height={180}
+              className="pointer-events-none absolute -bottom-4 right-2 hidden size-32 object-contain opacity-90 md:block lg:right-8 lg:size-40"
+            />
+            <CardHeader className="md:pr-40">
+              <CardTitle className="font-fractul text-2xl font-bold md:text-3xl">
+                <h2 className="text-inherit">Come say hi in Vennala</h2>
+              </CardTitle>
+              <CardDescription className="text-base">
+                Call, WhatsApp, or follow directions to Masterpet on Vennala High School
+                Road — open {PET_SHOP.hoursDisplay}.
+              </CardDescription>
+            </CardHeader>
+            <CardFooter className="flex flex-col items-stretch gap-3 sm:flex-row md:pr-40">
+              <Button asChild variant="brand">
+                <PhoneLink>
+                  <Phone data-icon="inline-start" />
+                  <span data-google-ads-phone-label>{PET_SHOP.phoneDisplay}</span>
+                </PhoneLink>
+              </Button>
+              <Button asChild variant="outline">
+                <a
+                  href={shopWhatsApp}
+                  onClick={() => trackWhatsappClick()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaWhatsapp data-icon="inline-start" />
+                  WhatsApp
+                </a>
+              </Button>
+              <Button asChild variant="ghost">
+                <a href={PET_SHOP.mapsUrl} target="_blank" rel="noopener noreferrer">
+                  <Navigation data-icon="inline-start" />
+                  Open in Maps
+                </a>
+              </Button>
+            </CardFooter>
+          </Card>
+        </Container>
+      </section>
+    </div>
   );
 }

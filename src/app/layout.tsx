@@ -166,7 +166,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-gliker bg-background min-h-screen">
+      <body className="font-gliker bg-white min-h-screen antialiased overflow-x-hidden pb-20 md:pb-0 selection:bg-brand-green selection:text-brand-blue">
         <AnnouncementBannerWrapper />
         <NavbarWrapper />
         <main>{children}</main>

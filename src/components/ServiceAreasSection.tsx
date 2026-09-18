@@ -36,7 +36,7 @@ const serviceAreas = [
 
 const ServiceAreasSection = () => {
   return (
-    <section className="w-full py-16 bg-gradient-to-br from-blue-50/50 to-green-50/50">
+    <section className="mp-section-muted">
       <Container>
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl text-brand-blue font-bold mb-4">
@@ -52,7 +52,7 @@ const ServiceAreasSection = () => {
           {serviceAreas.map((area) => (
             <div
               key={area.slug}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+              className="bg-white rounded-2xl p-6 border border-brand-blue/[0.08]"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-12 h-12 bg-brand-green/20 rounded-full flex items-center justify-center">

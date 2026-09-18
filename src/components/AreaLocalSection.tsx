@@ -17,7 +17,7 @@ const AreaLocalSection = ({ area }: AreaLocalSectionProps) => {
 
   return (
     <section
-      className="w-full py-14 md:py-20 bg-white border-b border-brand-blue/5"
+      className="mp-section bg-white border-b border-brand-blue/[0.06]"
       aria-label={`Pet grooming in ${area.name}`}
     >
       <Container>

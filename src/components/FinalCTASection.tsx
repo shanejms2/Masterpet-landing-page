@@ -1,52 +1,67 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowRight, Phone } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import Container from "./Container";
-import { getWhatsAppUrl } from "@/lib/constants";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
 import { trackWhatsappClick } from "@/lib/analytics";
+import PhoneLink from "./PhoneLink";
 
 const whatsappLink = getWhatsAppUrl(
   "Hi Masterpet! I want to book a grooming session with Masterpet. [From Masterpet Website]"
 );
 
 const FinalCTASection = () => (
-  <section className="w-full py-16 md:py-24" aria-label="Final Call to Action">
+  <section className="bg-background py-16 md:py-20 pb-28 md:pb-20" aria-label="Final Call to Action">
     <Container>
-      <div className="bg-brand-green/20 rounded-2xl p-8 md:p-12 border border-brand-green/30">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          {/* Content */}
-          <div className="text-left">
-            <h2 className="font-fractul font-bold text-3xl md:text-4xl text-brand-blue mb-4">
+      <div className="overflow-hidden rounded-3xl bg-brand-blue text-white">
+        <div className="grid items-stretch lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+          <div className="flex flex-col justify-center gap-5 p-8 md:p-12 lg:p-14">
+            <Badge variant="on-dark" className="w-fit">
+              Book today
+            </Badge>
+            <h2 className="font-heading text-3xl font-bold tracking-tight md:text-4xl">
               Ready to Give Your Pet the Best Grooming Experience?
             </h2>
-            <p className="font-body text-lg text-brand-blue/70 mb-6">
+            <p className="max-w-xl font-body text-base leading-relaxed text-white/70 md:text-lg">
               Book your at-home grooming session with Masterpet today and let your pet enjoy professional care, comfort, and a whole lot of love—right at your doorstep!
             </p>
-            <a
-              href={whatsappLink}
-              onClick={() => trackWhatsappClick()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg font-semibold"
-              aria-label="Book grooming session on WhatsApp"
-            >
-              Book Now
-            </a>
-          </div>
-          
-          {/* Mascot Illustration */}
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative">
-              <Image
-                src="/brand_assets/Mascot/withaheart/MP_withaheart.png"
-                alt="Happy dog mascot with heart"
-                width={300}
-                height={300}
-                className="w-64 h-64 object-contain drop-shadow-lg"
-              />
-              <div className="absolute -top-2 -left-2 text-pink-400 text-2xl animate-pulse">✨</div>
-              <div className="absolute -top-4 -right-4 text-pink-400 text-xl animate-pulse delay-100">✨</div>
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button asChild size="lg" variant="brand">
+                <a
+                  href={whatsappLink}
+                  onClick={() => trackWhatsappClick()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Book grooming session on WhatsApp"
+                >
+                  <FaWhatsapp data-icon="inline-start" />
+                  Book Now
+                  <ArrowRight data-icon="inline-end" />
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="on-dark">
+                <PhoneLink>
+                  <Phone data-icon="inline-start" />
+                  Call {COMPANY_INFO.phoneDisplay}
+                  <span className="sr-only" data-google-ads-phone-label>
+                    {COMPANY_INFO.phoneDisplay}
+                  </span>
+                </PhoneLink>
+              </Button>
             </div>
+          </div>
+          <div className="relative hidden min-h-[280px] items-end justify-center lg:flex">
+            <Image
+              src="/brand_assets/Mascot/withaheart/MP_withaheart.png"
+              alt="Happy dog mascot with heart"
+              width={300}
+              height={300}
+              className="size-72 object-contain object-bottom"
+            />
           </div>
         </div>
       </div>
@@ -54,4 +69,4 @@ const FinalCTASection = () => (
   </section>
 );
 
-export default FinalCTASection; 
+export default FinalCTASection;

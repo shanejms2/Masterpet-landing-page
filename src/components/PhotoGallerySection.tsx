@@ -100,10 +100,11 @@ const galleryImages: GalleryImage[] = [
 
 const PhotoGallerySection = () => {
   return (
-    <section className="w-full py-16 md:py-24 bg-white" id="gallery" aria-label="Grooming Photo Gallery">
+    <section className="mp-section bg-white" id="gallery" aria-label="Grooming Photo Gallery">
       <Container>
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h2 className="font-fractul text-4xl md:text-5xl lg:text-6xl font-bold text-brand-blue mb-6">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <p className="mp-kicker mb-3">Gallery</p>
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-brand-blue mb-4 tracking-tight">
             Our Work Gallery
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/70 max-w-2xl mx-auto">
@@ -123,7 +124,7 @@ const PhotoGallerySection = () => {
             onClick={() => trackWhatsappClick()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-brand-green text-brand-blue hover:bg-brand-blue hover:text-white font-heading text-lg px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+            className="mp-cta-accent"
           >
             Book Your Pet&apos;s Transformation
           </a>

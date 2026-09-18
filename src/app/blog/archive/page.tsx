@@ -54,29 +54,30 @@ const BlogArchivePage = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="mb-12">
-              <h1 className="font-lora text-4xl font-bold text-gray-900 mb-4">
+              <p className="mp-kicker mb-3">Resources</p>
+              <h1 className="font-heading text-4xl md:text-5xl font-bold text-brand-blue mb-4 tracking-tight">
                 Blog Archive
               </h1>
-              <p className="font-noto-sans text-lg text-gray-600">
+              <p className="font-body text-lg text-brand-blue/65">
                 Browse all our blog posts organized by date and topics.
               </p>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 rounded-lg border border-primary/10">
-                <div className="text-2xl font-bold text-primary mb-2">{posts.length}</div>
-                <div className="text-sm text-gray-600">Total Posts</div>
+              <div className="bg-white p-6 rounded-2xl border border-brand-blue/[0.08]">
+                <div className="text-2xl font-bold text-brand-blue mb-2">{posts.length}</div>
+                <div className="text-sm text-brand-blue/55">Total Posts</div>
               </div>
-              <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 rounded-lg border border-primary/10">
-                <div className="text-2xl font-bold text-primary mb-2">{tags.length}</div>
-                <div className="text-sm text-gray-600">Topics Covered</div>
+              <div className="bg-white p-6 rounded-2xl border border-brand-blue/[0.08]">
+                <div className="text-2xl font-bold text-brand-blue mb-2">{tags.length}</div>
+                <div className="text-sm text-brand-blue/55">Topics Covered</div>
               </div>
-              <div className="bg-gradient-to-r from-primary/5 to-secondary/5 p-6 rounded-lg border border-primary/10">
-                <div className="text-2xl font-bold text-primary mb-2">
+              <div className="bg-white p-6 rounded-2xl border border-brand-blue/[0.08]">
+                <div className="text-2xl font-bold text-brand-blue mb-2">
                   {new Date(posts[0]?.meta.date).getFullYear()}
                 </div>
-                <div className="text-sm text-gray-600">Years of Content</div>
+                <div className="text-sm text-brand-blue/55">Years of Content</div>
               </div>
             </div>
           </div>
@@ -89,17 +90,17 @@ const BlogArchivePage = () => {
           <div className="max-w-6xl mx-auto">
             {sortedDates.map(({ year, month, posts: monthPosts }) => (
               <div key={`${year}-${month}`} className="mb-12">
-                <h2 className="font-lora text-2xl font-semibold text-gray-900 mb-6">
+                <h2 className="font-heading text-2xl font-semibold text-brand-blue mb-6">
                   {month} {year}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {monthPosts.map((post) => (
-                    <div key={post.slug} className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <div className="text-sm text-gray-500 mb-2">
+                    <div key={post.slug} className="bg-white border border-brand-blue/[0.08] rounded-2xl p-4 hover:border-brand-blue/20 transition-colors">
+                      <div className="text-sm text-brand-blue/50 mb-2">
                         {formatDate(post.meta.date)}
                       </div>
-                      <h3 className="font-lora text-lg font-semibold text-gray-900 mb-2">
-                        <a href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
+                      <h3 className="font-heading text-lg font-semibold text-brand-blue mb-2">
+                        <a href={`/blog/${post.slug}`} className="hover:text-brand-blue/70 transition-colors">
                           {post.meta.title}
                         </a>
                       </h3>

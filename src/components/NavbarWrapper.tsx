@@ -5,7 +5,11 @@ import { MainNavigation } from "@/components/MainNavigation";
 const NavbarWrapper = () => {
   const pathname = usePathname();
   if (pathname === "/grooming-report") return null;
-  return <MainNavigation />;
+  return (
+    <div data-site-chrome="">
+      <MainNavigation />
+    </div>
+  );
 };
 
-export default NavbarWrapper; 
+export default NavbarWrapper;

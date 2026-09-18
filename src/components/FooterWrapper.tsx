@@ -5,7 +5,11 @@ import Footer from "@/components/Footer";
 const FooterWrapper = () => {
   const pathname = usePathname();
   if (pathname === "/grooming-report") return null;
-  return <Footer />;
+  return (
+    <div data-site-chrome="">
+      <Footer />
+    </div>
+  );
 };
 
-export default FooterWrapper; 
+export default FooterWrapper;

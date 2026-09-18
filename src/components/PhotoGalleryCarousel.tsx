@@ -33,7 +33,7 @@ export default function PhotoGalleryCarousel({ images }: PhotoGalleryCarouselPro
   return (
     <div className="max-w-6xl mx-auto">
       <div className="relative mb-8">
-        <div className="aspect-[4/3] md:aspect-[16/9] bg-gray-100 rounded-2xl overflow-hidden">
+        <div className="aspect-[4/3] md:aspect-[16/9] bg-[#F6F7F9] rounded-2xl overflow-hidden border border-brand-blue/[0.08]">
           <Image
             src={images[currentIndex].src}
             alt={images[currentIndex].alt}
@@ -73,9 +73,9 @@ export default function PhotoGalleryCarousel({ images }: PhotoGalleryCarouselPro
             key={image.id}
             type="button"
             onClick={() => goToImage(index)}
-            className={`relative aspect-square rounded-lg overflow-hidden transition-all duration-300 ${
+            className={`relative aspect-square rounded-2xl overflow-hidden transition-all duration-300 ${
               index === currentIndex
-                ? "ring-2 ring-brand-blue scale-105"
+                ? "ring-2 ring-brand-green scale-105"
                 : "hover:scale-105 hover:ring-1 hover:ring-brand-blue/50"
             }`}
             aria-label={`Go to image ${index + 1}`}

@@ -1,9 +1,9 @@
 "use client";
-import Image from "next/image";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { Star, ArrowRight, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
 import Container from "./Container";
+import MascotScene from "./MascotScene";
 import { COMPANY_INFO, getWhatsAppUrl } from "@/lib/constants";
 import { trackWhatsappClick } from "@/lib/analytics";
 import PhoneLink from "./PhoneLink";
@@ -15,143 +15,66 @@ const HeroSection = () => {
   const buttonRef = useRef<HTMLAnchorElement>(null);
   const secondaryCtaRef = useRef<HTMLAnchorElement>(null);
   const mascotRef = useRef<HTMLDivElement>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    // Lazy load GSAP to prevent render blocking
     const loadGSAP = async () => {
       try {
-        const gsapModule = await import('gsap');
+        const gsapModule = await import("gsap");
         const gsap = gsapModule.default;
-        
-        // Only animate if component is still mounted
         if (mascotRef.current) {
-          const tl = gsap.timeline();
-          tl.fromTo(
+          gsap.fromTo(
             mascotRef.current,
-            { opacity: 0, scale: 0.95, x: -50 },
-            { opacity: 1, scale: 1, x: 0, duration: 0.8, ease: "power3.out" }
-          )
-            .fromTo(
-              headingRef.current,
-              { y: 40, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
-              "-=0.6"
-            )
-            .fromTo(
-              paragraphRef.current,
-              { y: 40, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
-              "-=0.5"
-            )
-            .fromTo(
-              badgeRef.current,
-              { y: 40, opacity: 0, scale: 0.95 },
-              { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
-              "-=0.5"
-            )
-            .fromTo(
-              buttonRef.current,
-              { y: 40, opacity: 0, scale: 0.95 },
-              { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
-              "-=0.5"
-            )
-            .fromTo(
-              secondaryCtaRef.current,
-              { y: 40, opacity: 0, scale: 0.95 },
-              { y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power1.out" },
-              "-=0.6"
-            );
+            { opacity: 0.6, y: 12 },
+            { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+          );
         }
       } catch {
-        console.warn('GSAP failed to load, falling back to CSS animations');
-        // Fallback to CSS animations if GSAP fails
-        setIsLoaded(true);
+        // keep content visible
       }
     };
 
-    // Load GSAP after a small delay to prioritize critical content
     const timer = setTimeout(loadGSAP, 100);
-    
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, []);
-
-  const handleImageLoad = () => {
-    setIsLoaded(true);
-  };
 
   return (
     <section
-      className="w-full min-h-[calc(100vh-80px)] relative flex flex-col items-center justify-center py-4 md:py-8 overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30"
+      className="relative isolate overflow-hidden bg-white py-16 md:py-24 lg:py-28"
       id="hero"
     >
-      <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left Side - Mascot with optimized loading */}
-          <div
-            ref={mascotRef}
-            className="flex justify-center lg:justify-start items-center order-2 lg:order-1"
-            tabIndex={0}
-            aria-label="Masterpet mascot on a couch with a cat, representing comfort and care"
-          >
-            <div className="relative w-full max-w-md lg:max-w-lg xl:max-w-xl">
-              {/* Loading skeleton */}
-              {!isLoaded && (
-                <div className="absolute inset-0 bg-gray-200 rounded-lg loading-skeleton" />
-              )}
-              
-              <Image
-                src="/brand_assets/Mascot/couch_dog_cat/MP_Couch_dog_cat.svg"
-                alt="Masterpet mascot on a couch with a cat, representing comfort and care"
-                width={480}
-                height={400}
-                className={`w-full h-auto drop-shadow-2xl transition-opacity duration-300 ${
-                  isLoaded ? 'opacity-100' : 'opacity-0'
-                }`}
-                priority
-                loading="eager"
-                onLoad={handleImageLoad}
-                onError={() => setIsLoaded(true)}
-              />
-            </div>
-          </div>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-32 -top-24 size-[28rem] rounded-full bg-brand-green/20 blur-3xl"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-24 bottom-0 size-[26rem] rounded-full bg-sky-200/40 blur-3xl"
+      />
+      <Container className="relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="text-left order-1">
+            <p ref={badgeRef} className="mp-kicker mb-5">
+              Trusted by 2000+ pet parents
+            </p>
 
-          {/* Right Side - Text Content */}
-          <div className="text-left order-1 lg:order-2">
-            <div
-              ref={badgeRef}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-green/20 text-brand-blue border border-brand-green/30 mb-6"
-            >
-              <Star className="h-4 w-4 text-brand-green" />
-              <span className="font-body text-sm font-semibold">Trusted by 2000+ Pet Parents</span>
-            </div>
-            
             <h1
               ref={headingRef}
-              className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-brand-blue font-bold mb-6 leading-tight"
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl text-brand-blue font-bold mb-5 leading-[1.1] tracking-tight"
             >
-              At-Home{" "}
-              Pet Grooming{" "}
-              <span className="text-brand-green">in Kochi</span>
+              At-Home Pet Grooming in Kochi
             </h1>
-            
+
             <p
               ref={paragraphRef}
-              className="font-body text-lg md:text-xl text-brand-blue mb-8 leading-relaxed"
+              className="font-body text-lg text-brand-blue/65 mb-8 leading-relaxed max-w-lg"
             >
-              Experience stress-free, hygienic grooming for your beloved pets right at your doorstep. 
+              Experience stress-free, hygienic grooming for your beloved pets right at your doorstep.
               Our professional groomers bring the salon experience to your home.
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <PhoneLink
-                ref={buttonRef}
-                className="inline-flex items-center justify-center font-heading bg-brand-green text-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
-                tabIndex={0}
-              >
-                <Phone className="h-6 w-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
+
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <PhoneLink ref={buttonRef} className="mp-cta-primary" tabIndex={0}>
+                <Phone className="h-4 w-4" aria-hidden="true" />
                 Call Now
                 <span className="sr-only" data-google-ads-phone-label>
                   {COMPANY_INFO.phoneDisplay}
@@ -163,35 +86,31 @@ const HeroSection = () => {
                 href={getWhatsAppUrl("Hi Masterpet! I am interested in booking a pet grooming session. [From Masterpet Website]")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center font-heading bg-white text-brand-blue border-2 border-brand-blue px-8 py-4 rounded-full shadow-lg hover:bg-brand-blue hover:text-white hover:border-brand-blue focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue transition-all duration-300 text-lg sm:text-xl gap-3 group"
+                className="mp-cta-accent"
                 tabIndex={0}
                 aria-label="Book grooming session on WhatsApp"
                 onClick={() => trackWhatsappClick()}
               >
-                <FaWhatsapp className="text-2xl group-hover:scale-110 transition-transform" aria-hidden="true" />
-                WhatsApp
-                <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                <FaWhatsapp className="text-lg" aria-hidden="true" />
+                Book on WhatsApp
               </a>
             </div>
-            
-            <div className="flex items-center gap-4 text-sm text-brand-blue font-body flex-wrap">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-brand-green rounded-full"></div>
-                <span>Professional Groomers</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-brand-green rounded-full"></div>
-                <span>Premium Products</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-brand-green rounded-full"></div>
-                <span>100% Hygienic</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-brand-green rounded-full"></div>
-                <span>No Travel Stress in {COMPANY_INFO.serviceCity}</span>
-              </div>
-            </div>
+
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 font-body text-sm text-brand-blue/55">
+              <li>Professional groomers</li>
+              <li>Premium products</li>
+              <li>100% hygienic</li>
+              <li>No travel stress in {COMPANY_INFO.serviceCity}</li>
+            </ul>
+          </div>
+
+          <div
+            ref={mascotRef}
+            className="flex justify-center lg:justify-end items-center order-2"
+            tabIndex={0}
+            aria-label="Masterpet mascot on a couch with a cat, representing comfort and care"
+          >
+            <MascotScene />
           </div>
         </div>
       </Container>
@@ -199,4 +118,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection; 
+export default HeroSection;

@@ -1,12 +1,14 @@
 "use client";
 
 import { Check, X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppUrl } from "@/lib/constants";
 import { trackWhatsappClick } from "@/lib/analytics";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 import Container from "./Container";
+import SectionHeading from "./SectionHeading";
 
 const plans = [
   {
@@ -113,37 +115,27 @@ const addOns = [
 
 const PricingSection = () => {
   return (
-    <section className="w-full bg-white py-16 md:py-24" id="pricing" aria-label="Grooming Packages and Pricing">
+    <section className="mp-section-muted" id="pricing" aria-label="Grooming Packages and Pricing">
       <Container>
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-fractul font-bold text-3xl md:text-4xl lg:text-5xl text-brand-blue mb-4">
-            Choose Your Perfect Grooming Package
-          </h2>
-          <p className="font-body text-lg md:text-xl text-brand-blue/80 max-w-3xl mx-auto mb-8">
-            Professional at-home grooming services tailored to your pet's needs. 
-            All packages include our certified groomer, premium products, and complete convenience.
-          </p>
-        </div>
+        <SectionHeading
+          kicker="Packages"
+          title="Choose Your Perfect Grooming Package"
+          description="Professional at-home grooming services tailored to your pet's needs. All packages include our certified groomer, premium products, and complete convenience."
+        />
 
-        {/* Main Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 mb-16">
+        <div className="mb-16 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
           {plans.map((plan) => (
             <Card
               key={plan.name}
-              className={`relative flex flex-col ${
-                plan.popular
-                  ? "border-brand-blue shadow-lg scale-105 my-8 md:my-0"
-                  : "border-gray-200 hover:border-brand-blue/50"
-              } transition-all duration-300 hover:shadow-lg`}
-            >
-              {plan.popular && (
-                <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-brand-green text-brand-blue border-2 border-white">
-                  Most Popular
-                </Badge>
+              className={cn(
+                "flex flex-col",
+                plan.popular && "border-brand-green bg-brand-green/10"
               )}
-              
-              <CardHeader className="text-center pb-4">
+            >
+              <CardHeader className="flex flex-col items-center gap-3 pb-4 text-center">
+                {plan.popular && (
+                  <Badge variant="brand">Most Popular</Badge>
+                )}
                 <CardTitle className="font-fractul text-2xl text-brand-blue">{plan.name}</CardTitle>
                 <CardDescription className="font-body text-brand-blue/70">
                   {plan.description}
@@ -205,11 +197,11 @@ const PricingSection = () => {
               <CardFooter className="pt-6">
                 <Button
                   asChild
-                  className={`w-full font-heading ${
+                  className={`w-full font-heading rounded-full ${
                     plan.popular
                       ? "bg-brand-blue text-white hover:bg-brand-blue/90"
-                      : "bg-brand-green text-brand-blue hover:bg-brand-blue hover:text-white"
-                  } transition-colors`}
+                      : "bg-white text-brand-blue border border-brand-blue/15 hover:bg-brand-blue hover:text-white"
+                  }`}
                   size="lg"
                 >
                   <a
@@ -238,7 +230,7 @@ const PricingSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {addOns.map((addOn) => (
-            <Card key={addOn.name} className="border-gray-200 hover:border-brand-blue/50 transition-all duration-300">
+            <Card key={addOn.name}>
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between mb-2">
                   <CardTitle className="font-fractul text-xl text-brand-blue">{addOn.name}</CardTitle>
@@ -267,7 +259,7 @@ const PricingSection = () => {
                 <Button
                   asChild
                   variant="outline"
-                  className="w-full font-heading border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white transition-colors"
+                  className="w-full font-heading rounded-full border-brand-blue/15 text-brand-blue hover:bg-brand-blue hover:text-white"
                 >
                   <a
                     href={getWhatsAppUrl(
@@ -288,31 +280,31 @@ const PricingSection = () => {
         {/* Trust Signals */}
         <div className="mt-20 text-center">
           <div className="max-w-5xl mx-auto">
-            <h3 className="font-fractul font-bold text-2xl md:text-3xl text-brand-blue mb-12">
+            <h3 className="font-fractul font-bold text-2xl md:text-3xl text-brand-blue mb-12 tracking-tight">
               Why Choose Masterpet?
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-brand-green/20 rounded-full flex items-center justify-center mb-6">
-                  <Check className="h-8 w-8 text-brand-green" />
+              <div className="flex flex-col items-center text-center rounded-2xl border border-brand-blue/[0.08] bg-white p-8">
+                <div className="w-12 h-12 bg-[#F6F7F9] rounded-xl flex items-center justify-center mb-5">
+                  <Check className="h-6 w-6 text-brand-blue" />
                 </div>
                 <h4 className="font-heading text-xl md:text-2xl text-brand-blue mb-4">Certified Groomers</h4>
                 <p className="font-body text-base md:text-lg text-brand-blue/70 max-w-xs">
                   All our groomers are certified professionals with years of experience.
                 </p>
               </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-brand-green/20 rounded-full flex items-center justify-center mb-6">
-                  <Check className="h-8 w-8 text-brand-green" />
+              <div className="flex flex-col items-center text-center rounded-2xl border border-brand-blue/[0.08] bg-white p-8">
+                <div className="w-12 h-12 bg-[#F6F7F9] rounded-xl flex items-center justify-center mb-5">
+                  <Check className="h-6 w-6 text-brand-blue" />
                 </div>
                 <h4 className="font-heading text-xl md:text-2xl text-brand-blue mb-4">Premium Products</h4>
                 <p className="font-body text-base md:text-lg text-brand-blue/70 max-w-xs">
                   We use only high-quality, pet-safe grooming products and equipment.
                 </p>
               </div>
-              <div className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-brand-green/20 rounded-full flex items-center justify-center mb-6">
-                  <Check className="h-8 w-8 text-brand-green" />
+              <div className="flex flex-col items-center text-center rounded-2xl border border-brand-blue/[0.08] bg-white p-8">
+                <div className="w-12 h-12 bg-[#F6F7F9] rounded-xl flex items-center justify-center mb-5">
+                  <Check className="h-6 w-6 text-brand-blue" />
                 </div>
                 <h4 className="font-heading text-xl md:text-2xl text-brand-blue mb-4">100% Satisfaction</h4>
                 <p className="font-body text-base md:text-lg text-brand-blue/70 max-w-xs">

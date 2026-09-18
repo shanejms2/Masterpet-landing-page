@@ -9,7 +9,7 @@ interface AreaNavigationProps {
 
 const AreaNavigation = ({ currentArea }: AreaNavigationProps) => {
   return (
-    <section className="w-full py-8 bg-gradient-to-r from-blue-50/30 to-green-50/30 border-b border-gray-100">
+    <section className="w-full py-8 bg-[#F6F7F9] border-b border-brand-blue/[0.06]">
       <Container>
         <div className="text-center mb-6">
           <h2 className="font-heading text-2xl md:text-3xl text-brand-blue font-bold mb-2">
@@ -31,8 +31,8 @@ const AreaNavigation = ({ currentArea }: AreaNavigationProps) => {
                 className={`
                   group relative p-4 rounded-xl border-2 transition-all duration-300 hover:shadow-lg
                   ${isCurrentArea 
-                    ? 'border-brand-green bg-brand-green/10 shadow-md' 
-                    : 'border-gray-200 bg-white hover:border-brand-green/50 hover:bg-brand-green/5'
+                    ? 'border-brand-blue bg-white' 
+                    : 'border-brand-blue/[0.08] bg-white hover:border-brand-blue/25'
                   }
                 `}
                 tabIndex={0}

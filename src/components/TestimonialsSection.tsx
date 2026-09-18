@@ -66,19 +66,15 @@ const platformRatings = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="w-full bg-background py-16 md:py-24" id="testimonials" aria-label="Customer Testimonials and Reviews">
+    <section className="mp-section bg-white" id="testimonials" aria-label="Customer Testimonials and Reviews">
       <Container>
-        {/* Header */}
-        <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4 bg-brand-green/20 text-brand-blue border-brand-green/30">
-            <Star className="w-3 h-3 mr-1" />
-            Trusted by 2000+ Pet Parents
-          </Badge>
-          <h2 className="font-fractul font-bold text-3xl md:text-4xl lg:text-5xl text-brand-blue mb-4">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <p className="mp-kicker mb-3">Reviews</p>
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-brand-blue mb-4 tracking-tight">
             What Pet Parents Say
           </h2>
-          <p className="font-body text-lg md:text-xl text-brand-blue/70 max-w-3xl mx-auto">
-            Real experiences from pet parents who chose Masterpet for their furry family members. 
+          <p className="font-body text-lg text-brand-blue/65">
+            Real experiences from pet parents who chose Masterpet for their furry family members.
             See why our at-home grooming service is the preferred choice in Ernakulam.
           </p>
         </div>
@@ -88,7 +84,7 @@ const TestimonialsSection = () => {
         {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="border-gray-200 hover:border-brand-blue/50 transition-all duration-300 hover:shadow-lg">
+            <Card key={testimonial.id}>
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
@@ -148,7 +144,7 @@ const TestimonialsSection = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {platformRatings.map((platform) => (
-              <Card key={platform.platform} className="border-gray-200 hover:border-brand-blue/50 transition-all duration-300 hover:shadow-lg">
+              <Card key={platform.platform}>
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-3">

@@ -42,7 +42,7 @@
   You can add more variables for other semantic colors as needed.
 */
 :root {
-  --background: #fff; /* White for default background */
+  --background: #ffffff;
   --section-background: #0A0A90; /* Deep blue for special sections */
   --foreground: 0 0% 3.9%;
   --card: 0 0% 100%;
@@ -74,12 +74,24 @@
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
   }
+
+  section[id],
+  [id="pricing"],
+  [id="faq"],
+  [id="testimonials"],
+  [id="showcase"],
+  [id="gallery"],
+  [id="process"],
+  [id="hero"],
+  [id="communities"] {
+    scroll-margin-top: 6.5rem;
+  }
   
   body {
     font-family: "Gliker", Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #fff;
+    background-color: var(--background);
     min-height: 100vh;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
@@ -280,4 +292,119 @@
   body {
     @apply bg-background text-gray-900;
   }
+}
+
+/* Masterpet design system */
+@layer components {
+  .mp-kicker {
+    @apply inline-block font-body text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em] text-brand-blue/45;
+  }
+
+  .mp-card {
+    @apply rounded-2xl border border-brand-blue/[0.08] bg-white shadow-none;
+  }
+
+  .mp-cta-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-6 py-3 font-heading text-base font-semibold text-white transition-colors duration-200 hover:bg-[#08087a] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2;
+  }
+
+  .mp-cta-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-green px-6 py-3 font-heading text-base font-semibold text-brand-blue transition-colors duration-200 hover:bg-[#b7f24a] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2;
+  }
+
+  .mp-cta-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-brand-blue/15 bg-white px-6 py-3 font-heading text-base font-semibold text-brand-blue transition-colors duration-200 hover:border-brand-blue hover:bg-brand-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2;
+  }
+
+  .mp-section {
+    @apply w-full py-16 md:py-24;
+  }
+
+  .mp-section-muted {
+    @apply w-full py-16 md:py-24 bg-[#F6F7F9];
+  }
+
+  .mp-fluid-blob {
+    @apply absolute blur-3xl;
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    animation: mp-blob-morph 16s ease-in-out infinite;
+  }
+
+  .mp-fluid-blob-alt {
+    @apply absolute blur-3xl;
+    border-radius: 42% 58% 37% 63% / 60% 40% 60% 40%;
+    animation: mp-blob-morph 20s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes mp-blob-morph {
+  0%,
+  100% {
+    border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
+    transform: scale(1) rotate(0deg);
+  }
+  33% {
+    border-radius: 40% 60% 45% 55% / 48% 52% 58% 42%;
+    transform: scale(1.08) rotate(8deg);
+  }
+  66% {
+    border-radius: 55% 45% 38% 62% / 42% 58% 48% 52%;
+    transform: scale(0.94) rotate(-6deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-fluid-blob,
+  .mp-fluid-blob-alt {
+    animation: none;
+  }
+}
+
+.legal-prose h2 {
+  @apply font-heading text-lg font-semibold text-brand-blue mt-9 mb-2;
+}
+
+.legal-prose p {
+  @apply mb-4;
+}
+
+.legal-prose ul {
+  @apply list-disc pl-5 mb-4 space-y-1.5;
+}
+
+.legal-prose li {
+  @apply text-brand-blue/80;
+}
+
+body:has([data-crm-page]) {
+  padding-bottom: 0;
+}
+
+body:has([data-crm-page]) [data-site-chrome] {
+  display: none !important;
+}
+
+body.crm-theme {
+  font-family: var(--font-noto-sans), ui-sans-serif, system-ui, sans-serif;
+  --foreground: 240 45% 16%;
+  --card-foreground: 240 45% 16%;
+  --primary: 240 87% 30%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 77 55% 90%;
+  --secondary-foreground: 240 87% 28%;
+  --muted: 240 20% 96.5%;
+  --muted-foreground: 240 10% 40%;
+  --accent: 77 70% 88%;
+  --accent-foreground: 240 87% 28%;
+  --border: 240 16% 88%;
+  --input: 240 16% 88%;
+  --ring: 240 87% 30%;
+  --background: #f7f7fb;
+}
+
+body.crm-theme h1,
+body.crm-theme h2,
+body.crm-theme h3 {
+  font-family: var(--font-lora), Georgia, "Times New Roman", serif;
+  letter-spacing: -0.025em;
 }

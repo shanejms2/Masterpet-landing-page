@@ -236,10 +236,11 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
   }, []);
 
   return (
-    <section className={`w-full py-16 bg-gradient-to-br from-blue-50/50 to-green-50/50 ${className}`}>
+    <section className={`mp-section bg-white ${className}`}>
       <Container>
-        <div className="text-center mb-12">
-          <h2 className="font-fractul font-bold text-3xl md:text-4xl lg:text-5xl text-brand-blue mb-4">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
+          <p className="mp-kicker mb-3">Coverage</p>
+          <h2 className="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-brand-blue mb-4 tracking-tight">
             Find Pet Grooming Near Me
           </h2>
           <p className="font-body text-lg md:text-xl text-brand-blue/80 max-w-3xl mx-auto mb-6">
@@ -250,7 +251,7 @@ const GoogleMapsSection = ({ className = "" }: GoogleMapsSectionProps) => {
 
         <div className="w-full">
           {/* Map */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-200">
+          <div className="bg-white rounded-2xl overflow-hidden border border-brand-blue/[0.08]">
             <div 
               ref={mapRef} 
               className="w-full h-96 md:h-[600px] relative"

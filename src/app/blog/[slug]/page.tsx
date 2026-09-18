@@ -137,7 +137,7 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
+      <div className="min-h-screen bg-white">
         {/* Navigation */}
         <div className="container mx-auto px-4 py-8">
           <BlogNavigation
@@ -154,14 +154,15 @@ const BlogPostPage = async ({ params }: BlogPostPageProps) => {
 
         {/* Related Posts */}
         {relatedPosts.length > 0 && (
-          <section className="bg-white/80 backdrop-blur-sm border-t border-gray-100 py-16">
+          <section className="bg-[#F6F7F9] border-t border-brand-blue/[0.08] py-16">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-10">
-                  <h2 className="font-lora text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                <div className="mb-10">
+                  <p className="mp-kicker mb-3">Keep reading</p>
+                  <h2 className="font-heading text-3xl font-bold text-brand-blue mb-3">
                     Related Posts
                   </h2>
-                  <p className="font-noto-sans text-gray-600 max-w-2xl mx-auto">
+                  <p className="font-body text-brand-blue/65 max-w-2xl">
                     Discover more insights and tips from our pet care experts
                   </p>
                 </div>

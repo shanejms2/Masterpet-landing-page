@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import BreadcrumbListSchema from "@/components/BreadcrumbListSchema";
-import BreadcrumbNavigation from "@/components/BreadcrumbNavigation";
 import PetShopPageContent from "@/components/pet-shop/PetShopPageContent";
 import { absoluteUrl, COMPANY_INFO } from "@/lib/constants";
 import { PET_SHOP } from "@/lib/pet-shop";
@@ -110,9 +109,6 @@ export default function PetShopKochiPage() {
             url: absoluteUrl(PET_SHOP.path),
           },
         ]}
-      />
-      <BreadcrumbNavigation
-        items={[{ label: "Pet Shop Kochi", href: PET_SHOP.path }]}
       />
       <PetShopPageContent />
     </>
