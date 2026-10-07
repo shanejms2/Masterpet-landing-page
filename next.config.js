@@ -283,6 +283,22 @@ const nextConfig = {
         destination: '/terms-and-conditions',
         permanent: true,
       },
+      // Old grooming URLs still used by Google Ads final URLs and sitelinks
+      {
+        source: '/pet-grooming',
+        destination: '/kochi-pet-grooming',
+        permanent: true,
+      },
+      {
+        source: '/pet-grooming/kochi',
+        destination: '/kochi-pet-grooming',
+        permanent: true,
+      },
+      {
+        source: '/pet-grooming/:area',
+        destination: '/kochi-pet-grooming/:area',
+        permanent: true,
+      },
     ];
   },
 }

@@ -1,5 +1,7 @@
 // Analytics utilities for blog tracking
 
+import { GOOGLE_ADS } from '@/lib/constants';
+
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
@@ -97,6 +99,13 @@ export const trackWhatsappClick = () => {
     event_category: 'lead',
     event_label: 'website_whatsapp',
   });
+  if (GOOGLE_ADS.whatsappConversionSendTo) {
+    // Beacon so the hit survives the tab/app switch to WhatsApp on mobile
+    window.gtag?.('event', 'conversion', {
+      send_to: GOOGLE_ADS.whatsappConversionSendTo,
+      transport_type: 'beacon',
+    });
+  }
 };
 
 export const trackPhoneClick = () => {

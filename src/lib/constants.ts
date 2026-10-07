@@ -36,11 +36,13 @@ export const COMPANY_INFO = {
   ],
 } as const;
 
-/** Google Ads website call conversion (forwarding number) */
+/** Google Ads conversions */
 export const GOOGLE_ADS = {
   conversionId: "AW-16630949671",
   phoneConversionSendTo: "AW-16630949671/5VVtCKX6ltccEKfOoPo9",
   phoneConversionNumber: COMPANY_INFO.phoneDisplay,
+  /** "WhatsApp click" conversion action; format AW-16630949671/<label>. Empty = not sent. */
+  whatsappConversionSendTo: "",
 } as const;
 
 export const absoluteUrl = (path = "") => {
