@@ -41,8 +41,8 @@ export const GOOGLE_ADS = {
   conversionId: "AW-16630949671",
   phoneConversionSendTo: "AW-16630949671/5VVtCKX6ltccEKfOoPo9",
   phoneConversionNumber: COMPANY_INFO.phoneDisplay,
-  /** "WhatsApp click" conversion action; format AW-16630949671/<label>. Empty = not sent. */
-  whatsappConversionSendTo: "",
+  /** "WhatsApp click" conversion action (Contact goal). Empty = not sent. */
+  whatsappConversionSendTo: "AW-16630949671/d1pjCIqth5QdEKfOoPo9",
 } as const;
 
 export const absoluteUrl = (path = "") => {
