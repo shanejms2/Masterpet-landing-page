@@ -4,7 +4,7 @@ import CrmPageContent from "@/components/crm/CrmPageContent";
 
 const title = "Masterpet CRM | Simplified Pet Business CRM with AI, Accounting & Zoho Migration";
 const description =
-  "Masterpet CRM is a simpler CRM for 500+ pet businesses. An AI agent creates charts, looks up your accounting books, and answers questions about your data. Includes accounting, import/export, and migrations from Zoho and other CRMs. Pricing on request — email hello@masterpet.co.in.";
+  "Masterpet CRM is a simpler CRM used by more than 50 happy pet businesses. An AI agent creates charts, looks up your accounting books, and answers questions about your data. Includes accounting, import/export, and migrations from Zoho and other CRMs. Pricing on request — email hello@masterpet.co.in.";
 
 export const metadata: Metadata = {
   title,

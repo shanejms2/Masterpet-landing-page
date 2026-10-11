@@ -139,7 +139,7 @@ const CrmPageContent = () => (
     <section className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
       <div className="grid items-center gap-12 lg:grid-cols-2">
         <div className="flex flex-col items-start gap-6">
-          <Badge variant="secondary">Trusted by 500+ businesses</Badge>
+          <Badge variant="secondary">50+ happy businesses</Badge>
           <h1 className="font-lora text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
             A simpler CRM — with an AI agent on your data.
           </h1>
@@ -162,7 +162,7 @@ const CrmPageContent = () => (
           </div>
           <p className="flex items-center gap-2 text-sm text-muted-foreground">
             <Check className="size-4 shrink-0 text-primary" />
-            Over 500 businesses are happy with our service. Import, export, and Zoho migrations included. Pricing on request.
+            More than 50 happy businesses use our CRM. Import, export, and Zoho migrations included. Pricing on request.
           </p>
         </div>
         <CrmDashboardPreview />
@@ -343,7 +343,7 @@ const CrmPageContent = () => (
               Ready for a simpler CRM?
             </CardTitle>
             <CardDescription className="text-base">
-              Join 500+ businesses on Masterpet CRM. We will walk through AI, accounting, and a migration from Zoho or the tools you use today — then share a subscription.
+              Join more than 50 happy businesses on Masterpet CRM. We will walk through AI, accounting, and a migration from Zoho or the tools you use today — then share a subscription.
             </CardDescription>
           </CardHeader>
           <CardFooter className="flex flex-col items-stretch gap-3 sm:flex-row">
