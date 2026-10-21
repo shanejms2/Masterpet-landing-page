@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { launchBrowser } from "@/lib/puppeteer-browser";
+import { launchBrowser, routePageThroughNode } from "@/lib/puppeteer-browser";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
   try {
     browser = await launchBrowser();
     const page = await browser.newPage();
+    await routePageThroughNode(page);
 
     await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 30_000 });
 
